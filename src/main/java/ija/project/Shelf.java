@@ -65,4 +65,8 @@ public class Shelf implements Drawable {
     public List<Shape> getGUI() {
         return gui;
     }
+
+    public Cordinate getPosition() {
+        return position;
+    }
 }
