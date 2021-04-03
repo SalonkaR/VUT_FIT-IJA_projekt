@@ -1,2 +1,6 @@
-Main.java
- Main
+ija/project/Shelf.java
+ ija.project.Shelf
+ija/project/Main.java
+ ija.project.Main
+ija/project/Cordinate.java
+ ija.project.Cordinate
