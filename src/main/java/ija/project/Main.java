@@ -1,6 +1,6 @@
 package ija.project;
 
-//import com.fasterxml.jackson.dataformat.yaml.YAMLFACTORY;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.project.Cordinate;
 import ija.project.MainController;
 import ija.project.Shelf;
@@ -24,7 +24,6 @@ public class Main extends Application {
 
         MainController controler = loader.getController();
         controler.setElements(Arrays.asList(new Shelf(new Cordinate(100,100),50,50), new Shelf(new Cordinate(100,155),50,50)));
-
 
     }
 }
