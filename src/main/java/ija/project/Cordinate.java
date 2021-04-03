@@ -1,3 +1,5 @@
+package ija.project;
+
 public class Cordinate {
     private double x;
     private double y;
