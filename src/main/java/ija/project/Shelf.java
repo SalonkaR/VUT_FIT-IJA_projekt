@@ -6,6 +6,8 @@ import javafx.scene.shape.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javafx.scene.paint.Color.*;
+
 public class Shelf implements Drawable {
     private Cordinate position;
     private double width = 50;
@@ -18,7 +20,10 @@ public class Shelf implements Drawable {
         this.width = width;
         this.height = height;
         gui = new ArrayList<>();
-        gui.add(new Rectangle(position.getX(), position.getY(), width, height));
+        Rectangle rect = new Rectangle(position.getX(), position.getY(), width, height);
+        rect.setFill(SKYBLUE);
+        gui.add(rect);
+
     }
 
     @Override

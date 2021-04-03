@@ -1,10 +1,10 @@
 ija/project/Drawable.java
  ija.project.Drawable
-ija/project/Shelf.java
- ija.project.Shelf
-ija/project/Cordinate.java
- ija.project.Cordinate
 ija/project/MainController.java
  ija.project.MainController
+ija/project/Cordinate.java
+ ija.project.Cordinate
+ija/project/Shelf.java
+ ija.project.Shelf
 ija/project/Main.java
  ija.project.Main
