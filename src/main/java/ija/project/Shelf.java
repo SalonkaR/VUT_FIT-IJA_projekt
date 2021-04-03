@@ -7,9 +7,7 @@ import javafx.scene.shape.Shape;
 
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static javafx.scene.paint.Color.*;
 
@@ -19,7 +17,7 @@ public class Shelf implements Drawable {
     private double width = 50;
     private double height = 50;
 
-    private ArrayList<Item> items;
+    private Map<Goods, List<Item>> items = new HashMap();
     private List<Shape> gui;
 
     public Shelf(Cordinate position, double width, double height) {
@@ -43,23 +41,24 @@ public class Shelf implements Drawable {
         });
     }
 
-    public Item removeItem(Goods good){
-        Iterator var2 = this.items.iterator();
-        Item item;
-        do{
-            if (!var2.hasNext()) {
-                return null;
-            }
-
-            item = (Item) var2.next();
-        } while(item.getGoods()!=good);
-
-        this.items.remove(item);
-        return item;
+    public Item removeItem(Goods goods){
+        List<Item> lst = (List)this.items.get(goods);
+        if (lst == null) {
+            return null;
+        } else {
+            return lst.isEmpty() ? null : (Item)lst.remove(0);
+        }
     }
 
     public void addItem(Item item){
-        items.add(item);
+        Goods goods = item.getGoods();
+        if(this.items.containsKey(goods)){
+            ((List)this.items.get(goods)).add(item);
+        }else {
+            List<Item> lst = new ArrayList();
+            lst.add(item);
+            this.items.put(goods, lst);
+        }
     }
 
     @Override
