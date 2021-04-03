@@ -1,6 +1,8 @@
+ija/project/Drawable.java
+ ija.project.Drawable
 ija/project/Shelf.java
  ija.project.Shelf
 ija/project/Main.java
- ija.project.Main
+ Main
 ija/project/Cordinate.java
  ija.project.Cordinate

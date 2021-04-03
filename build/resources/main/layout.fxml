@@ -16,7 +16,7 @@
                <children>
                   <Pane fx:id="content" layoutX="8.0" maxHeight="720.0" maxWidth="1120.0" minHeight="617.0" minWidth="1010.0" onScroll="#onZoom" prefHeight="617.0" prefWidth="1018.0">
                      <children>
-                        <Circle fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#800e22" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </Pane>
                </children>
