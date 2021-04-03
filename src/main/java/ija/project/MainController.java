@@ -4,10 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainController {
     @FXML
     private Pane content;
 
+    private List<Drawable> elements = new ArrayList<>();
 
     @FXML
     private void onZoom(ScrollEvent event) {
@@ -24,5 +28,12 @@ public class MainController {
             content.setScaleY(1);
         }
         content.layout();
+    }
+
+    public void setElements(List<Drawable> elements) {
+        this.elements = elements;
+        for (Drawable drawable : elements){
+            content.getChildren().addAll(drawable.getGUI());
+        }
     }
 }
