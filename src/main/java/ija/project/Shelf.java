@@ -1,7 +1,11 @@
 package ija.project;
 
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,17 @@ public class Shelf implements Drawable {
         rect.setFill(SKYBLUE);
         gui.add(rect);
 
+        rect.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent t) {
+                if(rect.getFill() == SKYBLUE){
+                    rect.setFill(RED);
+                } else if(rect.getFill() == RED){
+                    rect.setFill(SKYBLUE);
+                }
+            }
+        });
     }
 
     @Override

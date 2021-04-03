@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,4 +37,5 @@ public class MainController {
             content.getChildren().addAll(drawable.getGUI());
         }
     }
+
 }
