@@ -1,18 +1,29 @@
 package ija.project;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
 
-import java.awt.event.MouseEvent;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainController {
     @FXML
     private Pane content;
+    @FXML
+    private Pane sideBar;
 
     private List<Drawable> elements = new ArrayList<>();
+    private List<Shape> informations = new ArrayList<>();
+    private Drawable selected;
+
+    private Timer timer;
+    private LocalTime time =  LocalTime.now();
 
     @FXML
     private void onZoom(ScrollEvent event) {
@@ -37,5 +48,38 @@ public class MainController {
             content.getChildren().addAll(drawable.getGUI());
         }
     }
+
+    public void setInformation(List<Drawable> elemensts){
+        for (Drawable drawable : elemensts){
+            if (drawable.getInfo().size() > 0){
+                informations.clear();
+                informations.addAll((drawable.getInfo()));
+                if (selected != null && selected != drawable){
+                    selected.off();
+                }
+                selected = drawable;
+                drawable.infoClear();
+            }
+        }
+        sideBar.getChildren().clear();
+
+        sideBar.getChildren().add(informations.get(0));
+    }
+
+    public void startTime(){
+        timer = new Timer(false);
+        MainController controler = this;
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                time = time.plusSeconds(1);
+                Platform.runLater(() -> {
+                    controler.setInformation(elements);
+                });
+                System.out.println("clock");
+            }
+        },0, 1000);
+    }
+
 
 }

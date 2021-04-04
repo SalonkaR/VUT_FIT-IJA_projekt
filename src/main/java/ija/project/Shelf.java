@@ -2,7 +2,6 @@ package ija.project;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -17,8 +16,8 @@ import java.util.List;
 import static javafx.scene.paint.Color.*;
 
 public class Shelf implements Drawable {
-    private Cordinate position;
-    private Cordinate accessPoint;
+    private Coordinate position;
+    private Coordinate accessPoint;
     @JsonIgnore
     private double width = 50;
     @JsonIgnore
@@ -27,6 +26,10 @@ public class Shelf implements Drawable {
     private List<Shape> gui;
     @JsonIgnore
     private Map<Goods, List<Item>> items = new HashMap();
+    @JsonIgnore
+    private List<Shape> info = new ArrayList<>();
+    @JsonIgnore
+    private Rectangle mainRect;
 
 
     //empty constructor for jackson(yml)
@@ -34,7 +37,7 @@ public class Shelf implements Drawable {
     }
 
     @JsonIgnore
-    public Shelf(Cordinate position, double width, double height) {
+    public Shelf(Coordinate position, double width, double height) {
         this.position = position;
         this.width = width;
         this.height = height;
@@ -44,24 +47,25 @@ public class Shelf implements Drawable {
     @JsonIgnore
     public void makeGui(){
         gui = new ArrayList<>();
-        Rectangle rect = new Rectangle(position.getX(), position.getY(), width, height);
-        Text text = new Text(position.getX(), position.getY(), "aaa");
-        rect.setFill(SKYBLUE);
-        gui.add(rect);
-        rect.setOnMouseClicked(new EventHandler<MouseEvent>()
+        mainRect = new Rectangle(position.getX(), position.getY(), width, height);
+        mainRect.setFill(SKYBLUE);
+        gui.add(mainRect);
+        Shelf shelf = this;
+        mainRect.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent t) {
-                if(rect.getFill() == SKYBLUE){
-                    rect.setFill(RED);
-                } else if(rect.getFill() == RED){
-                    rect.setFill(SKYBLUE);
+                if(mainRect.getFill() == SKYBLUE) {
+                    Text text = new Text(shelf.getContent());
+                    text.setWrappingWidth(125);
+                    info.add(text);
+                    mainRect.setFill(RED);
                 }
             }
         });
     }
 
-    public Cordinate getPosition() {
+    public Coordinate getPosition() {
         return position;
     }
 
@@ -87,6 +91,10 @@ public class Shelf implements Drawable {
         }
     }
 
+    public List<Shape> getInfo() {
+        return info;
+    }
+
     @Override
     public List<Shape> getGUI() {
         return gui;
@@ -100,5 +108,17 @@ public class Shelf implements Drawable {
                 ", height=" + height +
                 ", gui=" + gui +
                 '}';
+    }
+
+    private String getContent(){
+        return this.toString();
+    }
+
+    public void infoClear(){
+        info.clear();
+    }
+
+    public void off(){
+        mainRect.setFill(SKYBLUE);
     }
 }

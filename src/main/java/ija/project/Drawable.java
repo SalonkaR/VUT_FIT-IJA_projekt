@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface Drawable {
     List<Shape> getGUI();
+    List<Shape> getInfo();
+    void off();
+    void infoClear();
 }
