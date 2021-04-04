@@ -4,18 +4,22 @@ import java.util.ArrayList;
 
 public class Goods {
     private String name;
-    private ArrayList<Item> items;
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public Goods(String name, ArrayList<Item> items) {
+    public Goods(String name) {
+
         this.name = name;
-        this.items = items;
     }
 
 
     public void addItem(Item item){
+
         items.add(item);
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void removeItem(Item item){
         items.remove(item);
@@ -33,14 +37,15 @@ public class Goods {
 
         Goods goods = (Goods) o;
 
-        if (name != null ? !name.equals(goods.name) : goods.name != null) return false;
-        return items != null ? items.equals(goods.items) : goods.items == null;
+        return name != null ? name.equals(goods.name) : goods.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (items != null ? items.hashCode() : 0);
-        return result;
+        return 0;
+    }
+
+    public void print() {
+        System.out.println(items);
     }
 }

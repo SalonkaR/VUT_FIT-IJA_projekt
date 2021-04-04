@@ -84,7 +84,9 @@ public class Shelf implements Drawable {
         Goods goods = item.getGoods();
         if(this.items.containsKey(goods)){
             ((List)this.items.get(goods)).add(item);
+            System.out.println("new item added in map to already existing goods");
         }else {
+            System.out.println("new goods added in map");
             List<Item> lst = new ArrayList();
             lst.add(item);
             this.items.put(goods, lst);
@@ -120,5 +122,12 @@ public class Shelf implements Drawable {
 
     public void off(){
         mainRect.setFill(SKYBLUE);
+    }
+
+    public void print(){
+        for (Goods i : items.keySet()) {
+            System.out.println("key: " + i.getName() + " value: " + items.get(i).size());
+        }
+        System.out.println(items);
     }
 }

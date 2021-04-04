@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.project.MainController">
    <center>
@@ -29,11 +28,7 @@
                <content>
                   <Group>
                      <children>
-                        <Pane prefHeight="518.0" prefWidth="161.0">
-                           <children>
-                              <Circle fill="DODGERBLUE" layoutX="81.0" layoutY="518.0" radius="41.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </Pane>
+                        <Pane fx:id="sideBar" prefHeight="518.0" prefWidth="161.0" />
                      </children>
                   </Group>
                </content>

@@ -34,8 +34,6 @@ public class Main extends Application {
 
         Shelf shelf1 = new Shelf(coordinates.get(0),50,50);
 
-
-
         Data data = new Data();
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);

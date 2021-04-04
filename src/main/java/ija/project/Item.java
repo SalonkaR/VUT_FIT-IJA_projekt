@@ -8,9 +8,8 @@ public class Item {
         this.goods = goods;
         this.shelf = shelf;
         this.goods.addItem(this);
-        if (shelf != null){
-            this.shelf.addItem(this);
-        }
+        this.shelf.addItem(this);
+
     }
 
     public Goods getGoods() {
