@@ -22,8 +22,8 @@ public class ShelfBlock {
             double bottomX = shelfs.get(0).getPosition().getX();
 
             for (Shelf shelf : shelfs){
-                topX = shelf.getPosition().getX() < topX ? shelf.getPosition().getX() : topX;
-                bottomX = shelf.getPosition().getX() > topX ? shelf.getPosition().getX() : bottomX;
+                topX = Math.min(shelf.getPosition().getX(), topX);
+                bottomX = Math.max(shelf.getPosition().getX(),bottomX);
             }
 
             this.top = new Cordinate(topX, y);

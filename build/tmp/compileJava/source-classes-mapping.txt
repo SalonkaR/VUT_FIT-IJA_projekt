@@ -3,8 +3,16 @@ ija/project/Drawable.java
 ija/project/Shelf.java
  ija.project.Shelf
  ija.project.Shelf$1
+ija/project/Data.java
+ ija.project.Data
 ija/project/Main.java
  ija.project.Main
+ija/project/Goods.java
+ ija.project.Goods
+ija/project/Item.java
+ ija.project.Item
+ija/project/ShelfBlock.java
+ ija.project.ShelfBlock
 ija/project/Cordinate.java
  ija.project.Cordinate
 ija/project/MainController.java
