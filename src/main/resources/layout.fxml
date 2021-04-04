@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.project.MainController">
    <center>
@@ -12,13 +13,32 @@
          <content>
             <Group>
                <children>
-                  <Pane fx:id="content" layoutX="8.0" maxHeight="720.0" maxWidth="1120.0" minHeight="617.0" minWidth="1010.0" onScroll="#onZoom" prefHeight="718.0" prefWidth="1117.0" />
+                  <Pane fx:id="content" layoutX="8.0" layoutY="14.0" maxHeight="720.0" maxWidth="1120.0" minHeight="617.0" minWidth="1010.0" onScroll="#onZoom" prefHeight="718.0" prefWidth="1117.0" />
                </children>
             </Group>
          </content>
       </ScrollPane>
    </center>
    <right>
-      <AnchorPane prefHeight="400.0" prefWidth="160.0" BorderPane.alignment="CENTER" />
+      <BorderPane prefHeight="720.0" prefWidth="161.0" BorderPane.alignment="CENTER">
+         <top>
+            <AnchorPane prefHeight="200.0" prefWidth="161.0" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <Group>
+                     <children>
+                        <Pane prefHeight="518.0" prefWidth="161.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutX="81.0" layoutY="518.0" radius="41.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Group>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
    </right>
 </BorderPane>

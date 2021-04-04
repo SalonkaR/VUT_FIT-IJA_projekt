@@ -4,6 +4,9 @@ public class Cordinate {
     private double x;
     private double y;
 
+    //empty constructor for jackson(yml)
+    private Cordinate() { }
+
     public Cordinate(double x, double y) {
         this.x = x;
         this.y = y;
