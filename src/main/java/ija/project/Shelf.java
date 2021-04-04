@@ -1,7 +1,11 @@
 package ija.project;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
+
+import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -15,9 +19,12 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Shelf implements Drawable {
-    private Coordinate position;
-    private Coordinate accessPoint;
+    private String id;
+    private Coordinates position;
+    @JsonIgnore
+    private Coordinates accessPoint;
     @JsonIgnore
     private double width = 50;
     @JsonIgnore
@@ -37,7 +44,8 @@ public class Shelf implements Drawable {
     }
 
     @JsonIgnore
-    public Shelf(Coordinate position, double width, double height) {
+    public Shelf(String id, Coordinates position, double width, double height) {
+        this.id = id;
         this.position = position;
         this.width = width;
         this.height = height;
@@ -65,8 +73,12 @@ public class Shelf implements Drawable {
         });
     }
 
-    public Coordinate getPosition() {
+    public Coordinates getPosition() {
         return position;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @JsonIgnore
@@ -84,9 +96,7 @@ public class Shelf implements Drawable {
         Goods goods = item.getGoods();
         if(this.items.containsKey(goods)){
             ((List)this.items.get(goods)).add(item);
-            System.out.println("new item added in map to already existing goods");
         }else {
-            System.out.println("new goods added in map");
             List<Item> lst = new ArrayList();
             lst.add(item);
             this.items.put(goods, lst);
@@ -99,6 +109,9 @@ public class Shelf implements Drawable {
 
     @Override
     public List<Shape> getGUI() {
+        if(gui == null){
+            this.makeGui();
+        }
         return gui;
     }
 

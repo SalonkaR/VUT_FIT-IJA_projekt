@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class ShelfBlock {
     ArrayList<Shelf> shelfs;
     
-    Coordinate top;
-    Coordinate bottom;
+    Coordinates top;
+    Coordinates bottom;
 
     public ShelfBlock() {
     }
@@ -26,8 +26,8 @@ public class ShelfBlock {
                 bottomX = Math.max(shelf.getPosition().getX(),bottomX);
             }
 
-            this.top = new Coordinate(topX, y);
-            this.bottom = new Coordinate(bottomX, y);
+            this.top = new Coordinates(topX, y);
+            this.bottom = new Coordinates(bottomX, y);
 
         }
     }

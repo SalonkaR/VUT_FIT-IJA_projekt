@@ -1,13 +1,13 @@
 package ija.project;
 
-public class Coordinate {
+public class Coordinates {
     private double x;
     private double y;
 
     //empty constructor for jackson(yml)
-    private Coordinate() { }
+    private Coordinates() { }
 
-    public Coordinate(double x, double y) {
+    public Coordinates(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -39,12 +39,12 @@ public class Coordinate {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Coordinate)) return false;
+        if (!(o instanceof Coordinates)) return false;
 
-        Coordinate coordinate = (Coordinate) o;
+        Coordinates coordinates = (Coordinates) o;
 
-        if (Double.compare(coordinate.x, x) != 0) return false;
-        return Double.compare(coordinate.y, y) == 0;
+        if (Double.compare(coordinates.x, x) != 0) return false;
+        return Double.compare(coordinates.y, y) == 0;
     }
 
     @Override

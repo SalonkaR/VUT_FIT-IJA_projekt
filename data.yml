@@ -1,3 +1,17 @@
-position:
-  x: 400.0
-  y: 400.0
+shelves:
+- &Shelf0 id: 0
+  position:
+    x: 245.0
+    y: 100.0
+- &Shelf1 id: 1
+  position:
+    x: 300.0
+    y: 100.0
+- &Shelf2 id: 2
+  position:
+    x: 355.0
+    y: 100.0
+- &Shelf3 id: 3
+  position:
+    x: 410.0
+    y: 100.0
