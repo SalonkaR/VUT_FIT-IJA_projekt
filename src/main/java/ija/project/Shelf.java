@@ -113,7 +113,11 @@ public class Shelf implements Drawable {
     }
 
     private String getContent(){
-        return this.toString();
+        String str = "";
+        for (Goods i : items.keySet()) {
+            str += i.getName() + "-" + items.get(i).size() + "ks\n" ;
+        }
+        return str;
     }
 
     public void infoClear(){

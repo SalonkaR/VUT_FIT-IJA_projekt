@@ -49,6 +49,26 @@ public class Main extends Application {
 
         List<Drawable> shelfs= Arrays.asList(new Shelf(new Coordinate(100,100),50,50), new Shelf(new Coordinate(100,155),50,50), shelf1, shelf2);
 
+        Goods goods1 = new Goods("Stolicka");
+        Goods goods2 = new Goods("Stol");
+        Goods goods3 = new Goods("Taniere");
+
+        Item item11 = new Item(goods1, (Shelf)shelfs.get(0));
+        Item item12 = new Item(goods1, (Shelf)shelfs.get(0));
+        Item item13 = new Item(goods1, (Shelf)shelfs.get(1));
+        Item item14 = new Item(goods1, (Shelf)shelfs.get(1));
+        Item item15 = new Item(goods1, (Shelf)shelfs.get(1));
+
+        Item item21 = new Item(goods2, (Shelf)shelfs.get(0));
+        Item item22 = new Item(goods2, (Shelf)shelfs.get(2));
+        Item item23 = new Item(goods2, (Shelf)shelfs.get(3));
+
+        Item item31 = new Item(goods3, (Shelf)shelfs.get(2));
+        Item item32 = new Item(goods3, (Shelf)shelfs.get(2));
+        Item item33 = new Item(goods3, (Shelf)shelfs.get(2));
+        Item item34 = new Item(goods3, (Shelf)shelfs.get(2));
+        Item item35 = new Item(goods3, (Shelf)shelfs.get(2));
+
         controler.setElements(shelfs);
         controler.startTime();
     }
