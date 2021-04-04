@@ -41,8 +41,10 @@ public class Main extends Application {
         Map map =  mapper.readValue(new File("data.yml"), Map.class);
         shelves.addAll(map.getShelves());
 
+        Parking parking = new Parking(new Coordinates(50,50));
+        shelves.add(parking);
         controler.setElements(shelves);
-
+        System.out.println(shelves);
         //Shelf shelf2 = mapper.readValue(new File("data.yml"), Shelf.class);
         //shelf2.makeGui();
         //mapper.writeValue(new File("data.yml"), shelf2);
