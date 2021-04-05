@@ -38,7 +38,7 @@ public class Shelf implements Drawable {
     @JsonIgnore
     private Rectangle mainRect;
     @JsonIgnore
-    private ShelfBlock block;
+    private Regal regal;
 
 
     //empty constructor for jackson(yml)
@@ -150,7 +150,7 @@ public class Shelf implements Drawable {
         System.out.println(items);
     }
 
-    public void saveBlock(ShelfBlock block){
-        this.block = block;
+    public void saveBlock(Regal regal){
+        this.regal = regal;
     }
 }
