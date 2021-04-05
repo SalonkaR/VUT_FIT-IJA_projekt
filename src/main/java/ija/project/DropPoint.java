@@ -71,6 +71,24 @@ public class DropPoint implements Drawable{
         return str;
     }
 
+    public void updateOrder(int status, Order order) {
+        if (status == 0){
+            waiting.remove(order);
+            processing.add(order);
+        }else{
+            processing.remove(order);
+            done.add(order);
+        }
+    }
+
+    public Order getWaitingOrder(){
+        return waiting.get(0);
+    }
+
+    public int getWaitingOrderSize(){
+        return waiting.size();
+    }
+
     @Override
     public List<Shape> getGUI() {
         return gui;
@@ -95,4 +113,6 @@ public class DropPoint implements Drawable{
     public Coordinates getPosition() {
         return position;
     }
+
+
 }

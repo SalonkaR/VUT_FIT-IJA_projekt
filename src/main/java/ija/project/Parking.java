@@ -15,6 +15,7 @@ public class Parking implements Drawable{
     private Coordinates position;
     private double width = 50;
     private Rectangle mainRect;
+    private DropPoint dropPoint;
 
     private List<Shape> gui = new ArrayList<>();
     private List<Shape> info = new ArrayList<>();
@@ -22,8 +23,10 @@ public class Parking implements Drawable{
     private ArrayList<Carriage> worked = new ArrayList<>();
 
 
-    public Parking(Coordinates position) {
+    public Parking(DropPoint point, Coordinates position) {
+        this.dropPoint = point;
         this.position = position;
+
         mainRect = new Rectangle(position.getX() - width/2, position.getY() - width/2, width, width);
         mainRect.setFill(ORANGE);
         gui.add(mainRect);
@@ -50,6 +53,13 @@ public class Parking implements Drawable{
 
     public void addCarriage(ArrayList<Carriage> lst){
         parked.addAll(lst);
+    }
+
+    public Order getOrder(){
+        if (dropPoint.getWaitingOrderSize() == 0){
+            return null;
+        }
+        return dropPoint.getWaitingOrder();
     }
 
     private String getContent(){

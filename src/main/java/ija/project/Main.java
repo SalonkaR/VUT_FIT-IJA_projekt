@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Application {
@@ -41,13 +42,17 @@ public class Main extends Application {
         Map map =  mapper.readValue(new File("data.yml"), Map.class);
         shelves.addAll(map.getShelves());
 
-        Parking parking = new Parking(new Coordinates(50,50));
-        Carriage carriage1 = new Carriage("carriage1", parking.getPosition());
+
+
         DropPoint dropPoint = new DropPoint(new Coordinates(600,600));
+        Parking parking = new Parking(dropPoint, new Coordinates(50,50));
+        Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
 
         shelves.add(parking);
         shelves.add(carriage1);
         shelves.add(dropPoint);
+
+
 
         controler.setElements(shelves);
         System.out.println(shelves);
@@ -82,6 +87,11 @@ public class Main extends Application {
         Item item33 = new Item(goods3, (Shelf)shelves.get(2));
         Item item34 = new Item(goods3, (Shelf)shelves.get(2));
         Item item35 = new Item(goods3, (Shelf)shelves.get(2));
+
+        HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
+        list1.put(goods1, 3);
+        list1.put(goods2, 2);
+        Order order1 = new Order("0001", dropPoint, list1);
 
         controler.startTime();
 

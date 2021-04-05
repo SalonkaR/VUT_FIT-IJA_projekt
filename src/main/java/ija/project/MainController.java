@@ -51,7 +51,6 @@ public class MainController {
         for (Drawable drawable : elements){
             content.getChildren().addAll(drawable.getGUI());
             if (drawable instanceof Mover){
-                System.out.println("pridal som do mover");
                 movers.add((Mover) drawable);
             }
         }

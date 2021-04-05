@@ -121,9 +121,10 @@ public class Shelf implements Drawable {
     public String toString() {
         return "Shelf{" +
                 "position=" + position +
+                /*
                 ", width=" + width +
                 ", height=" + height +
-                ", gui=" + gui +
+                ", gui=" + gui +*/
                 '}';
     }
 
@@ -152,5 +153,20 @@ public class Shelf implements Drawable {
 
     public void saveBlock(ShelfBlock block){
         this.block = block;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Shelf)) return false;
+
+        Shelf shelf = (Shelf) o;
+
+        return id.equals(shelf.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

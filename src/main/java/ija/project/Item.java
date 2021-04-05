@@ -3,6 +3,7 @@ package ija.project;
 public class Item {
     private Goods goods;
     private Shelf shelf;
+    private boolean reserve = false;
 
     public Item(Goods goods, Shelf shelf) {
         this.goods = goods;
@@ -22,5 +23,13 @@ public class Item {
     
     public void sell(){
         this.goods.removeItem(this);
+    }
+
+    public void setReserve() {
+        reserve = true;
+    }
+
+    public boolean isReserve() {
+        return reserve;
     }
 }
