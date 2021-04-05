@@ -96,4 +96,8 @@ public class Parking implements Drawable{
                 ", worked=" + worked +
                 '}';
     }
+
+    public Coordinates getPosition() {
+        return position;
+    }
 }

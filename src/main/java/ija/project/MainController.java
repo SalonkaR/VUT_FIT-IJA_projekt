@@ -22,6 +22,7 @@ public class MainController {
     private Map map;
 
     private List<Drawable> elements = new ArrayList<>();
+    private List<Mover> movers = new ArrayList<>();
     private List<Shape> informations = new ArrayList<>();
     private Drawable selected;
 
@@ -49,6 +50,10 @@ public class MainController {
         this.elements = elements;
         for (Drawable drawable : elements){
             content.getChildren().addAll(drawable.getGUI());
+            if (drawable instanceof Mover){
+                System.out.println("pridal som do mover");
+                movers.add((Mover) drawable);
+            }
         }
     }
 
@@ -73,8 +78,15 @@ public class MainController {
             }
         }
         sideBar.getChildren().clear();
+        if (informations.size() > 0) {
+            sideBar.getChildren().add(informations.get(0));
+        }
+    }
 
-        sideBar.getChildren().add(informations.get(0));
+    public void makeUpdates(){
+        for (Mover mover : movers){
+            mover.update();
+        }
     }
 
     public void startTime(){
@@ -86,8 +98,8 @@ public class MainController {
                 time = time.plusSeconds(1);
                 Platform.runLater(() -> {
                     controler.setInformation(elements);
+                    controler.makeUpdates();
                 });
-                System.out.println("clock");
             }
         },0, 1000);
     }

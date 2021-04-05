@@ -42,7 +42,10 @@ public class Main extends Application {
         shelves.addAll(map.getShelves());
 
         Parking parking = new Parking(new Coordinates(50,50));
+        Carriage carriage1 = new Carriage("carriage1", parking.getPosition());
         shelves.add(parking);
+        shelves.add(carriage1);
+
         controler.setElements(shelves);
         System.out.println(shelves);
         //Shelf shelf2 = mapper.readValue(new File("data.yml"), Shelf.class);
