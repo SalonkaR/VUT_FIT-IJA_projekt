@@ -111,10 +111,10 @@ items:
   - &Item13 name: "Stol0"
     goods: *Goods1
     shelf: *Shelf2
-  - &Item6 name: "Stol1"
+  - &Item14 name: "Stol1"
     goods: *Goods1
     shelf: *Shelf3
-  - &Item7 name: "Stol2"
+  - &Item15 name: "Stol2"
     goods: *Goods1
     shelf: *Shelf4
   - &Item16 name: "Stol3"

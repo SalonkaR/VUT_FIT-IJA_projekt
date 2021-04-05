@@ -48,9 +48,8 @@ public class Order {
     }
 
     @JsonIgnore
-    public Order(String name, List<Goods> goods, DropPoint point, HashMap<Goods, Integer> list) {
+    public Order(String name, DropPoint point, HashMap<Goods, Integer> list) {
         this.name = name;
-        this.goods = goods;
         this.dropPoint = point;
         this.list = list;
         dropPoint.addOrder(this);

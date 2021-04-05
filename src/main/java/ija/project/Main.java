@@ -32,13 +32,11 @@ public class Main extends Application {
         elements.addAll(data.getParking());
 
 
-        //DropPoint dropPoint = new DropPoint(new Coordinates(600,600));
-        /*Parking parking = new Parking(dropPoint, new Coordinates(50,50));
+        DropPoint dropPoint = data.getDropPoint().get(0);
+        Parking parking = data.getParking().get(0);
         Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
 
-        //elements.add(parking);
         elements.add(carriage1);
-        //elements.add(dropPoint);*/
 
         controller.setElements(elements);
 

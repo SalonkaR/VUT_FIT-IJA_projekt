@@ -148,9 +148,6 @@ public class Parking implements Drawable{
                 '}';
     }
 
-    public Coordinates getPosition() {
-        return position;
-    }
 
     public Coordinates getDropPointCoords(){
         return dropPoint.getPosition();
