@@ -28,16 +28,12 @@ public class Main extends Application {
         ObjectMapper mapper = new ObjectMapper(factory);
         Data data =  mapper.readValue(new File("data.yml"), Data.class);
         elements.addAll(data.getShelves());
+        elements.addAll(data.getDropPoint());
+        elements.addAll(data.getParking());
 
+        //Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
 
-
-        DropPoint dropPoint = new DropPoint(new Coordinates(600,600));
-        Parking parking = new Parking(dropPoint, new Coordinates(50,50));
-        Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
-
-        elements.add(parking);
-        elements.add(carriage1);
-        elements.add(dropPoint);
+        //elements.add(carriage1);
 
         controller.setElements(elements);
 

@@ -107,7 +107,7 @@ public class Shelf implements Drawable {
         double x;
         if (accessPointBool){
             //accessPoint = Left
-           x = this.getPosition().getX() - width/2;
+            x = this.getPosition().getX() - width/2;
         } else {
             //accessPoint = Right
             x = this.getPosition().getX() + width * 1.5;

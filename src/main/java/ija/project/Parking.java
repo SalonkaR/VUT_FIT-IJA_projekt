@@ -1,5 +1,8 @@
 package ija.project;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -11,22 +14,49 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Parking implements Drawable{
-    private Coordinates position;
-    private double width = 50;
-    private Rectangle mainRect;
+    private String name;
     private DropPoint dropPoint;
-
-    private List<Shape> gui = new ArrayList<>();
+    private Coordinates position;
+    @JsonIgnore
+    private double width = 50;
+    @JsonIgnore
+    private Rectangle mainRect;
+    @JsonIgnore
+    private List<Shape> gui;
+    @JsonIgnore
     private List<Shape> info = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Carriage> parked = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Carriage> worked = new ArrayList<>();
 
+    //empty constructor for jackson(yml)
+    public Parking() {
+    }
 
-    public Parking(DropPoint point, Coordinates position) {
+    public String getName() {
+        return name;
+    }
+
+    public DropPoint getDropPoint() {
+        return dropPoint;
+    }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    public Parking(String name, DropPoint point, Coordinates position) {
+        this.name = name;
         this.dropPoint = point;
         this.position = position;
+        this.makeGui();
+    }
 
+    public void makeGui(){
+        gui = new ArrayList<>();
         mainRect = new Rectangle(position.getX() - width/2, position.getY() - width/2, width, width);
         mainRect.setFill(ORANGE);
         gui.add(mainRect);
@@ -76,6 +106,9 @@ public class Parking implements Drawable{
 
     @Override
     public List<Shape> getGUI() {
+        if(gui == null){
+            this.makeGui();
+        }
         return gui;
     }
 
@@ -105,9 +138,5 @@ public class Parking implements Drawable{
                 ", parked=" + parked +
                 ", worked=" + worked +
                 '}';
-    }
-
-    public Coordinates getPosition() {
-        return position;
     }
 }

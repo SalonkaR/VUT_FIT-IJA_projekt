@@ -1,0 +1,60 @@
+<project name="IJAprojekt" basedir="." default="compile">
+
+    <property name="src.dir" value="src"/>
+    <property name="dest.dir" value="dest"/>
+    <property name="doc.dir" value="doc"/>
+    <property name="build.dir" value="build"/>
+    <property name="lib.dir" location="lib"/>
+    <property name="res.dir" location="src/main/resources"/>
+    <property name="jar.name" value="ija-app"/>
+    <property name="main-class" value="ija.project.Main"/>
+
+    <path id="classpath">
+        <pathelement location="${lib.dir}/jackson-annotations-2.9.0.jar"/>
+        <pathelement location="${lib.dir}/jackson-core-2.9.9.jar"/>
+        <pathelement location="${lib.dir}/jackson-databind-2.9.9.jar"/>
+        <pathelement location="${lib.dir}/jackson-dataformat-yaml-2.9.9.jar"/>
+        <pathelement location="${lib.dir}/snakeyaml-1.23.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="createFileStructure">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="clean, createFileStructure">
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+        <jar destfile="${dest.dir}\${jar.name}.jar" basedir="${build.dir}">
+            <fileset dir="${res.dir}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+            <zipgroupfileset dir="${lib.dir}" includes="**/*.jar"/>
+        </jar>
+    </target>
+
+
+    <target name="clean-doc">
+        <delete dir="${doc.dir}"/>
+    </target>
+
+    <target name="docs" depends="compile">
+        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javadoc>
+    </target>
+
+    <target name="run">
+        <java jar="${dest.dir}/${jar.name}.jar" fork="true"/>
+    </target>
+
+</project>

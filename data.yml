@@ -58,3 +58,18 @@ items:
     goods: *Goods1
     shelf: *Shelf3
 
+dropPoint:
+  - &DropPoint0 name: "DropPointNo0"
+    position:
+      x: 600.0
+      y: 600.0
+
+parking:
+  - &Parking0 name: "ParkingNo0"
+    dropPoint: *DropPoint0
+    position:
+      x: 50.0
+      y: 50.0
+
+
+

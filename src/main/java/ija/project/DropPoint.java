@@ -1,5 +1,8 @@
 package ija.project;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -11,20 +14,47 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class DropPoint implements Drawable{
+    private String name;
     private Coordinates position;
+    @JsonIgnore
     private double width = 50;
+    @JsonIgnore
     private Rectangle mainRect;
-
-    private List<Shape> gui = new ArrayList<>();
+    @JsonIgnore
+    private List<Shape> gui;
+    @JsonIgnore
     private List<Shape> info = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Order> waiting = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Order> processing = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Order> done = new ArrayList<>();
 
+    //empty constructor for jackson(yml)
+    public DropPoint() {
+    }
 
-    public DropPoint(Coordinates position) {
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    @JsonIgnore
+    public DropPoint(String name, Coordinates position) {
+        this.name = name;
         this.position = position;
+        this.makeGui();
+    }
+
+    @JsonIgnore
+    public void makeGui(){
+        gui = new ArrayList<>();
         mainRect = new Rectangle(position.getX() - width/2, position.getY() - width/2, width, width);
         mainRect.setFill(ORANGE);
         gui.add(mainRect);
@@ -45,14 +75,17 @@ public class DropPoint implements Drawable{
         });
     }
 
+    @JsonIgnore
     public void addOrder(Order order){
         waiting.add(order);
     }
 
+    @JsonIgnore
     public void addOrder(ArrayList<Order> lst){
         waiting.addAll(lst);
     }
 
+    @JsonIgnore
     private String getContent(){
         String str = "Waiting:\n";
         for (Order i : waiting) {
@@ -71,6 +104,7 @@ public class DropPoint implements Drawable{
         return str;
     }
 
+    @JsonIgnore
     public void updateOrder(int status, Order order) {
         if (status == 0){
             waiting.remove(order);
@@ -81,16 +115,21 @@ public class DropPoint implements Drawable{
         }
     }
 
+    @JsonIgnore
     public Order getWaitingOrder(){
         return waiting.get(0);
     }
 
+    @JsonIgnore
     public int getWaitingOrderSize(){
         return waiting.size();
     }
 
     @Override
     public List<Shape> getGUI() {
+        if(gui == null){
+            this.makeGui();
+        }
         return gui;
     }
 
@@ -108,11 +147,5 @@ public class DropPoint implements Drawable{
     public void infoClear() {
         info.clear();
     }
-
-
-    public Coordinates getPosition() {
-        return position;
-    }
-
 
 }
