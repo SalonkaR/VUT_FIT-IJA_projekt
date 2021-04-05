@@ -8,6 +8,9 @@ public class Order {
     private String name;
     private HashMap<Goods, Integer> list;
     private int status = 0;
+    // 0- waiting
+    // 1- processig
+    // 2 -done
     private DropPoint dropPoint;
 
     public Order(String name, DropPoint point, HashMap<Goods, Integer> list) {

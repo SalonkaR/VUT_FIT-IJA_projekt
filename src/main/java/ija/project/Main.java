@@ -10,10 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Main extends Application {
     @Override
@@ -29,8 +26,8 @@ public class Main extends Application {
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-        Map map =  mapper.readValue(new File("data.yml"), Map.class);
-        shelves.addAll(map.getShelves());
+        Data data =  mapper.readValue(new File("data.yml"), Data.class);
+        elements.addAll(data.getShelves());
 
 
 
@@ -38,33 +35,24 @@ public class Main extends Application {
         Parking parking = new Parking(dropPoint, new Coordinates(50,50));
         Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
 
-        shelves.add(parking);
-        shelves.add(carriage1);
-        shelves.add(dropPoint);
-
-
-
-        controler.setElements(shelves);
-        System.out.println(shelves);
-
-        Data data = mapper.readValue(new File("data.yml"), Data.class);
-        elements.addAll(data.getShelves());
-
-
+        elements.add(parking);
+        elements.add(carriage1);
+        elements.add(dropPoint);
 
         controller.setElements(elements);
+
 
         for (Item item : data.getItems()){
             item.shareMe();
         }
 
         controller.setData(data);
-
+/*
         HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
         list1.put(goods1, 3);
         list1.put(goods2, 2);
         Order order1 = new Order("0001", dropPoint, list1);
-
+*/
         controller.startTime();
     }
 }
