@@ -37,6 +37,8 @@ public class Shelf implements Drawable {
     private List<Shape> info = new ArrayList<>();
     @JsonIgnore
     private Rectangle mainRect;
+    @JsonIgnore
+    private ShelfBlock block;
 
 
     //empty constructor for jackson(yml)
@@ -146,5 +148,9 @@ public class Shelf implements Drawable {
             System.out.println("key: " + i.getName() + " value: " + items.get(i).size());
         }
         System.out.println(items);
+    }
+
+    public void saveBlock(ShelfBlock block){
+        this.block = block;
     }
 }
