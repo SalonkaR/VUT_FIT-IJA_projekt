@@ -111,10 +111,10 @@ items:
   - &Item13 name: "Stol0"
     goods: *Goods1
     shelf: *Shelf2
-  - &Item14 name: "Stol1"
+  - &Item6 name: "Stol1"
     goods: *Goods1
     shelf: *Shelf3
-  - &Item15 name: "Stol2"
+  - &Item7 name: "Stol2"
     goods: *Goods1
     shelf: *Shelf4
   - &Item16 name: "Stol3"
@@ -206,7 +206,7 @@ items:
   - &Item44 name: "Tanier12"
     goods: *Goods3
     shelf: *Shelf7
-    
+
   - &Item45 name: "Obrus0"
     goods: *Goods4
     shelf: *Shelf1
@@ -246,3 +246,16 @@ items:
   - &Item57 name: "Obrus12"
     goods: *Goods4
     shelf: *Shelf7
+
+dropPoint:
+  - &DropPoint0 name: "DropPointNo0"
+    position:
+      x: 600.0
+      y: 600.0
+
+parking:
+  - &Parking0 name: "ParkingNo0"
+    dropPoint: *DropPoint0
+    position:
+      x: 50.0
+      y: 50.0

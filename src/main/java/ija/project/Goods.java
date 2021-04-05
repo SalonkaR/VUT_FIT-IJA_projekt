@@ -2,14 +2,16 @@ package ija.project;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.*;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Goods {
     private String name;
-    //@JsonIgnore
+    @JsonIgnore
     private ArrayList<Item> items = new ArrayList<>();
 
     //empty constructor for jackson(yml)
@@ -17,7 +19,6 @@ public class Goods {
     }
 
     public Goods(String name) {
-
         this.name = name;
     }
 
@@ -36,7 +37,6 @@ public class Goods {
     public void removeItem(Item item) {
         items.remove(item);
     }
-
 
     public int size(){
         return items.size();
