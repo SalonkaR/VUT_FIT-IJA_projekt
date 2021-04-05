@@ -6,7 +6,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
-import java.awt.event.MouseEvent;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class MainController {
     @FXML
     private Pane sideBar;
 
-    private Map map;
+    private Data data;
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Shape> informations = new ArrayList<>();
@@ -52,12 +51,12 @@ public class MainController {
         }
     }
 
-    public Map getMap() {
-        return map;
+    public Data getData() {
+        return data;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
+    public void setData(Data data) {
+        this.data = data;
     }
 
     public void setInformation(List<Drawable> elemensts){

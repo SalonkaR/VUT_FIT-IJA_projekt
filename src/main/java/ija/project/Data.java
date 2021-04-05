@@ -1,35 +1,58 @@
 package ija.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Data {
-    private List<Coordinates> coordinates;
-    private Shelf shelf;
+    private List<Shelf> shelves;
+    private List<Regal> regals;
+    private List<Goods> goods;
+    private List<Item> items;
 
-    //empty constructor for jackson(yml)
     public Data(){
+        shelves = new ArrayList<>();
+        regals = new ArrayList<>();
+        goods = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
-    public Data(List<Coordinates> coordinates, Shelf shelf) {
-        this.coordinates = coordinates;
-        this.shelf = shelf;
+    public List<Shelf> getShelves(){
+        return shelves;
     }
 
-    //getter for jackson(yml)
-    public List<Coordinates> getCoordinates(){
-        return coordinates;
+    public List<Regal> getRegals() {
+        return regals;
     }
 
-    //getter for jackson(yml)
-    public Shelf getShelf(){
-        return shelf;
+    public List<Goods> getGoods() {
+        return goods;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setShelves(List<Shelf> shelves){
+        this.shelves = shelves;
+    }
+
+    public void setRegals(List<Regal> regals) {
+        this.regals = regals;
+    }
+
+    public void setGoods(List<Goods> goods) {
+        this.goods = goods;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     @Override
     public String toString() {
         return "Data{" +
-                "coordinates=" + coordinates +
-                ", shelf=" + shelf +
+                "shelves=" + shelves +
+                ", regals=" + regals +
                 '}';
     }
 }
