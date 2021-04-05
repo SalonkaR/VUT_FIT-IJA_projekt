@@ -64,6 +64,13 @@ public class MainController {
     }
 
     public void setInformation(List<Drawable> elemensts){
+        if (selected != null) {
+            informations.clear();
+            informations.addAll(selected.updateInfo());
+            selected.infoClear();
+            sideBar.getChildren().add(informations.get(0));
+        }
+
         for (Drawable drawable : elemensts){
             if (drawable.getInfo().size() > 0){
                 informations.clear();
@@ -99,7 +106,7 @@ public class MainController {
                     controler.makeUpdates();
                 });
             }
-        },0, 20);
+        },0, 50);
     }
 
 

@@ -38,7 +38,7 @@ public class Parking implements Drawable{
             @Override
             public void handle(MouseEvent t) {
                 if(mainRect.getFill() == ORANGE) {
-                    Text text = new Text("toto som ja:" + parking);
+                    Text text = new Text(parking.getContent());
                     text.setWrappingWidth(125);
                     info.add(text);
                     mainRect.setFill(RED);
@@ -81,6 +81,14 @@ public class Parking implements Drawable{
 
     @Override
     public List<Shape> getInfo() {
+        return info;
+    }
+
+    @Override
+    public List<Shape> updateInfo() {
+        Text text = new Text(this.getContent());
+        text.setWrappingWidth(125);
+        info.add(text);
         return info;
     }
 

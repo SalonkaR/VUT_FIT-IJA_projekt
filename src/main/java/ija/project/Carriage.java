@@ -1,11 +1,14 @@
 package ija.project;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 
 import java.util.*;
 
-import static javafx.scene.paint.Color.GREEN;
+import static javafx.scene.paint.Color.*;
 
 public class Carriage implements Drawable, Mover {
     private String name;
@@ -35,6 +38,21 @@ public class Carriage implements Drawable, Mover {
         this.status = 0;
         mainCircle = new Circle(position.getX(), position.getY(), 6, GREEN);
         gui.add(mainCircle);
+
+        Carriage carriage = this;
+
+        mainCircle.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent t) {
+                if(mainCircle.getFill() == GREEN) {
+                    Text text = new Text(carriage.getContent());
+                    text.setWrappingWidth(125);
+                    info.add(text);
+                    mainCircle.setFill(RED);
+                }
+            }
+        });
 
 
     }
@@ -91,6 +109,30 @@ public class Carriage implements Drawable, Mover {
 
     }
 
+    public String getContent(){
+        if (order != null){
+            return name + "\n\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+        }
+        return name + "\n I'm idle";
+
+    }
+
+    public String getNeed(){
+        String str = "";
+        for (Goods i : need.keySet()) {
+            str += i.getName() + "-" + need.get(i) + "ks\n" ;
+        }
+        return str;
+    }
+
+    public String getInside(){
+        String str = "";
+        for (Goods i : inside.keySet()) {
+            str += i.getName() + "-" + inside.get(i).size() + "ks\n" ;
+        }
+        return str;
+
+    }
     @Override
     public List<Shape> getGUI() {
         return gui;
@@ -102,13 +144,22 @@ public class Carriage implements Drawable, Mover {
     }
 
     @Override
-    public void off() {
+    public List<Shape> updateInfo() {
+        Text text = new Text(this.getContent());
+        text.setWrappingWidth(125);
+        info.add(text);
+        return info;
+    }
 
+
+    @Override
+    public void off() {
+        mainCircle.setFill(GREEN);
     }
 
     @Override
     public void infoClear() {
-
+        info.clear();
     }
 
     public void move(double diffX, double diffY){

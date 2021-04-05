@@ -100,6 +100,14 @@ public class DropPoint implements Drawable{
     }
 
     @Override
+    public List<Shape> updateInfo() {
+        Text text = new Text(this.getContent());
+        text.setWrappingWidth(125);
+        info.add(text);
+        return info;
+    }
+
+    @Override
     public void off() {
         mainRect.setFill(ORANGE);
     }

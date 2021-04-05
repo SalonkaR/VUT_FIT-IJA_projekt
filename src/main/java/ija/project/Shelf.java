@@ -139,7 +139,16 @@ public class Shelf implements Drawable {
         }
     }
 
+    @Override
     public List<Shape> getInfo() {
+        return info;
+    }
+
+    @Override
+    public List<Shape> updateInfo() {
+        Text text = new Text(this.getContent());
+        text.setWrappingWidth(125);
+        info.add(text);
         return info;
     }
 
