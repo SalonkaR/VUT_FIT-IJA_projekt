@@ -38,4 +38,12 @@ public class Order {
     public HashMap<Goods, Integer> getList() {
         return list;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "name='" + name + '\'' +
+                ", list=" + list +
+                '}';
+    }
 }

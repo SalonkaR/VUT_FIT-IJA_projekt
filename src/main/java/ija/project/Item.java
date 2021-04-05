@@ -70,6 +70,11 @@ public class Item {
         reserve = true;
     }
 
+    @Override
+    public String toString() {
+        return "Item:"  + name ;
+    }
+
     public boolean isReserve() {
         return reserve;
     }

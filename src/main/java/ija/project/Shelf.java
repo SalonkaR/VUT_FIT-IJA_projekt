@@ -24,7 +24,7 @@ import static javafx.scene.paint.Color.*;
 public class Shelf implements Drawable {
     private String id;
     private Coordinates position;
-    private boolean accessPointBool;
+    private boolean accessPointBool;  //true = left
     @JsonIgnore
     private Coordinates accessPoint;
     @JsonIgnore
@@ -95,22 +95,16 @@ public class Shelf implements Drawable {
         return id;
     }
 
-    public boolean getAccessPointBool(){
-        if (accessPoint == null){
-            this.makeAccessPoint();
-        }
-        return accessPointBool;
-    }
 
     public void makeAccessPoint() {
         double y = this.getPosition().getY() + height/2;
         double x;
         if (accessPointBool){
             //accessPoint = Left
-           x = this.getPosition().getX() - width/2;
+           x = this.getPosition().getX() - 10;
         } else {
             //accessPoint = Right
-            x = this.getPosition().getX() + width * 1.5;
+            x = this.getPosition().getX() + width + 10;
         }
         accessPoint = new Coordinates(x,y);
     }
@@ -123,6 +117,14 @@ public class Shelf implements Drawable {
         } else {
             return lst.isEmpty() ? null : (Item)lst.remove(0);
         }
+    }
+
+    @JsonIgnore
+    public void removeItem(Item item){
+        List<Item> lst = (List)this.items.get(item.getGoods());
+
+        lst.remove(item);
+
     }
 
     @JsonIgnore
@@ -154,13 +156,7 @@ public class Shelf implements Drawable {
 
     @Override
     public String toString() {
-        return "Shelf{" +
-                "position=" + position +
-                /*
-                ", width=" + width +
-                ", height=" + height +
-                ", gui=" + gui +*/
-                '}';
+        return "Shelf:" + position;
     }
 
     private String getContent(){
@@ -190,6 +186,14 @@ public class Shelf implements Drawable {
         this.regal = regal;
     }
 
+    public Regal getRegal() {
+        return regal;
+    }
+    @JsonIgnore
+    public void setRegal(Regal regal) {
+        this.regal = regal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -203,5 +207,24 @@ public class Shelf implements Drawable {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public boolean isAccessPointBool() {
+        return accessPointBool;
+    }
+
+    public Coordinates getAccessPoint() {
+        if (accessPoint == null){
+            this.makeAccessPoint();
+        }
+        return accessPoint;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }

@@ -99,7 +99,7 @@ public class MainController {
                     controler.makeUpdates();
                 });
             }
-        },0, 1000);
+        },0, 20);
     }
 
 

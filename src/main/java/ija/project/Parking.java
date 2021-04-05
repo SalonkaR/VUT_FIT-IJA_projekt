@@ -38,7 +38,7 @@ public class Parking implements Drawable{
             @Override
             public void handle(MouseEvent t) {
                 if(mainRect.getFill() == ORANGE) {
-                    Text text = new Text(parking.getContent());
+                    Text text = new Text("toto som ja:" + parking);
                     text.setWrappingWidth(125);
                     info.add(text);
                     mainRect.setFill(RED);
@@ -108,6 +108,12 @@ public class Parking implements Drawable{
     }
 
     public Coordinates getPosition() {
+        System.out.println("parking is here:" + position);
         return position;
     }
+
+    public Coordinates getDropPointCoords(){
+        return dropPoint.getPosition();
+    }
+
 }

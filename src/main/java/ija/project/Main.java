@@ -31,9 +31,9 @@ public class Main extends Application {
 
 
 
-        DropPoint dropPoint = new DropPoint(new Coordinates(600,600));
+        DropPoint dropPoint = new DropPoint(new Coordinates(300,424));
         Parking parking = new Parking(dropPoint, new Coordinates(50,50));
-        Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
+        Carriage carriage1 = new Carriage("carriage1", parking, new Coordinates(parking.getPosition().getX(), parking.getPosition().getY()));
 
         elements.add(parking);
         elements.add(carriage1);
@@ -45,14 +45,26 @@ public class Main extends Application {
         for (Item item : data.getItems()){
             item.shareMe();
         }
+        for (Regal regal : data.getRegals()){
+            regal.shareMe();
+        }
 
         controller.setData(data);
-/*
+
+        List<Goods> goods = data.getGoods();
+
+
         HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
-        list1.put(goods1, 3);
-        list1.put(goods2, 2);
+        list1.put(goods.get(0), 6);
+        list1.put(goods.get(1), 4);
+        list1.put(goods.get(2), 8);
         Order order1 = new Order("0001", dropPoint, list1);
-*/
+        HashMap<Goods, Integer> list2 = new HashMap<Goods, Integer>();
+        list2.put(goods.get(2), 2);
+        list2.put(goods.get(3), 4);
+        list2.put(goods.get(4), 8);
+        Order order2 = new Order("0002", dropPoint, list2);
+
         controller.startTime();
     }
 }

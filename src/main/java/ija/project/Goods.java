@@ -60,8 +60,8 @@ public class Goods {
 
     public HashMap<Double, List<Item>> getItems(Integer psc) {
         HashMap<Double, List<Item>> map = new HashMap<>();
-        HashMap<Double, List<Item>> res = new HashMap<>();
 
+        int cnt = 0;
         for(Item item : items){
             if (!item.isReserve()){
                 if(map.containsKey(item.getShelf().getPosition().getY())){
@@ -71,30 +71,18 @@ public class Goods {
                     lst.add(item);
                     map.put(item.getShelf().getPosition().getY(), lst);
                 }
-            }
-        }
-
-        SortedSet<Double> keys = new TreeSet<>(map.keySet());
-        int cnt = 0;
-        for (double key : keys) {
-            ArrayList<Item> lst = new ArrayList<>();
-
-            for (Item item : map.get(key)){
-                lst.add(item);
-                item.setReserve();
                 cnt += 1;
-
                 if (cnt == psc){
-                    break;
+                    return map;
                 }
             }
-            res.put(key, lst);
-
-            if (cnt == psc){
-                break;
-            }
         }
 
-        return res;
+        return map;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods:" + name;
     }
 }

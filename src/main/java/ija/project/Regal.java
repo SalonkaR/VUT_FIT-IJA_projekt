@@ -25,6 +25,12 @@ public class Regal {
         this.shelves = shelves;
     }
 
+    public void shareMe(){
+        for (Shelf shelf : shelves){
+            shelf.setRegal(this);
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -49,16 +55,44 @@ public class Regal {
     @JsonIgnore
     public void setCoordinates(){
         if (!shelves.isEmpty()){
-            double y = shelves.get(0).getPosition().getY();
-            double topX = shelves.get(0).getPosition().getX();
-            double bottomX = shelves.get(0).getPosition().getX();
+            double x = shelves.get(0).getPosition().getX();
+            double topY = shelves.get(0).getPosition().getY();
+            double bottomY = shelves.get(0).getPosition().getY();
 
             for (Shelf shelf : shelves){
-                topX = Math.min(shelf.getPosition().getX(), topX);
-                bottomX = Math.max(shelf.getPosition().getX(),bottomX);
+                topY = Math.min(shelf.getPosition().getY(), topY);
+                bottomY = Math.max(shelf.getPosition().getY(),bottomY);
             }
-            this.top = new Coordinates(topX, y);
-            this.bottom = new Coordinates(bottomX, y);
+            int diff;
+            if (shelves.get(0).isAccessPointBool()){ //true = left
+                diff = - 10;
+            } else {
+                diff = 10 + (int)shelves.get(0).getWidth();
+            }
+
+            this.top = new Coordinates(x + diff, topY - 10);
+            this.bottom = new Coordinates(x + diff, bottomY + 10 + (int)shelves.get(0).getHeight());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "regal:" + name;
+    }
+
+    @JsonIgnore
+    public Coordinates getTop() {
+        if (top == null){
+            this.setCoordinates();
+        }
+        return top;
+    }
+
+    @JsonIgnore
+    public Coordinates getBottom() {
+        if (bottom == null){
+            this.setCoordinates();
+        }
+        return bottom;
     }
 }
