@@ -43,8 +43,11 @@ public class Main extends Application {
 
         Parking parking = new Parking(new Coordinates(50,50));
         Carriage carriage1 = new Carriage("carriage1", parking.getPosition());
+        DropPoint dropPoint = new DropPoint(new Coordinates(600,600));
+
         shelves.add(parking);
         shelves.add(carriage1);
+        shelves.add(dropPoint);
 
         controler.setElements(shelves);
         System.out.println(shelves);
