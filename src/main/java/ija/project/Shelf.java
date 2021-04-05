@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ import static javafx.scene.paint.Color.*;
 public class Shelf implements Drawable {
     private String id;
     private Coordinates position;
+    private boolean accessPointBool;
     @JsonIgnore
     private Coordinates accessPoint;
     @JsonIgnore
@@ -38,6 +40,8 @@ public class Shelf implements Drawable {
     @JsonIgnore
     private Rectangle mainRect;
     @JsonIgnore
+    private Circle accessCircle;
+    @JsonIgnore
     private Regal regal;
 
 
@@ -46,11 +50,14 @@ public class Shelf implements Drawable {
     }
 
     @JsonIgnore
-    public Shelf(String id, Coordinates position, double width, double height) {
+    public Shelf(String id, Coordinates position, boolean accessPointBool, Coordinates accessPoint, double width, double height) {
         this.id = id;
         this.position = position;
         this.width = width;
         this.height = height;
+        this.accessPointBool = accessPointBool;
+        this.accessPoint = accessPoint;
+        this.makeAccessPoint();
         this.makeGui();
     }
 
@@ -60,6 +67,11 @@ public class Shelf implements Drawable {
         mainRect = new Rectangle(position.getX(), position.getY(), width, height);
         mainRect.setFill(SKYBLUE);
         gui.add(mainRect);
+
+        this.makeAccessPoint();
+        accessCircle = new Circle(accessPoint.getX(), accessPoint.getY(),3, LIMEGREEN);
+        gui.add(accessCircle);
+
         Shelf shelf = this;
         mainRect.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
@@ -81,6 +93,26 @@ public class Shelf implements Drawable {
 
     public String getId() {
         return id;
+    }
+
+    public boolean getAccessPointBool(){
+        if (accessPoint == null){
+            this.makeAccessPoint();
+        }
+        return accessPointBool;
+    }
+
+    public void makeAccessPoint() {
+        double y = this.getPosition().getY() + height/2;
+        double x;
+        if (accessPointBool){
+            //accessPoint = Left
+           x = this.getPosition().getX() - width/2;
+        } else {
+            //accessPoint = Right
+            x = this.getPosition().getX() + width * 1.5;
+        }
+        accessPoint = new Coordinates(x,y);
     }
 
     @JsonIgnore
@@ -111,6 +143,9 @@ public class Shelf implements Drawable {
 
     @Override
     public List<Shape> getGUI() {
+        if(accessPoint == null){
+            this.makeAccessPoint();
+        }
         if(gui == null){
             this.makeGui();
         }

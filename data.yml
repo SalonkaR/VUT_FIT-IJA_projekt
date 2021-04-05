@@ -1,20 +1,24 @@
 shelves:
   - &Shelf0 id: 0
     position:
-      x: 245.0
-      y: 100.0
+      x: 150.0
+      y: 150.0
+    accessPointBool: true
   - &Shelf1 id: 1
     position:
-      x: 300.0
-      y: 100.0
+      x: 150.0
+      y: 205.0
+    accessPointBool: true
   - &Shelf2 id: 2
     position:
-      x: 355.0
-      y: 100.0
+      x: 205.0
+      y: 150.0
+    accessPointBool: false
   - &Shelf3 id: 3
     position:
-      x: 410.0
-      y: 100.0
+      x: 205.0
+      y: 205.0
+    accessPointBool: false
 
 regals:
   - &Regal0 name: "RegalNo0"

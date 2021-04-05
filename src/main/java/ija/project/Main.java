@@ -30,6 +30,8 @@ public class Main extends Application {
         Data data = mapper.readValue(new File("data.yml"), Data.class);
         elements.addAll(data.getShelves());
 
+
+
         controller.setElements(elements);
 
         for (Item item : data.getItems()){
