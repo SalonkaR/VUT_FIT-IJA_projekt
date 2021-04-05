@@ -24,18 +24,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        MainController controler = loader.getController();
-        List<Drawable> shelves  = new ArrayList<>();
-
-        List<Coordinates> coordinates = new ArrayList<>();
-        coordinates.add(new Coordinates(500, 500));
-
-        //controler.setElements(Arrays.asList(new Shelf(new Coordinates(100,100),50,50), new Shelf(new Coordinates(100,155),50,50)));
-
-        //Shelf shelf1 = new Shelf(coordinates.get(0),50,50);
-        //controler.setElements(Arrays.asList(shelf1));
-
-        //Data data = new Data(coordinates, shelf1);
+        MainController controller = loader.getController();
+        List<Drawable> elements  = new ArrayList<>();
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
@@ -56,45 +46,25 @@ public class Main extends Application {
 
         controler.setElements(shelves);
         System.out.println(shelves);
-        //Shelf shelf2 = mapper.readValue(new File("data.yml"), Shelf.class);
-        //shelf2.makeGui();
-        //mapper.writeValue(new File("data.yml"), shelf2);
-        //controler.setElements(Arrays.asList(shelf2));
-        //System.out.println(shelf2.getPosition());
-        //System.out.println(shelf1.toString());
-        //System.out.println(shelf2.toString());
 
-        //mapper.writeValue(new File("data.yml"), data);
+        Data data = mapper.readValue(new File("data.yml"), Data.class);
+        elements.addAll(data.getShelves());
 
-        //List<Drawable> shelfs= Arrays.asList(new Shelf(new Coordinates(100,100),50,50), new Shelf(new Coordinates(100,155),50,50), shelf1, shelf2);
 
-        Goods goods1 = new Goods("Stolicka");
-        Goods goods2 = new Goods("Stol");
-        Goods goods3 = new Goods("Taniere");
 
-        Item item11 = new Item(goods1, (Shelf)shelves.get(0));
-        Item item12 = new Item(goods1, (Shelf)shelves.get(0));
-        Item item13 = new Item(goods1, (Shelf)shelves.get(1));
-        Item item14 = new Item(goods1, (Shelf)shelves.get(1));
-        Item item15 = new Item(goods1, (Shelf)shelves.get(1));
+        controller.setElements(elements);
 
-        Item item21 = new Item(goods2, (Shelf)shelves.get(0));
-        Item item22 = new Item(goods2, (Shelf)shelves.get(2));
-        Item item23 = new Item(goods2, (Shelf)shelves.get(3));
+        for (Item item : data.getItems()){
+            item.shareMe();
+        }
 
-        Item item31 = new Item(goods3, (Shelf)shelves.get(2));
-        Item item32 = new Item(goods3, (Shelf)shelves.get(2));
-        Item item33 = new Item(goods3, (Shelf)shelves.get(2));
-        Item item34 = new Item(goods3, (Shelf)shelves.get(2));
-        Item item35 = new Item(goods3, (Shelf)shelves.get(2));
+        controller.setData(data);
 
         HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
         list1.put(goods1, 3);
         list1.put(goods2, 2);
         Order order1 = new Order("0001", dropPoint, list1);
 
-        controler.startTime();
-
-
+        controller.startTime();
     }
 }

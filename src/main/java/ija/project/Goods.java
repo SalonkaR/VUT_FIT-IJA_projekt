@@ -1,27 +1,40 @@
 package ija.project;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Goods {
     private String name;
+    //@JsonIgnore
     private ArrayList<Item> items = new ArrayList<>();
+
+    //empty constructor for jackson(yml)
+    public Goods() {
+    }
 
     public Goods(String name) {
 
         this.name = name;
     }
 
-
-    public void addItem(Item item){
-
+    public void addItem(Item item) {
         items.add(item);
+    }
+
+    public List<Item> getItems(){
+        return items;
     }
 
     public String getName() {
         return name;
     }
 
-    public void removeItem(Item item){
+    public void removeItem(Item item) {
         items.remove(item);
     }
 
