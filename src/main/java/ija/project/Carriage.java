@@ -71,20 +71,12 @@ public class Carriage implements Drawable, Mover {
         return parking;
     }
 
-    public Coordinates getPosition() {
-        return position;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public void setParking(Parking parking) {
         this.parking = parking;
-    }
-
-    public void setPosition(Coordinates position) {
-        this.position = position;
     }
 
     @JsonIgnore
