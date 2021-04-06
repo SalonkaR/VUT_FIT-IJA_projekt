@@ -55,6 +55,6 @@ public class Main extends Application {
 
         controller.setElements(elements);
         controller.setData(data);
-        controller.startTime(55);
+        controller.startTime(true,55);
     }
 }

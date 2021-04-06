@@ -88,10 +88,6 @@ public class Carriage implements Drawable, Mover {
         this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
     }
 
-    public void setPosition() {
-        this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
-    }
-
     @JsonIgnore
     public void makeGui(){
         gui = new ArrayList<>();
