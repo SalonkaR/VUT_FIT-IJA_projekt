@@ -355,8 +355,6 @@ public class Carriage implements Drawable, Mover {
         if (power < min * 1.05) {
             nextPoint = null;
             status = 7;
-            System.out.println("Low power");
-            System.out.println("min:" + min + "actual:" + power);
             return true;
         }
         System.out.println("min:" + min + "actual:" + power);
@@ -375,7 +373,6 @@ public class Carriage implements Drawable, Mover {
                     parking.updateCarriage(this);
                     order.update();
                     this.calculateRoad();
-                    System.out.println("0:I Have new order" + order);
                 }
                 break;
             case 1:
@@ -535,7 +532,6 @@ public class Carriage implements Drawable, Mover {
 
                 if (power < maxPower){
                     power += min(5, maxPower-power);
-                    System.out.println("charging" + power);
                 } else {
                     if (order == null){
                         status = 0;

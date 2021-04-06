@@ -32,6 +32,8 @@ public class DropPoint implements Drawable{
     private ArrayList<Order> processing = new ArrayList<>();
     @JsonIgnore
     private ArrayList<Order> done = new ArrayList<>();
+    @JsonIgnore
+    private ArrayList<Order> capacityless = new ArrayList<>();
 
     //empty constructor for jackson(yml)
     public DropPoint() {
@@ -97,8 +99,13 @@ public class DropPoint implements Drawable{
             str += i.getName() + "\n";
         }
 
-        str += "\ndone:\n";
+        str += "\nDone:\n";
         for (Order i : done) {
+            str += i.getName() + "\n";
+        }
+
+        str += "\nOut of storage capacity:\n";
+        for (Order i : capacityless) {
             str += i.getName() + "\n";
         }
         return str;
@@ -117,7 +124,14 @@ public class DropPoint implements Drawable{
 
     @JsonIgnore
     public Order getWaitingOrder(){
-        return waiting.get(0);
+        Order order = waiting.get(0);
+        if (order.checkCapacity()) {
+            return order;
+        } else {
+            waiting.remove(0);
+            capacityless. add(order);
+            return null;
+        }
     }
 
     @JsonIgnore
