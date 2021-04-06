@@ -27,9 +27,9 @@ public class Shelf implements Drawable {
     @JsonIgnore
     private Coordinates accessPoint;
     @JsonIgnore
-    private double width = 50;
+    private double width = 30;
     @JsonIgnore
-    private double height = 50;
+    private double height = 30;
     @JsonIgnore
     private List<Shape> gui;
     @JsonIgnore

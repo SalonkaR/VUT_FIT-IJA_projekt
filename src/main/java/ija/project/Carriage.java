@@ -24,7 +24,7 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private Coordinates position;
     @JsonIgnore
-    private int speed = 2;
+    private int speed = 3;
     @JsonIgnore
     private int status;
     @JsonIgnore
@@ -32,9 +32,9 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private Order order;
     @JsonIgnore
-    private int power = 1100;
+    private int power = 6000;
     @JsonIgnore
-    private int maxPower = 1300;
+    private int maxPower = 6000;
 
     @JsonIgnore
     private List<Shape> gui;
@@ -75,13 +75,17 @@ public class Carriage implements Drawable, Mover {
     }
 
     @JsonIgnore
-    public Carriage(String name, Parking parking, Coordinates position) {
+    public Carriage(String name, Parking parking) {
         this.name = name;
         this.parking = parking;
         this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
         this.status = 0;
         parking.updateCarriage(this);
         makeGui();
+    }
+    @JsonIgnore
+    public void setPosition(){
+        this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
     }
 
     public void setPosition() {

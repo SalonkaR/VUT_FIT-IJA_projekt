@@ -36,10 +36,11 @@ public class MainController {
 
         if (speed.getValue() == 0) {
             timer.cancel();
+            this.startTime(false, 101 - (int)(speed.getValue()));
             System.out.println("paused");
         }else{
             timer.cancel();
-            this.startTime(101 - (int)(speed.getValue()));
+            this.startTime(true, 101 - (int)(speed.getValue()));
             System.out.println("speed set on "+ (105 - (int)(speed.getValue())));
         }
     }
@@ -110,19 +111,33 @@ public class MainController {
         }
     }
 
-    public void startTime(int scale){
-        timer = new Timer(false);
-        MainController controler = this;
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                time = time.plusSeconds(1);
-                Platform.runLater(() -> {
-                    controler.setInformation(elements);
-                    controler.makeUpdates();
-                });
-            }
-        },0, scale);
+    public void startTime(boolean run, int scale){
+        if (run) {
+            timer = new Timer(false);
+            MainController controler = this;
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    time = time.plusSeconds(1);
+                    Platform.runLater(() -> {
+                        controler.setInformation(elements);
+                        controler.makeUpdates();
+                    });
+                }
+            }, 0, scale);
+        }else{
+            timer = new Timer(false);
+            MainController controler = this;
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    time = time.plusSeconds(0);
+                    Platform.runLater(() -> {
+                        controler.setInformation(elements);
+                    });
+                }
+            }, 0, scale);
+        }
     }
 
 
