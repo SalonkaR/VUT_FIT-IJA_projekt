@@ -32,48 +32,29 @@ public class Main extends Application {
         elements.addAll(data.getParking());
         elements.addAll(data.getCarriages());
 
-        DropPoint dropPoint = data.getDropPoint().get(0);
-        Parking parking = data.getParking().get(0);
-        //Carriage carriage1 = new Carriage("carriage1", parking, new Coordinates(parking.getPosition().getX(), parking.getPosition().getY()));
-
-        //elements.add(carriage1);
-
-        controller.setElements(elements);
-
-
         for (Item item : data.getItems()){
             item.shareMe();
         }
         for (Regal regal : data.getRegals()){
             regal.shareMe();
         }
-
-        controller.setData(data);
-
-        List<Goods> goods = data.getGoods();
-
-
-        //Item generator ussage
+        for (Carriage carriage : data.getCarriages()) {
+            carriage.setPosition();
+        }
+        //Item generator usage
         for (ItemGenerator itemGenerator : data.getItemGenerators()){
             itemGenerator.setShelves(data.getShelves());
             itemGenerator.createIt();
         }
+        //Item generator usage
+        for (OrderGenerator orderGenerator : data.getOrderGenerators()){
+            orderGenerator.setGoods(data.getGoods());
+            orderGenerator.setDropPoint(data.getDropPoint().get(0));
+            orderGenerator.generate();
+        }
 
-        //ItemGenerator g = data.getItemGenerators().get(0);
-        //g.setShelves(data.getShelves());
-        //g.createIt();
-
-        HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
-        list1.put(goods.get(0), 6);
-        list1.put(goods.get(1), 50);
-        list1.put(goods.get(2), 8);
-        Order order1 = new Order("0001", dropPoint, list1);
-        HashMap<Goods, Integer> list2 = new HashMap<Goods, Integer>();
-        list2.put(goods.get(2), 2);
-        //list2.put(goods.get(3), 4);
-        //list2.put(goods.get(4), 8);
-        Order order2 = new Order("0002", dropPoint, list2);
-
+        controller.setElements(elements);
+        controller.setData(data);
         controller.startTime(55);
     }
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
 
-import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -24,7 +23,7 @@ import static javafx.scene.paint.Color.*;
 public class Shelf implements Drawable {
     private String id;
     private Coordinates position;
-    private boolean accessPointBool;  //true = left
+    private boolean accessPointBool;  //true = left, false = right
     @JsonIgnore
     private Coordinates accessPoint;
     @JsonIgnore

@@ -8,22 +8,22 @@ public class Data {
     private List<Regal> regals;
     private List<Goods> goods;
     private List<Item> items;
-    private List<Goods> orders;
     private List<DropPoint> dropPoint;
     private List<Parking> parking;
     private List<Carriage> carriages;
     private List<ItemGenerator> itemGenerators;
+    private List<OrderGenerator> orderGenerators;
 
     public Data(){
         shelves = new ArrayList<>();
         regals = new ArrayList<>();
         goods = new ArrayList<>();
         items = new ArrayList<>();
-        orders = new ArrayList<>();
         dropPoint = new ArrayList<>();
         parking = new ArrayList<>();
         carriages = new ArrayList<>();
         itemGenerators = new ArrayList<>();
+        orderGenerators = new ArrayList<>();
     }
 
     public List<Shelf> getShelves(){
@@ -42,10 +42,6 @@ public class Data {
         return items;
     }
 
-    public List<Goods> getOrders() {
-        return orders;
-    }
-
     public List<DropPoint> getDropPoint() {
         return dropPoint;
     }
@@ -60,6 +56,10 @@ public class Data {
 
     public List<ItemGenerator> getItemGenerators() {
         return itemGenerators;
+    }
+
+    public List<OrderGenerator> getOrderGenerators() {
+        return orderGenerators;
     }
 
     public void setShelves(List<Shelf> shelves){
@@ -78,10 +78,6 @@ public class Data {
         this.items = items;
     }
 
-    public void setOrders(List<Goods> orders) {
-        this.orders = orders;
-    }
-
     public void setDropPoint(List<DropPoint> dropPoint) {
         this.dropPoint = dropPoint;
     }
@@ -98,11 +94,7 @@ public class Data {
         this.itemGenerators = itemGenerators;
     }
 
-    @Override
-    public String toString() {
-        return "Data{" +
-                "shelves=" + shelves +
-                ", regals=" + regals +
-                '}';
+    public void setOrderGenerators(List<OrderGenerator> orderGenerators) {
+        this.orderGenerators = orderGenerators;
     }
 }

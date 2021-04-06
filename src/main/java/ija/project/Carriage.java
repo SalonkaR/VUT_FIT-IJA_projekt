@@ -21,6 +21,7 @@ import static javafx.scene.paint.Color.*;
 public class Carriage implements Drawable, Mover {
     private String name;
     private Parking parking;
+    @JsonIgnore
     private Coordinates position;
     @JsonIgnore
     private int speed = 2;
@@ -65,10 +66,6 @@ public class Carriage implements Drawable, Mover {
         return parking;
     }
 
-    public Coordinates getPosition() {
-        return position;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -77,18 +74,18 @@ public class Carriage implements Drawable, Mover {
         this.parking = parking;
     }
 
-    public void setPosition(Coordinates position) {
-        this.position = position;
-    }
-
     @JsonIgnore
     public Carriage(String name, Parking parking, Coordinates position) {
         this.name = name;
         this.parking = parking;
-        this.position = position;
+        this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
         this.status = 0;
         parking.updateCarriage(this);
         makeGui();
+    }
+
+    public void setPosition() {
+        this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
     }
 
     @JsonIgnore

@@ -99,13 +99,26 @@ parking:
 carriages:
   - &Carriage0 name: "CarriageNo0"
     parking: *Parking0
-    position:
-      x: 50.0
-      y: 50.0
   - &Carriage1 name: "CarriageNo1"
     parking: *Parking0
-    position:
-      x: 50.0
-      y: 50.0
+  - &Carriage2 name: "CarriageNo2"
+    parking: *Parking0
+
+orderGenerators:
+  - &orderGenerator0 name: "Order0"
+    maxGoods: 2
+    maxItems: 3
+  - &orderGenerator1 name: "Order1"
+    maxGoods: 2
+    maxItems: 5
+  - &orderGenerator2 name: "Order2"
+    maxGoods: 1
+    maxItems: 7
+  - &orderGenerator3 name: "Order3"
+    maxGoods: 4
+    maxItems: 1
+  - &orderGenerator4 name: "Order4"
+    maxGoods: 2
+    maxItems: 2
 
 
