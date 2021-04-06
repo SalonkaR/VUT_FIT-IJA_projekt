@@ -2,6 +2,7 @@ package ija.project;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
@@ -17,6 +18,8 @@ public class MainController {
     private Pane content;
     @FXML
     private Pane sideBar;
+    @FXML
+    private Slider speed;
 
     private Data data;
 
@@ -29,10 +32,23 @@ public class MainController {
     private LocalTime time =  LocalTime.now();
 
     @FXML
+    private void chengeTime() {
+
+        if (speed.getValue() == 0) {
+            timer.cancel();
+            System.out.println("paused");
+        }else{
+            timer.cancel();
+            this.startTime(101 - (int)(speed.getValue()));
+            System.out.println("speed set on "+ (105 - (int)(speed.getValue())));
+        }
+    }
+
+    @FXML
     private void onZoom(ScrollEvent event) {
         event.consume();
         double zoom = event.getDeltaY() > 0 ? 1.1 : 0.9;
-        System.out.println(content.getScaleX());
+
         if (content.getScaleX() <= 1 && zoom == 0.9){
             return;
         }
@@ -94,7 +110,7 @@ public class MainController {
         }
     }
 
-    public void startTime(){
+    public void startTime(int scale){
         timer = new Timer(false);
         MainController controler = this;
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -106,7 +122,7 @@ public class MainController {
                     controler.makeUpdates();
                 });
             }
-        },0, 50);
+        },0, scale);
     }
 
 

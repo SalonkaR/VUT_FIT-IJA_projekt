@@ -69,6 +69,6 @@ public class Main extends Application {
         list2.put(goods.get(4), 8);
         Order order2 = new Order("0002", dropPoint, list2);
 
-        controller.startTime();
+        controller.startTime(55);
     }
 }
