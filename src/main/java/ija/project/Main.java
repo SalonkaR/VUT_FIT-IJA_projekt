@@ -60,7 +60,7 @@ public class Main extends Application {
 
         HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
         list1.put(goods.get(0), 6);
-        list1.put(goods.get(1), 4);
+        list1.put(goods.get(1), 50);
         list1.put(goods.get(2), 8);
         Order order1 = new Order("0001", dropPoint, list1);
         HashMap<Goods, Integer> list2 = new HashMap<Goods, Integer>();

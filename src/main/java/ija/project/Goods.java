@@ -12,7 +12,9 @@ import java.util.*;
 public class Goods {
     private String name;
     @JsonIgnore
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> freeItems = new ArrayList<>();
+    @JsonIgnore
+    private ArrayList<Item> reservedItems = new ArrayList<>();
 
     //empty constructor for jackson(yml)
     public Goods() {
@@ -23,11 +25,11 @@ public class Goods {
     }
 
     public void addItem(Item item) {
-        items.add(item);
+        freeItems.add(item);
     }
 
-    public List<Item> getItems(){
-        return items;
+    public List<Item> getFreeItems(){
+        return freeItems;
     }
 
     public String getName() {
@@ -35,11 +37,23 @@ public class Goods {
     }
 
     public void removeItem(Item item) {
-        items.remove(item);
+        freeItems.remove(item);
     }
 
-    public int size(){
-        return items.size();
+    public void reserveItem(List<Item> lst){
+        for (Item item : lst) {
+            freeItems.remove(item);
+            reservedItems.add(item);
+        }
+    }
+
+    public void reserveItem(Item item){
+        freeItems.remove(item);
+        reservedItems.add(item);
+    }
+
+    public int sizeFree(){
+        return freeItems.size();
     }
 
     @Override
@@ -60,24 +74,33 @@ public class Goods {
 
     public HashMap<Double, List<Item>> getItems(Integer psc) {
         HashMap<Double, List<Item>> map = new HashMap<>();
+        List<Item> forRes = new ArrayList<>();
 
         int cnt = 0;
-        for(Item item : items){
-            if (!item.isReserve()){
-                if(map.containsKey(item.getShelf().getPosition().getY())){
+        for(Item item : freeItems){
+            System.out.println("som tu1");
+            if(map.containsKey(item.getShelf().getPosition().getY())){
+                System.out.println("som tu2");
                     map.get(item.getShelf().getPosition().getY()).add(item);
-                } else {
-                    List<Item> lst = new ArrayList<>();
-                    lst.add(item);
-                    map.put(item.getShelf().getPosition().getY(), lst);
-                }
-                cnt += 1;
-                if (cnt == psc){
-                    return map;
-                }
+                System.out.println("som tu3");
+            } else {
+                System.out.println("som tu4");
+                List<Item> lst = new ArrayList<>();
+                lst.add(item);
+                map.put(item.getShelf().getPosition().getY(), lst);
+                System.out.println("som tu5");
             }
-        }
+            System.out.println("som tu6");
+            forRes.add(item);
+            System.out.println("som tu7");
+            cnt += 1;
+            if (cnt == psc){
+                reserveItem(forRes);
+                return map;
+            }
 
+        }
+        reserveItem(forRes);
         return map;
     }
 

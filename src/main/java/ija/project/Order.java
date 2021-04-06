@@ -63,6 +63,16 @@ public class Order {
         }
     }
 
+    public boolean checkCapacity (){
+        for ( Goods goods : list.keySet()){
+            if (goods.sizeFree() < list.get(goods)){
+                System.out.println("nemame dost kapacity");
+                return false;
+            }
+        }
+        return true;
+    }
+
     @JsonIgnore
     public int getStatus() {
         return status;
