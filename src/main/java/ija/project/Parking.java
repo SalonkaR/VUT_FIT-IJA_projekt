@@ -31,6 +31,10 @@ public class Parking implements Drawable{
     private ArrayList<Carriage> parked = new ArrayList<>();
     @JsonIgnore
     private ArrayList<Carriage> worked = new ArrayList<>();
+    @JsonIgnore
+    private ArrayList<Carriage> powerless = new ArrayList<>();
+    @JsonIgnore
+    private ArrayList<Carriage> charging = new ArrayList<>();
 
     //empty constructor for jackson(yml)
     public Parking() {
@@ -95,13 +99,45 @@ public class Parking implements Drawable{
     private String getContent(){
         String str = "Parked:\n";
         for (Carriage i : parked) {
-            str += i.getName() + "\n";
+            str += "   " + i.getName() + "\n";
         }
         str += "\nWorked:\n";
         for (Carriage i : worked) {
-            str += i.getName() + "\n";
+            str += "   " + i.getName() + "\n";
+        }
+        str += "\nCharging:\n";
+        for (Carriage i : charging) {
+            str += "   " + i.getName() + "\n";
+        }
+        str += "\nPowerless:\n";
+        for (Carriage i : powerless) {
+            str += "   " + i.getName() + "\n";
         }
         return str;
+    }
+
+    public void updateCarriage(Carriage carriage){
+        if (worked.contains(carriage)){
+            worked.remove(carriage);
+        } else if (parked.contains(carriage)){
+            parked.remove(carriage);
+        } else if (charging.contains(carriage)){
+            charging.remove(carriage);
+        }
+
+        switch(carriage.getStatus()){
+            case 0:
+                parked.add(carriage);
+                break;
+            case 8:
+                charging.add(carriage);
+                break;
+            case 9:
+                powerless.add(carriage);
+                break;
+            default:
+                worked.add(carriage);
+        }
     }
 
     @Override

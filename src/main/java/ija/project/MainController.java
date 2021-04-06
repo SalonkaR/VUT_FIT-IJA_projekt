@@ -68,7 +68,7 @@ public class MainController {
             informations.clear();
             informations.addAll(selected.updateInfo());
             selected.infoClear();
-            sideBar.getChildren().add(informations.get(0));
+            sideBar.getChildren().addAll(informations);
         }
 
         for (Drawable drawable : elemensts){
@@ -84,7 +84,7 @@ public class MainController {
         }
         sideBar.getChildren().clear();
         if (informations.size() > 0) {
-            sideBar.getChildren().add(informations.get(0));
+            sideBar.getChildren().addAll(informations);
         }
     }
 

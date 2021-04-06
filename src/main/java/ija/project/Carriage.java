@@ -2,12 +2,16 @@ package ija.project;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.min;
 import static javafx.scene.paint.Color.*;
 
 public class Carriage implements Drawable, Mover {
@@ -18,6 +22,8 @@ public class Carriage implements Drawable, Mover {
     private Circle mainCircle;
     private Parking parking;
     private Order order;
+    private int power = 1100;
+    private int maxPower = 1300;
 
 
     private List<Shape> gui = new ArrayList<>();
@@ -36,6 +42,7 @@ public class Carriage implements Drawable, Mover {
         this.parking = parking;
         this.position = position;
         this.status = 0;
+        parking.updateCarriage(this);
         mainCircle = new Circle(position.getX(), position.getY(), 6, GREEN);
         gui.add(mainCircle);
 
@@ -46,9 +53,7 @@ public class Carriage implements Drawable, Mover {
             @Override
             public void handle(MouseEvent t) {
                 if(mainCircle.getFill() == GREEN) {
-                    Text text = new Text(carriage.getContent());
-                    text.setWrappingWidth(125);
-                    info.add(text);
+                    carriage.makeInfo();
                     mainCircle.setFill(RED);
                 }
             }
@@ -111,9 +116,26 @@ public class Carriage implements Drawable, Mover {
 
     public String getContent(){
         if (order != null){
-            return name + "\n\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+            switch(status){
+                case 7:
+                    return name + "\n\nI need more power\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+                case 8:
+                    return name + "\n\nCharging\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+                case 9:
+                    return name + "\n\nI'm powerless\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+                default:
+                    return name + "\n\nOrder: " + order.getName() + "\n\nLoad:\n" + this.getInside() + "\nNeed:\n" + this.getNeed();
+            }
         }
-        return name + "\n I'm idle";
+        switch(status){
+            case 7:
+                return name + "\n\nSearching for some parking place";
+            case 8:
+                return name + "\n\nCharging";
+            case 9:
+                return name + "\n\n I'm powerless";
+        }
+        return name + "\n\n I'm idle";
 
     }
 
@@ -143,18 +165,41 @@ public class Carriage implements Drawable, Mover {
         return info;
     }
 
-    @Override
-    public List<Shape> updateInfo() {
+    public void makeInfo(){
         Text text = new Text(this.getContent());
         text.setWrappingWidth(125);
+        double coef = ((double)power / maxPower);
+        Rectangle powerRec = new Rectangle(0,4, 150 * coef , 10);
+        int red = 255;
+        int green = 255;
+
+        if (coef < 0.5) {
+            green = (int) (510*coef);
+        } else {
+            red = (int)(510*(1 - coef));
+        }
+
+        int blue = 0;
+        powerRec.setFill(Color.rgb(red,green,blue));
+        info.add(powerRec);
         info.add(text);
+
+    }
+
+    @Override
+    public List<Shape> updateInfo() {
+        this.makeInfo();
         return info;
     }
 
 
     @Override
     public void off() {
-        mainCircle.setFill(GREEN);
+        if (status == 9){
+            mainCircle.setFill(BLACK);
+        }else {
+            mainCircle.setFill(GREEN);
+        }
     }
 
     @Override
@@ -163,6 +208,7 @@ public class Carriage implements Drawable, Mover {
     }
 
     public void move(double diffX, double diffY){
+        power -= 1;
         boolean direction;
         double diff;
         if (diffY == 0){
@@ -234,6 +280,31 @@ public class Carriage implements Drawable, Mover {
         return map.get(cooLst.get(0)).get(0);
     }
 
+    public void checkPower (){
+        if (power <= 0){
+            status = 9;
+            mainCircle.setFill(BLACK);
+            parking.updateCarriage(this);
+        }
+    }
+
+    public boolean checkWayPower(){
+
+        double fromNextPoint = abs(nextPoint.getX() - parking.getPosition().getX()) + abs(nextPoint.getY() - parking.getPosition().getX());
+        double toNextPoint = abs(nextPoint.getX() - position.getX()) + abs(nextPoint.getY() - position.getX());
+        double min = (fromNextPoint + toNextPoint) / speed;
+
+        if (power < min * 1.05) {
+            nextPoint = null;
+            status = 7;
+            System.out.println("Low power");
+            System.out.println("min:" + min + "actual:" + power);
+            return true;
+        }
+        System.out.println("min:" + min + "actual:" + power);
+        return false;
+    }
+
     @Override
     public void update() {
         switch (status){
@@ -243,6 +314,7 @@ public class Carriage implements Drawable, Mover {
 
                 if (order != null) {
                     status += 1; // Go to processing order
+                    parking.updateCarriage(this);
                     order.update();
                     this.calculateRoad();
                     System.out.println("0:I Have new order" + order);
@@ -250,9 +322,13 @@ public class Carriage implements Drawable, Mover {
                 break;
             case 1:
                 // go to regal acces point
+
                 if (nextPoint == null){
                     nextRegal = this.getNextRegal();
                     nextPoint = (nextRegal).getTop();
+                    if (this.checkWayPower()){
+                        break;
+                    }
                 }
                 double diffY = nextPoint.getY() - position.getY() ;
                 double diffX = nextPoint.getX() - position.getX() ;
@@ -263,14 +339,18 @@ public class Carriage implements Drawable, Mover {
                     nextPoint = null;
                     status += 1;
                 }
+                this.checkPower();
                 break;
 
             case 2:
                 //move to shelf
-                if (nextPoint == null){
 
+                if (nextPoint == null){
                     nextShelf = (Shelf) sortedListItems.get(nextRegal).keySet().toArray()[0];
                     nextPoint = nextShelf.getAccessPoint();
+                    if (this.checkWayPower()){
+                        break;
+                    }
                 }
 
                 diffY = nextPoint.getY() - position.getY() ;
@@ -282,6 +362,7 @@ public class Carriage implements Drawable, Mover {
                     nextPoint = null;
                     status += 1;
                 }
+                this.checkPower();
                 break;
 
             case 3:
@@ -307,6 +388,7 @@ public class Carriage implements Drawable, Mover {
                                 nextPoint = nextRegal.getTop();
                             }
                         }
+                        this.checkWayPower();
 
                         status += 1;
                         nextRegal = null;
@@ -316,10 +398,11 @@ public class Carriage implements Drawable, Mover {
                         status = 2;
                     }
                 }
+
                 break;
 
             case 4:
-                // back to upper street
+                // back to street
                 diffY = nextPoint.getY() - position.getY() ;
                 diffX = nextPoint.getX() - position.getX() ;
 
@@ -333,12 +416,16 @@ public class Carriage implements Drawable, Mover {
                         status = 1;
                     }
                 }
+                this.checkPower();
                 break;
 
             case 5:
                 // Go to Drop point
                 if (nextPoint == null){
                     nextPoint = parking.getDropPointCoords();
+                    if (this.checkWayPower()){
+                        break;
+                    }
                 }
 
                 diffY = nextPoint.getY() - position.getY() ;
@@ -350,6 +437,7 @@ public class Carriage implements Drawable, Mover {
                     nextPoint = null;
                     status += 1;
                 }
+                this.checkPower();
                 break;
             case 6:
                 //selling items
@@ -379,8 +467,32 @@ public class Carriage implements Drawable, Mover {
 
                 if (diffX == 0 && diffY == 0) {
                     nextPoint = null;
-                    status = 0;
+                    status += 1;
+                    parking.updateCarriage(this);
                 }
+                this.checkPower();
+                break;
+            case 8:
+                //Caharging
+
+                if (power < maxPower){
+                    power += min(5, maxPower-power);
+                    System.out.println("charging" + power);
+                } else {
+                    if (order == null){
+                        status = 0;
+                    } else {
+                        if (sortedListItems.size() == 0){
+                            status = 5;
+                        } else {
+                            status = 1;
+                        }
+                    }
+                    parking.updateCarriage(this);
+                }
+                break;
+            case 9:
+                //powerOff
                 break;
         }
 
@@ -397,5 +509,9 @@ public class Carriage implements Drawable, Mover {
                 ", gui=" + gui +
                 ", info=" + info +
                 '}';
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

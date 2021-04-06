@@ -34,7 +34,7 @@ public class Main extends Application {
 
         DropPoint dropPoint = data.getDropPoint().get(0);
         Parking parking = data.getParking().get(0);
-        Carriage carriage1 = new Carriage("carriage1", parking, parking.getPosition());
+        Carriage carriage1 = new Carriage("carriage1", parking, new Coordinates(parking.getPosition().getX(), parking.getPosition().getY()));
 
         elements.add(carriage1);
 
