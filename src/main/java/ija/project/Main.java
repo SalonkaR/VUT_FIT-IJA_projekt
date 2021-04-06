@@ -26,27 +26,28 @@ public class Main extends Application {
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-        Data data =  mapper.readValue(new File("data.yml"), Data.class);
+        Data data =  mapper.readValue(new File("storage2.yml"), Data.class);
         elements.addAll(data.getShelves());
         elements.addAll(data.getDropPoint());
         elements.addAll(data.getParking());
         elements.addAll(data.getCarriages());
 
         DropPoint dropPoint = data.getDropPoint().get(0);
-        Parking parking = data.getParking().get(0);
-        //Carriage carriage1 = new Carriage("carriage1", parking, new Coordinates(parking.getPosition().getX(), parking.getPosition().getY()));
-
-        //elements.add(carriage1);
-
-        controller.setElements(elements);
 
 
+
+
+        for (Carriage car : data.getCarriages()){
+            car.setPosition();
+        }
         for (Item item : data.getItems()){
             item.shareMe();
         }
         for (Regal regal : data.getRegals()){
             regal.shareMe();
         }
+
+        controller.setElements(elements);
 
         controller.setData(data);
 
@@ -74,6 +75,6 @@ public class Main extends Application {
         //list2.put(goods.get(4), 8);
         Order order2 = new Order("0002", dropPoint, list2);
 
-        controller.startTime(55);
+        controller.startTime(true, 55);
     }
 }

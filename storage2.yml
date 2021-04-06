@@ -1,0 +1,2646 @@
+dropPoint:
+  - &DropPoint0 name: "DropPointNo0"
+    position:
+      x: 1091.0
+      y: 25.0
+
+parking:
+  - &Parking0 name: "ParkingNo0"
+    dropPoint: *DropPoint0
+    position:
+      x: 25.0
+      y: 25.0
+
+shelves:
+  - &Shelf0 id: 0
+    position:
+      x: 35.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf1 id: 1
+    position:
+      x: 35.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf2 id: 2
+    position:
+      x: 35.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf3 id: 3
+    position:
+      x: 35.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf4 id: 4
+    position:
+      x: 35.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf5 id: 5
+    position:
+      x: 35.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf6 id: 6
+    position:
+      x: 35.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf7 id: 7
+    position:
+      x: 35.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf8 id: 8
+    position:
+      x: 35.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf9 id: 9
+    position:
+      x: 35.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf10 id: 10
+    position:
+      x: 35.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf11 id: 11
+    position:
+      x: 35.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf12 id: 12
+    position:
+      x: 35.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf13 id: 13
+    position:
+      x: 35.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf14 id: 14
+    position:
+      x: 35.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf15 id: 15
+    position:
+      x: 67.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf16 id: 16
+    position:
+      x: 67.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf17 id: 17
+    position:
+      x: 67.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf18 id: 18
+    position:
+      x: 67.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf19 id: 19
+    position:
+      x: 67.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf20 id: 20
+    position:
+      x: 67.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf21 id: 21
+    position:
+      x: 67.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf22 id: 22
+    position:
+      x: 67.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf23 id: 23
+    position:
+      x: 67.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf24 id: 24
+    position:
+      x: 67.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf25 id: 25
+    position:
+      x: 67.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf26 id: 26
+    position:
+      x: 67.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf27 id: 27
+    position:
+      x: 67.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf28 id: 28
+    position:
+      x: 67.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf29 id: 29
+    position:
+      x: 67.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf30 id: 30
+    position:
+      x: 117.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf31 id: 31
+    position:
+      x: 117.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf32 id: 32
+    position:
+      x: 117.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf33 id: 33
+    position:
+      x: 117.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf34 id: 34
+    position:
+      x: 117.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf35 id: 35
+    position:
+      x: 117.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf36 id: 36
+    position:
+      x: 117.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf37 id: 37
+    position:
+      x: 117.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf38 id: 38
+    position:
+      x: 117.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf39 id: 39
+    position:
+      x: 117.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf40 id: 40
+    position:
+      x: 117.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf41 id: 41
+    position:
+      x: 117.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf42 id: 42
+    position:
+      x: 117.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf43 id: 43
+    position:
+      x: 117.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf44 id: 44
+    position:
+      x: 117.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf45 id: 45
+    position:
+      x: 149.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf46 id: 46
+    position:
+      x: 149.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf47 id: 47
+    position:
+      x: 149.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf48 id: 48
+    position:
+      x: 149.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf49 id: 49
+    position:
+      x: 149.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf50 id: 50
+    position:
+      x: 149.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf51 id: 51
+    position:
+      x: 149.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf52 id: 52
+    position:
+      x: 149.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf53 id: 53
+    position:
+      x: 149.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf54 id: 54
+    position:
+      x: 149.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf55 id: 55
+    position:
+      x: 149.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf56 id: 56
+    position:
+      x: 149.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf57 id: 57
+    position:
+      x: 149.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf58 id: 58
+    position:
+      x: 149.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf59 id: 59
+    position:
+      x: 149.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf60 id: 60
+    position:
+      x: 199.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf61 id: 61
+    position:
+      x: 199.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf62 id: 62
+    position:
+      x: 199.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf63 id: 63
+    position:
+      x: 199.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf64 id: 64
+    position:
+      x: 199.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf65 id: 65
+    position:
+      x: 199.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf66 id: 66
+    position:
+      x: 199.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf67 id: 67
+    position:
+      x: 199.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf68 id: 68
+    position:
+      x: 199.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf69 id: 69
+    position:
+      x: 199.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf70 id: 70
+    position:
+      x: 199.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf71 id: 71
+    position:
+      x: 199.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf72 id: 72
+    position:
+      x: 199.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf73 id: 73
+    position:
+      x: 199.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf74 id: 74
+    position:
+      x: 199.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf75 id: 75
+    position:
+      x: 231.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf76 id: 76
+    position:
+      x: 231.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf77 id: 77
+    position:
+      x: 231.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf78 id: 78
+    position:
+      x: 231.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf79 id: 79
+    position:
+      x: 231.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf80 id: 80
+    position:
+      x: 231.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf81 id: 81
+    position:
+      x: 231.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf82 id: 82
+    position:
+      x: 231.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf83 id: 83
+    position:
+      x: 231.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf84 id: 84
+    position:
+      x: 231.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf85 id: 85
+    position:
+      x: 231.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf86 id: 86
+    position:
+      x: 231.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf87 id: 87
+    position:
+      x: 231.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf88 id: 88
+    position:
+      x: 231.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf89 id: 89
+    position:
+      x: 231.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf90 id: 90
+    position:
+      x: 281.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf91 id: 91
+    position:
+      x: 281.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf92 id: 92
+    position:
+      x: 281.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf93 id: 93
+    position:
+      x: 281.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf94 id: 94
+    position:
+      x: 281.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf95 id: 95
+    position:
+      x: 281.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf96 id: 96
+    position:
+      x: 281.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf97 id: 97
+    position:
+      x: 281.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf98 id: 98
+    position:
+      x: 281.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf99 id: 99
+    position:
+      x: 281.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf100 id: 100
+    position:
+      x: 281.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf101 id: 101
+    position:
+      x: 281.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf102 id: 102
+    position:
+      x: 281.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf103 id: 103
+    position:
+      x: 281.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf104 id: 104
+    position:
+      x: 281.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf105 id: 105
+    position:
+      x: 313.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf106 id: 106
+    position:
+      x: 313.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf107 id: 107
+    position:
+      x: 313.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf108 id: 108
+    position:
+      x: 313.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf109 id: 109
+    position:
+      x: 313.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf110 id: 110
+    position:
+      x: 313.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf111 id: 111
+    position:
+      x: 313.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf112 id: 112
+    position:
+      x: 313.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf113 id: 113
+    position:
+      x: 313.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf114 id: 114
+    position:
+      x: 313.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf115 id: 115
+    position:
+      x: 313.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf116 id: 116
+    position:
+      x: 313.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf117 id: 117
+    position:
+      x: 313.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf118 id: 118
+    position:
+      x: 313.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf119 id: 119
+    position:
+      x: 313.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf120 id: 120
+    position:
+      x: 363.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf121 id: 121
+    position:
+      x: 363.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf122 id: 122
+    position:
+      x: 363.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf123 id: 123
+    position:
+      x: 363.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf124 id: 124
+    position:
+      x: 363.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf125 id: 125
+    position:
+      x: 363.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf126 id: 126
+    position:
+      x: 363.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf127 id: 127
+    position:
+      x: 363.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf128 id: 128
+    position:
+      x: 363.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf129 id: 129
+    position:
+      x: 363.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf130 id: 130
+    position:
+      x: 363.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf131 id: 131
+    position:
+      x: 363.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf132 id: 132
+    position:
+      x: 363.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf133 id: 133
+    position:
+      x: 363.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf134 id: 134
+    position:
+      x: 363.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf135 id: 135
+    position:
+      x: 395.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf136 id: 136
+    position:
+      x: 395.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf137 id: 137
+    position:
+      x: 395.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf138 id: 138
+    position:
+      x: 395.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf139 id: 139
+    position:
+      x: 395.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf140 id: 140
+    position:
+      x: 395.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf141 id: 141
+    position:
+      x: 395.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf142 id: 142
+    position:
+      x: 395.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf143 id: 143
+    position:
+      x: 395.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf144 id: 144
+    position:
+      x: 395.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf145 id: 145
+    position:
+      x: 395.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf146 id: 146
+    position:
+      x: 395.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf147 id: 147
+    position:
+      x: 395.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf148 id: 148
+    position:
+      x: 395.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf149 id: 149
+    position:
+      x: 395.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf150 id: 150
+    position:
+      x: 445.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf151 id: 151
+    position:
+      x: 445.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf152 id: 152
+    position:
+      x: 445.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf153 id: 153
+    position:
+      x: 445.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf154 id: 154
+    position:
+      x: 445.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf155 id: 155
+    position:
+      x: 445.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf156 id: 156
+    position:
+      x: 445.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf157 id: 157
+    position:
+      x: 445.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf158 id: 158
+    position:
+      x: 445.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf159 id: 159
+    position:
+      x: 445.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf160 id: 160
+    position:
+      x: 445.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf161 id: 161
+    position:
+      x: 445.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf162 id: 162
+    position:
+      x: 445.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf163 id: 163
+    position:
+      x: 445.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf164 id: 164
+    position:
+      x: 445.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf165 id: 165
+    position:
+      x: 477.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf166 id: 166
+    position:
+      x: 477.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf167 id: 167
+    position:
+      x: 477.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf168 id: 168
+    position:
+      x: 477.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf169 id: 169
+    position:
+      x: 477.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf170 id: 170
+    position:
+      x: 477.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf171 id: 171
+    position:
+      x: 477.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf172 id: 172
+    position:
+      x: 477.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf173 id: 173
+    position:
+      x: 477.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf174 id: 174
+    position:
+      x: 477.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf175 id: 175
+    position:
+      x: 477.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf176 id: 176
+    position:
+      x: 477.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf177 id: 177
+    position:
+      x: 477.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf178 id: 178
+    position:
+      x: 477.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf179 id: 179
+    position:
+      x: 477.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf180 id: 180
+    position:
+      x: 527.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf181 id: 181
+    position:
+      x: 527.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf182 id: 182
+    position:
+      x: 527.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf183 id: 183
+    position:
+      x: 527.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf184 id: 184
+    position:
+      x: 527.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf185 id: 185
+    position:
+      x: 527.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf186 id: 186
+    position:
+      x: 527.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf187 id: 187
+    position:
+      x: 527.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf188 id: 188
+    position:
+      x: 527.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf189 id: 189
+    position:
+      x: 527.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf190 id: 190
+    position:
+      x: 527.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf191 id: 191
+    position:
+      x: 527.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf192 id: 192
+    position:
+      x: 527.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf193 id: 193
+    position:
+      x: 527.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf194 id: 194
+    position:
+      x: 527.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf195 id: 195
+    position:
+      x: 559.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf196 id: 196
+    position:
+      x: 559.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf197 id: 197
+    position:
+      x: 559.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf198 id: 198
+    position:
+      x: 559.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf199 id: 199
+    position:
+      x: 559.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf200 id: 200
+    position:
+      x: 559.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf201 id: 201
+    position:
+      x: 559.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf202 id: 202
+    position:
+      x: 559.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf203 id: 203
+    position:
+      x: 559.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf204 id: 204
+    position:
+      x: 559.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf205 id: 205
+    position:
+      x: 559.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf206 id: 206
+    position:
+      x: 559.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf207 id: 207
+    position:
+      x: 559.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf208 id: 208
+    position:
+      x: 559.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf209 id: 209
+    position:
+      x: 559.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf210 id: 210
+    position:
+      x: 609.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf211 id: 211
+    position:
+      x: 609.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf212 id: 212
+    position:
+      x: 609.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf213 id: 213
+    position:
+      x: 609.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf214 id: 214
+    position:
+      x: 609.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf215 id: 215
+    position:
+      x: 609.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf216 id: 216
+    position:
+      x: 609.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf217 id: 217
+    position:
+      x: 609.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf218 id: 218
+    position:
+      x: 609.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf219 id: 219
+    position:
+      x: 609.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf220 id: 220
+    position:
+      x: 609.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf221 id: 221
+    position:
+      x: 609.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf222 id: 222
+    position:
+      x: 609.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf223 id: 223
+    position:
+      x: 609.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf224 id: 224
+    position:
+      x: 609.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf225 id: 225
+    position:
+      x: 641.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf226 id: 226
+    position:
+      x: 641.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf227 id: 227
+    position:
+      x: 641.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf228 id: 228
+    position:
+      x: 641.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf229 id: 229
+    position:
+      x: 641.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf230 id: 230
+    position:
+      x: 641.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf231 id: 231
+    position:
+      x: 641.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf232 id: 232
+    position:
+      x: 641.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf233 id: 233
+    position:
+      x: 641.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf234 id: 234
+    position:
+      x: 641.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf235 id: 235
+    position:
+      x: 641.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf236 id: 236
+    position:
+      x: 641.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf237 id: 237
+    position:
+      x: 641.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf238 id: 238
+    position:
+      x: 641.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf239 id: 239
+    position:
+      x: 641.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf240 id: 240
+    position:
+      x: 691.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf241 id: 241
+    position:
+      x: 691.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf242 id: 242
+    position:
+      x: 691.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf243 id: 243
+    position:
+      x: 691.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf244 id: 244
+    position:
+      x: 691.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf245 id: 245
+    position:
+      x: 691.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf246 id: 246
+    position:
+      x: 691.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf247 id: 247
+    position:
+      x: 691.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf248 id: 248
+    position:
+      x: 691.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf249 id: 249
+    position:
+      x: 691.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf250 id: 250
+    position:
+      x: 691.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf251 id: 251
+    position:
+      x: 691.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf252 id: 252
+    position:
+      x: 691.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf253 id: 253
+    position:
+      x: 691.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf254 id: 254
+    position:
+      x: 691.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf255 id: 255
+    position:
+      x: 723.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf256 id: 256
+    position:
+      x: 723.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf257 id: 257
+    position:
+      x: 723.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf258 id: 258
+    position:
+      x: 723.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf259 id: 259
+    position:
+      x: 723.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf260 id: 260
+    position:
+      x: 723.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf261 id: 261
+    position:
+      x: 723.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf262 id: 262
+    position:
+      x: 723.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf263 id: 263
+    position:
+      x: 723.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf264 id: 264
+    position:
+      x: 723.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf265 id: 265
+    position:
+      x: 723.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf266 id: 266
+    position:
+      x: 723.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf267 id: 267
+    position:
+      x: 723.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf268 id: 268
+    position:
+      x: 723.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf269 id: 269
+    position:
+      x: 723.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf270 id: 270
+    position:
+      x: 773.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf271 id: 271
+    position:
+      x: 773.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf272 id: 272
+    position:
+      x: 773.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf273 id: 273
+    position:
+      x: 773.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf274 id: 274
+    position:
+      x: 773.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf275 id: 275
+    position:
+      x: 773.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf276 id: 276
+    position:
+      x: 773.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf277 id: 277
+    position:
+      x: 773.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf278 id: 278
+    position:
+      x: 773.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf279 id: 279
+    position:
+      x: 773.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf280 id: 280
+    position:
+      x: 773.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf281 id: 281
+    position:
+      x: 773.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf282 id: 282
+    position:
+      x: 773.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf283 id: 283
+    position:
+      x: 773.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf284 id: 284
+    position:
+      x: 773.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf285 id: 285
+    position:
+      x: 805.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf286 id: 286
+    position:
+      x: 805.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf287 id: 287
+    position:
+      x: 805.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf288 id: 288
+    position:
+      x: 805.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf289 id: 289
+    position:
+      x: 805.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf290 id: 290
+    position:
+      x: 805.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf291 id: 291
+    position:
+      x: 805.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf292 id: 292
+    position:
+      x: 805.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf293 id: 293
+    position:
+      x: 805.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf294 id: 294
+    position:
+      x: 805.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf295 id: 295
+    position:
+      x: 805.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf296 id: 296
+    position:
+      x: 805.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf297 id: 297
+    position:
+      x: 805.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf298 id: 298
+    position:
+      x: 805.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf299 id: 299
+    position:
+      x: 805.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf300 id: 300
+    position:
+      x: 855.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf301 id: 301
+    position:
+      x: 855.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf302 id: 302
+    position:
+      x: 855.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf303 id: 303
+    position:
+      x: 855.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf304 id: 304
+    position:
+      x: 855.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf305 id: 305
+    position:
+      x: 855.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf306 id: 306
+    position:
+      x: 855.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf307 id: 307
+    position:
+      x: 855.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf308 id: 308
+    position:
+      x: 855.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf309 id: 309
+    position:
+      x: 855.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf310 id: 310
+    position:
+      x: 855.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf311 id: 311
+    position:
+      x: 855.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf312 id: 312
+    position:
+      x: 855.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf313 id: 313
+    position:
+      x: 855.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf314 id: 314
+    position:
+      x: 855.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf315 id: 315
+    position:
+      x: 887.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf316 id: 316
+    position:
+      x: 887.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf317 id: 317
+    position:
+      x: 887.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf318 id: 318
+    position:
+      x: 887.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf319 id: 319
+    position:
+      x: 887.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf320 id: 320
+    position:
+      x: 887.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf321 id: 321
+    position:
+      x: 887.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf322 id: 322
+    position:
+      x: 887.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf323 id: 323
+    position:
+      x: 887.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf324 id: 324
+    position:
+      x: 887.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf325 id: 325
+    position:
+      x: 887.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf326 id: 326
+    position:
+      x: 887.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf327 id: 327
+    position:
+      x: 887.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf328 id: 328
+    position:
+      x: 887.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf329 id: 329
+    position:
+      x: 887.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf330 id: 330
+    position:
+      x: 937.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf331 id: 331
+    position:
+      x: 937.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf332 id: 332
+    position:
+      x: 937.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf333 id: 333
+    position:
+      x: 937.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf334 id: 334
+    position:
+      x: 937.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf335 id: 335
+    position:
+      x: 937.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf336 id: 336
+    position:
+      x: 937.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf337 id: 337
+    position:
+      x: 937.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf338 id: 338
+    position:
+      x: 937.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf339 id: 339
+    position:
+      x: 937.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf340 id: 340
+    position:
+      x: 937.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf341 id: 341
+    position:
+      x: 937.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf342 id: 342
+    position:
+      x: 937.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf343 id: 343
+    position:
+      x: 937.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf344 id: 344
+    position:
+      x: 937.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf345 id: 345
+    position:
+      x: 969.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf346 id: 346
+    position:
+      x: 969.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf347 id: 347
+    position:
+      x: 969.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf348 id: 348
+    position:
+      x: 969.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf349 id: 349
+    position:
+      x: 969.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf350 id: 350
+    position:
+      x: 969.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf351 id: 351
+    position:
+      x: 969.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf352 id: 352
+    position:
+      x: 969.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf353 id: 353
+    position:
+      x: 969.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf354 id: 354
+    position:
+      x: 969.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf355 id: 355
+    position:
+      x: 969.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf356 id: 356
+    position:
+      x: 969.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf357 id: 357
+    position:
+      x: 969.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf358 id: 358
+    position:
+      x: 969.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf359 id: 359
+    position:
+      x: 969.0
+      y: 580.0
+    accessPointBool: false
+  - &Shelf360 id: 360
+    position:
+      x: 1019.0
+      y: 60.0
+    accessPointBool: true
+  - &Shelf361 id: 361
+    position:
+      x: 1019.0
+      y: 92.0
+    accessPointBool: true
+  - &Shelf362 id: 362
+    position:
+      x: 1019.0
+      y: 124.0
+    accessPointBool: true
+  - &Shelf363 id: 363
+    position:
+      x: 1019.0
+      y: 174.0
+    accessPointBool: true
+  - &Shelf364 id: 364
+    position:
+      x: 1019.0
+      y: 206.0
+    accessPointBool: true
+  - &Shelf365 id: 365
+    position:
+      x: 1019.0
+      y: 238.0
+    accessPointBool: true
+  - &Shelf366 id: 366
+    position:
+      x: 1019.0
+      y: 288.0
+    accessPointBool: true
+  - &Shelf367 id: 367
+    position:
+      x: 1019.0
+      y: 320.0
+    accessPointBool: true
+  - &Shelf368 id: 368
+    position:
+      x: 1019.0
+      y: 352.0
+    accessPointBool: true
+  - &Shelf369 id: 369
+    position:
+      x: 1019.0
+      y: 402.0
+    accessPointBool: true
+  - &Shelf370 id: 370
+    position:
+      x: 1019.0
+      y: 434.0
+    accessPointBool: true
+  - &Shelf371 id: 371
+    position:
+      x: 1019.0
+      y: 466.0
+    accessPointBool: true
+  - &Shelf372 id: 372
+    position:
+      x: 1019.0
+      y: 516.0
+    accessPointBool: true
+  - &Shelf373 id: 373
+    position:
+      x: 1019.0
+      y: 548.0
+    accessPointBool: true
+  - &Shelf374 id: 374
+    position:
+      x: 1019.0
+      y: 580.0
+    accessPointBool: true
+  - &Shelf375 id: 375
+    position:
+      x: 1051.0
+      y: 60.0
+    accessPointBool: false
+  - &Shelf376 id: 376
+    position:
+      x: 1051.0
+      y: 92.0
+    accessPointBool: false
+  - &Shelf377 id: 377
+    position:
+      x: 1051.0
+      y: 124.0
+    accessPointBool: false
+  - &Shelf378 id: 378
+    position:
+      x: 1051.0
+      y: 174.0
+    accessPointBool: false
+  - &Shelf379 id: 379
+    position:
+      x: 1051.0
+      y: 206.0
+    accessPointBool: false
+  - &Shelf380 id: 380
+    position:
+      x: 1051.0
+      y: 238.0
+    accessPointBool: false
+  - &Shelf381 id: 381
+    position:
+      x: 1051.0
+      y: 288.0
+    accessPointBool: false
+  - &Shelf382 id: 382
+    position:
+      x: 1051.0
+      y: 320.0
+    accessPointBool: false
+  - &Shelf383 id: 383
+    position:
+      x: 1051.0
+      y: 352.0
+    accessPointBool: false
+  - &Shelf384 id: 384
+    position:
+      x: 1051.0
+      y: 402.0
+    accessPointBool: false
+  - &Shelf385 id: 385
+    position:
+      x: 1051.0
+      y: 434.0
+    accessPointBool: false
+  - &Shelf386 id: 386
+    position:
+      x: 1051.0
+      y: 466.0
+    accessPointBool: false
+  - &Shelf387 id: 387
+    position:
+      x: 1051.0
+      y: 516.0
+    accessPointBool: false
+  - &Shelf388 id: 388
+    position:
+      x: 1051.0
+      y: 548.0
+    accessPointBool: false
+  - &Shelf389 id: 389
+    position:
+      x: 1051.0
+      y: 580.0
+    accessPointBool: false
+regals:
+
+  - &Regal0 name: "RegalNo0"
+    shelves:
+      - *Shelf0
+      - *Shelf1
+      - *Shelf2
+  - &Regal3 name: "RegalNo3"
+    shelves:
+      - *Shelf3
+      - *Shelf4
+      - *Shelf5
+  - &Regal6 name: "RegalNo6"
+    shelves:
+      - *Shelf6
+      - *Shelf7
+      - *Shelf8
+  - &Regal9 name: "RegalNo9"
+    shelves:
+      - *Shelf9
+      - *Shelf10
+      - *Shelf11
+  - &Regal12 name: "RegalNo12"
+    shelves:
+      - *Shelf12
+      - *Shelf13
+      - *Shelf14
+  - &Regal15 name: "RegalNo15"
+    shelves:
+      - *Shelf15
+      - *Shelf16
+      - *Shelf17
+  - &Regal18 name: "RegalNo18"
+    shelves:
+      - *Shelf18
+      - *Shelf19
+      - *Shelf20
+  - &Regal21 name: "RegalNo21"
+    shelves:
+      - *Shelf21
+      - *Shelf22
+      - *Shelf23
+  - &Regal24 name: "RegalNo24"
+    shelves:
+      - *Shelf24
+      - *Shelf25
+      - *Shelf26
+  - &Regal27 name: "RegalNo27"
+    shelves:
+      - *Shelf27
+      - *Shelf28
+      - *Shelf29
+  - &Regal30 name: "RegalNo30"
+    shelves:
+      - *Shelf30
+      - *Shelf31
+      - *Shelf32
+  - &Regal33 name: "RegalNo33"
+    shelves:
+      - *Shelf33
+      - *Shelf34
+      - *Shelf35
+  - &Regal36 name: "RegalNo36"
+    shelves:
+      - *Shelf36
+      - *Shelf37
+      - *Shelf38
+  - &Regal39 name: "RegalNo39"
+    shelves:
+      - *Shelf39
+      - *Shelf40
+      - *Shelf41
+  - &Regal42 name: "RegalNo42"
+    shelves:
+      - *Shelf42
+      - *Shelf43
+      - *Shelf44
+  - &Regal45 name: "RegalNo45"
+    shelves:
+      - *Shelf45
+      - *Shelf46
+      - *Shelf47
+  - &Regal48 name: "RegalNo48"
+    shelves:
+      - *Shelf48
+      - *Shelf49
+      - *Shelf50
+  - &Regal51 name: "RegalNo51"
+    shelves:
+      - *Shelf51
+      - *Shelf52
+      - *Shelf53
+  - &Regal54 name: "RegalNo54"
+    shelves:
+      - *Shelf54
+      - *Shelf55
+      - *Shelf56
+  - &Regal57 name: "RegalNo57"
+    shelves:
+      - *Shelf57
+      - *Shelf58
+      - *Shelf59
+  - &Regal60 name: "RegalNo60"
+    shelves:
+      - *Shelf60
+      - *Shelf61
+      - *Shelf62
+  - &Regal63 name: "RegalNo63"
+    shelves:
+      - *Shelf63
+      - *Shelf64
+      - *Shelf65
+  - &Regal66 name: "RegalNo66"
+    shelves:
+      - *Shelf66
+      - *Shelf67
+      - *Shelf68
+  - &Regal69 name: "RegalNo69"
+    shelves:
+      - *Shelf69
+      - *Shelf70
+      - *Shelf71
+  - &Regal72 name: "RegalNo72"
+    shelves:
+      - *Shelf72
+      - *Shelf73
+      - *Shelf74
+  - &Regal75 name: "RegalNo75"
+    shelves:
+      - *Shelf75
+      - *Shelf76
+      - *Shelf77
+  - &Regal78 name: "RegalNo78"
+    shelves:
+      - *Shelf78
+      - *Shelf79
+      - *Shelf80
+  - &Regal81 name: "RegalNo81"
+    shelves:
+      - *Shelf81
+      - *Shelf82
+      - *Shelf83
+  - &Regal84 name: "RegalNo84"
+    shelves:
+      - *Shelf84
+      - *Shelf85
+      - *Shelf86
+  - &Regal87 name: "RegalNo87"
+    shelves:
+      - *Shelf87
+      - *Shelf88
+      - *Shelf89
+  - &Regal90 name: "RegalNo90"
+    shelves:
+      - *Shelf90
+      - *Shelf91
+      - *Shelf92
+  - &Regal93 name: "RegalNo93"
+    shelves:
+      - *Shelf93
+      - *Shelf94
+      - *Shelf95
+  - &Regal96 name: "RegalNo96"
+    shelves:
+      - *Shelf96
+      - *Shelf97
+      - *Shelf98
+  - &Regal99 name: "RegalNo99"
+    shelves:
+      - *Shelf99
+      - *Shelf100
+      - *Shelf101
+  - &Regal102 name: "RegalNo102"
+    shelves:
+      - *Shelf102
+      - *Shelf103
+      - *Shelf104
+  - &Regal105 name: "RegalNo105"
+    shelves:
+      - *Shelf105
+      - *Shelf106
+      - *Shelf107
+  - &Regal108 name: "RegalNo108"
+    shelves:
+      - *Shelf108
+      - *Shelf109
+      - *Shelf110
+  - &Regal111 name: "RegalNo111"
+    shelves:
+      - *Shelf111
+      - *Shelf112
+      - *Shelf113
+  - &Regal114 name: "RegalNo114"
+    shelves:
+      - *Shelf114
+      - *Shelf115
+      - *Shelf116
+  - &Regal117 name: "RegalNo117"
+    shelves:
+      - *Shelf117
+      - *Shelf118
+      - *Shelf119
+  - &Regal120 name: "RegalNo120"
+    shelves:
+      - *Shelf120
+      - *Shelf121
+      - *Shelf122
+  - &Regal123 name: "RegalNo123"
+    shelves:
+      - *Shelf123
+      - *Shelf124
+      - *Shelf125
+  - &Regal126 name: "RegalNo126"
+    shelves:
+      - *Shelf126
+      - *Shelf127
+      - *Shelf128
+  - &Regal129 name: "RegalNo129"
+    shelves:
+      - *Shelf129
+      - *Shelf130
+      - *Shelf131
+  - &Regal132 name: "RegalNo132"
+    shelves:
+      - *Shelf132
+      - *Shelf133
+      - *Shelf134
+  - &Regal135 name: "RegalNo135"
+    shelves:
+      - *Shelf135
+      - *Shelf136
+      - *Shelf137
+  - &Regal138 name: "RegalNo138"
+    shelves:
+      - *Shelf138
+      - *Shelf139
+      - *Shelf140
+  - &Regal141 name: "RegalNo141"
+    shelves:
+      - *Shelf141
+      - *Shelf142
+      - *Shelf143
+  - &Regal144 name: "RegalNo144"
+    shelves:
+      - *Shelf144
+      - *Shelf145
+      - *Shelf146
+  - &Regal147 name: "RegalNo147"
+    shelves:
+      - *Shelf147
+      - *Shelf148
+      - *Shelf149
+  - &Regal150 name: "RegalNo150"
+    shelves:
+      - *Shelf150
+      - *Shelf151
+      - *Shelf152
+  - &Regal153 name: "RegalNo153"
+    shelves:
+      - *Shelf153
+      - *Shelf154
+      - *Shelf155
+  - &Regal156 name: "RegalNo156"
+    shelves:
+      - *Shelf156
+      - *Shelf157
+      - *Shelf158
+  - &Regal159 name: "RegalNo159"
+    shelves:
+      - *Shelf159
+      - *Shelf160
+      - *Shelf161
+  - &Regal162 name: "RegalNo162"
+    shelves:
+      - *Shelf162
+      - *Shelf163
+      - *Shelf164
+  - &Regal165 name: "RegalNo165"
+    shelves:
+      - *Shelf165
+      - *Shelf166
+      - *Shelf167
+  - &Regal168 name: "RegalNo168"
+    shelves:
+      - *Shelf168
+      - *Shelf169
+      - *Shelf170
+  - &Regal171 name: "RegalNo171"
+    shelves:
+      - *Shelf171
+      - *Shelf172
+      - *Shelf173
+  - &Regal174 name: "RegalNo174"
+    shelves:
+      - *Shelf174
+      - *Shelf175
+      - *Shelf176
+  - &Regal177 name: "RegalNo177"
+    shelves:
+      - *Shelf177
+      - *Shelf178
+      - *Shelf179
+  - &Regal180 name: "RegalNo180"
+    shelves:
+      - *Shelf180
+      - *Shelf181
+      - *Shelf182
+  - &Regal183 name: "RegalNo183"
+    shelves:
+      - *Shelf183
+      - *Shelf184
+      - *Shelf185
+  - &Regal186 name: "RegalNo186"
+    shelves:
+      - *Shelf186
+      - *Shelf187
+      - *Shelf188
+  - &Regal189 name: "RegalNo189"
+    shelves:
+      - *Shelf189
+      - *Shelf190
+      - *Shelf191
+  - &Regal192 name: "RegalNo192"
+    shelves:
+      - *Shelf192
+      - *Shelf193
+      - *Shelf194
+  - &Regal195 name: "RegalNo195"
+    shelves:
+      - *Shelf195
+      - *Shelf196
+      - *Shelf197
+  - &Regal198 name: "RegalNo198"
+    shelves:
+      - *Shelf198
+      - *Shelf199
+      - *Shelf200
+  - &Regal201 name: "RegalNo201"
+    shelves:
+      - *Shelf201
+      - *Shelf202
+      - *Shelf203
+  - &Regal204 name: "RegalNo204"
+    shelves:
+      - *Shelf204
+      - *Shelf205
+      - *Shelf206
+  - &Regal207 name: "RegalNo207"
+    shelves:
+      - *Shelf207
+      - *Shelf208
+      - *Shelf209
+  - &Regal210 name: "RegalNo210"
+    shelves:
+      - *Shelf210
+      - *Shelf211
+      - *Shelf212
+  - &Regal213 name: "RegalNo213"
+    shelves:
+      - *Shelf213
+      - *Shelf214
+      - *Shelf215
+  - &Regal216 name: "RegalNo216"
+    shelves:
+      - *Shelf216
+      - *Shelf217
+      - *Shelf218
+  - &Regal219 name: "RegalNo219"
+    shelves:
+      - *Shelf219
+      - *Shelf220
+      - *Shelf221
+  - &Regal222 name: "RegalNo222"
+    shelves:
+      - *Shelf222
+      - *Shelf223
+      - *Shelf224
+  - &Regal225 name: "RegalNo225"
+    shelves:
+      - *Shelf225
+      - *Shelf226
+      - *Shelf227
+  - &Regal228 name: "RegalNo228"
+    shelves:
+      - *Shelf228
+      - *Shelf229
+      - *Shelf230
+  - &Regal231 name: "RegalNo231"
+    shelves:
+      - *Shelf231
+      - *Shelf232
+      - *Shelf233
+  - &Regal234 name: "RegalNo234"
+    shelves:
+      - *Shelf234
+      - *Shelf235
+      - *Shelf236
+  - &Regal237 name: "RegalNo237"
+    shelves:
+      - *Shelf237
+      - *Shelf238
+      - *Shelf239
+  - &Regal240 name: "RegalNo240"
+    shelves:
+      - *Shelf240
+      - *Shelf241
+      - *Shelf242
+  - &Regal243 name: "RegalNo243"
+    shelves:
+      - *Shelf243
+      - *Shelf244
+      - *Shelf245
+  - &Regal246 name: "RegalNo246"
+    shelves:
+      - *Shelf246
+      - *Shelf247
+      - *Shelf248
+  - &Regal249 name: "RegalNo249"
+    shelves:
+      - *Shelf249
+      - *Shelf250
+      - *Shelf251
+  - &Regal252 name: "RegalNo252"
+    shelves:
+      - *Shelf252
+      - *Shelf253
+      - *Shelf254
+  - &Regal255 name: "RegalNo255"
+    shelves:
+      - *Shelf255
+      - *Shelf256
+      - *Shelf257
+  - &Regal258 name: "RegalNo258"
+    shelves:
+      - *Shelf258
+      - *Shelf259
+      - *Shelf260
+  - &Regal261 name: "RegalNo261"
+    shelves:
+      - *Shelf261
+      - *Shelf262
+      - *Shelf263
+  - &Regal264 name: "RegalNo264"
+    shelves:
+      - *Shelf264
+      - *Shelf265
+      - *Shelf266
+  - &Regal267 name: "RegalNo267"
+    shelves:
+      - *Shelf267
+      - *Shelf268
+      - *Shelf269
+  - &Regal270 name: "RegalNo270"
+    shelves:
+      - *Shelf270
+      - *Shelf271
+      - *Shelf272
+  - &Regal273 name: "RegalNo273"
+    shelves:
+      - *Shelf273
+      - *Shelf274
+      - *Shelf275
+  - &Regal276 name: "RegalNo276"
+    shelves:
+      - *Shelf276
+      - *Shelf277
+      - *Shelf278
+  - &Regal279 name: "RegalNo279"
+    shelves:
+      - *Shelf279
+      - *Shelf280
+      - *Shelf281
+  - &Regal282 name: "RegalNo282"
+    shelves:
+      - *Shelf282
+      - *Shelf283
+      - *Shelf284
+  - &Regal285 name: "RegalNo285"
+    shelves:
+      - *Shelf285
+      - *Shelf286
+      - *Shelf287
+  - &Regal288 name: "RegalNo288"
+    shelves:
+      - *Shelf288
+      - *Shelf289
+      - *Shelf290
+  - &Regal291 name: "RegalNo291"
+    shelves:
+      - *Shelf291
+      - *Shelf292
+      - *Shelf293
+  - &Regal294 name: "RegalNo294"
+    shelves:
+      - *Shelf294
+      - *Shelf295
+      - *Shelf296
+  - &Regal297 name: "RegalNo297"
+    shelves:
+      - *Shelf297
+      - *Shelf298
+      - *Shelf299
+  - &Regal300 name: "RegalNo300"
+    shelves:
+      - *Shelf300
+      - *Shelf301
+      - *Shelf302
+  - &Regal303 name: "RegalNo303"
+    shelves:
+      - *Shelf303
+      - *Shelf304
+      - *Shelf305
+  - &Regal306 name: "RegalNo306"
+    shelves:
+      - *Shelf306
+      - *Shelf307
+      - *Shelf308
+  - &Regal309 name: "RegalNo309"
+    shelves:
+      - *Shelf309
+      - *Shelf310
+      - *Shelf311
+  - &Regal312 name: "RegalNo312"
+    shelves:
+      - *Shelf312
+      - *Shelf313
+      - *Shelf314
+  - &Regal315 name: "RegalNo315"
+    shelves:
+      - *Shelf315
+      - *Shelf316
+      - *Shelf317
+  - &Regal318 name: "RegalNo318"
+    shelves:
+      - *Shelf318
+      - *Shelf319
+      - *Shelf320
+  - &Regal321 name: "RegalNo321"
+    shelves:
+      - *Shelf321
+      - *Shelf322
+      - *Shelf323
+  - &Regal324 name: "RegalNo324"
+    shelves:
+      - *Shelf324
+      - *Shelf325
+      - *Shelf326
+  - &Regal327 name: "RegalNo327"
+    shelves:
+      - *Shelf327
+      - *Shelf328
+      - *Shelf329
+  - &Regal330 name: "RegalNo330"
+    shelves:
+      - *Shelf330
+      - *Shelf331
+      - *Shelf332
+  - &Regal333 name: "RegalNo333"
+    shelves:
+      - *Shelf333
+      - *Shelf334
+      - *Shelf335
+  - &Regal336 name: "RegalNo336"
+    shelves:
+      - *Shelf336
+      - *Shelf337
+      - *Shelf338
+  - &Regal339 name: "RegalNo339"
+    shelves:
+      - *Shelf339
+      - *Shelf340
+      - *Shelf341
+  - &Regal342 name: "RegalNo342"
+    shelves:
+      - *Shelf342
+      - *Shelf343
+      - *Shelf344
+  - &Regal345 name: "RegalNo345"
+    shelves:
+      - *Shelf345
+      - *Shelf346
+      - *Shelf347
+  - &Regal348 name: "RegalNo348"
+    shelves:
+      - *Shelf348
+      - *Shelf349
+      - *Shelf350
+  - &Regal351 name: "RegalNo351"
+    shelves:
+      - *Shelf351
+      - *Shelf352
+      - *Shelf353
+  - &Regal354 name: "RegalNo354"
+    shelves:
+      - *Shelf354
+      - *Shelf355
+      - *Shelf356
+  - &Regal357 name: "RegalNo357"
+    shelves:
+      - *Shelf357
+      - *Shelf358
+      - *Shelf359
+  - &Regal360 name: "RegalNo360"
+    shelves:
+      - *Shelf360
+      - *Shelf361
+      - *Shelf362
+  - &Regal363 name: "RegalNo363"
+    shelves:
+      - *Shelf363
+      - *Shelf364
+      - *Shelf365
+  - &Regal366 name: "RegalNo366"
+    shelves:
+      - *Shelf366
+      - *Shelf367
+      - *Shelf368
+  - &Regal369 name: "RegalNo369"
+    shelves:
+      - *Shelf369
+      - *Shelf370
+      - *Shelf371
+  - &Regal372 name: "RegalNo372"
+    shelves:
+      - *Shelf372
+      - *Shelf373
+      - *Shelf374
+  - &Regal375 name: "RegalNo375"
+    shelves:
+      - *Shelf375
+      - *Shelf376
+      - *Shelf377
+  - &Regal378 name: "RegalNo378"
+    shelves:
+      - *Shelf378
+      - *Shelf379
+      - *Shelf380
+  - &Regal381 name: "RegalNo381"
+    shelves:
+      - *Shelf381
+      - *Shelf382
+      - *Shelf383
+  - &Regal384 name: "RegalNo384"
+    shelves:
+      - *Shelf384
+      - *Shelf385
+      - *Shelf386
+  - &Regal387 name: "RegalNo387"
+    shelves:
+      - *Shelf387
+      - *Shelf388
+      - *Shelf389
+
+goods:
+  - &Goods0 name: "Stolicka"
+  - &Goods1 name: "Stol"
+  - &Goods2 name: "Pribor"
+  - &Goods3 name: "Tanier"
+  - &Goods4 name: "Obrus"
+
+itemGenerators:
+  - &itemGenerator0 name: "generatorStolicky"
+    goods: *Goods0
+    count: 50
+  - &itemGenerator1 name: "generatorStol"
+    goods: *Goods1
+    count: 50
+  - &itemGenerator2 name: "generatorPribor"
+    goods: *Goods2
+    count: 50
+  - &itemGenerator3 name: "generatorTanier"
+    goods: *Goods3
+    count: 50
+  - &itemGenerator4 name: "generatorObrus"
+    goods: *Goods4
+    count: 50
+
+carriages:
+  - &Carriage0 name: "CarriageNo0"
+    parking: *Parking0
+  - &Carriage1 name: "CarriageNo1"
+    parking: *Parking0

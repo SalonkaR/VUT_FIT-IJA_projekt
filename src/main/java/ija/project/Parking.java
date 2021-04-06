@@ -20,7 +20,7 @@ public class Parking implements Drawable{
     private DropPoint dropPoint;
     private Coordinates position;
     @JsonIgnore
-    private double width = 50;
+    private double width = 30;
     @JsonIgnore
     private Rectangle mainRect;
     @JsonIgnore
