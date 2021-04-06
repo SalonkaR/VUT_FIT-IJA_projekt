@@ -2979,11 +2979,17 @@ regals:
       - *Shelf466
       - *Shelf467
 goods:
+
   - &Goods0 name: "Stolicka"
-  - &Goods1 name: "Stol"
+    weight: 1.5
+  - &Goods1 name: "Salka"
+    weight: 0.32
   - &Goods2 name: "Pribor"
+    weight: 0.05
   - &Goods3 name: "Tanier"
+    weight: 0.45
   - &Goods4 name: "Obrus"
+    weight: 0.2
 
 itemGenerators:
   - &itemGenerator0 name: "generatorStolicky"

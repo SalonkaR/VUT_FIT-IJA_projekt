@@ -11,6 +11,7 @@ import java.util.*;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Goods {
     private String name;
+    private double weight;
     @JsonIgnore
     private ArrayList<Item> freeItems = new ArrayList<>();
     @JsonIgnore
@@ -107,5 +108,13 @@ public class Goods {
     @Override
     public String toString() {
         return "Goods:" + name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }
