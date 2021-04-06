@@ -53,6 +53,11 @@ public class Main extends Application {
         List<Goods> goods = data.getGoods();
 
 
+        //Item generator ussage
+        ItemGenerator g = new ItemGenerator(goods.get(0), 50);
+        g.setShelves(data.getShelves());
+        g.createIt();
+
         HashMap<Goods, Integer> list1 = new HashMap<Goods, Integer>();
         list1.put(goods.get(0), 6);
         list1.put(goods.get(1), 4);
