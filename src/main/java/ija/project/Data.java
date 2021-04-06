@@ -11,7 +11,8 @@ public class Data {
     private List<Goods> orders;
     private List<DropPoint> dropPoint;
     private List<Parking> parking;
-
+    private List<Carriage> carriages;
+    private List<ItemGenerator> itemGenerators;
 
     public Data(){
         shelves = new ArrayList<>();
@@ -21,6 +22,8 @@ public class Data {
         orders = new ArrayList<>();
         dropPoint = new ArrayList<>();
         parking = new ArrayList<>();
+        carriages = new ArrayList<>();
+        itemGenerators = new ArrayList<>();
     }
 
     public List<Shelf> getShelves(){
@@ -51,6 +54,14 @@ public class Data {
         return parking;
     }
 
+    public List<Carriage> getCarriages() {
+        return carriages;
+    }
+
+    public List<ItemGenerator> getItemGenerators() {
+        return itemGenerators;
+    }
+
     public void setShelves(List<Shelf> shelves){
         this.shelves = shelves;
     }
@@ -77,6 +88,14 @@ public class Data {
 
     public void setParking(List<Parking> parking) {
         this.parking = parking;
+    }
+
+    public void setCarriages(List<Carriage> carriages) {
+        this.carriages = carriages;
+    }
+
+    public void setItemGenerators(List<ItemGenerator> itemGenerators) {
+        this.itemGenerators = itemGenerators;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package ija.project;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -14,35 +17,83 @@ import static java.lang.Math.abs;
 import static java.lang.Math.min;
 import static javafx.scene.paint.Color.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Carriage implements Drawable, Mover {
     private String name;
-    private Coordinates position;
-    private int speed = 2;
-    private int status;
-    private Circle mainCircle;
     private Parking parking;
+    private Coordinates position;
+    @JsonIgnore
+    private int speed = 2;
+    @JsonIgnore
+    private int status;
+    @JsonIgnore
+    private Circle mainCircle;
+    @JsonIgnore
     private Order order;
+    @JsonIgnore
     private int power = 1100;
+    @JsonIgnore
     private int maxPower = 1300;
 
-
-    private List<Shape> gui = new ArrayList<>();
+    @JsonIgnore
+    private List<Shape> gui;
+    @JsonIgnore
     private List<Shape> info = new ArrayList<>();
+    @JsonIgnore
     private HashMap<Goods, Integer> need;
+    @JsonIgnore
     private HashMap<Goods, List<Item>> inside;
 
+    @JsonIgnore
     private HashMap<Regal, HashMap<Shelf, List<Item>>> sortedListItems;
+    @JsonIgnore
     private Coordinates nextPoint;
+    @JsonIgnore
     private Regal nextRegal;
+    @JsonIgnore
     private Shelf nextShelf;
 
+    //empty constructor for jackson(yml)
+    public Carriage() {
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public Parking getParking() {
+        return parking;
+    }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setParking(Parking parking) {
+        this.parking = parking;
+    }
+
+    public void setPosition(Coordinates position) {
+        this.position = position;
+    }
+
+    @JsonIgnore
     public Carriage(String name, Parking parking, Coordinates position) {
         this.name = name;
         this.parking = parking;
         this.position = position;
         this.status = 0;
         parking.updateCarriage(this);
+        makeGui();
+    }
+
+    @JsonIgnore
+    public void makeGui(){
+        gui = new ArrayList<>();
         mainCircle = new Circle(position.getX(), position.getY(), 6, GREEN);
         gui.add(mainCircle);
 
@@ -58,14 +109,9 @@ public class Carriage implements Drawable, Mover {
                 }
             }
         });
-
-
     }
 
-    public String getName() {
-        return name;
-    }
-
+    @JsonIgnore
     public void calculateRoad(){
         need = order.getList();
         sortedListItems = new HashMap<>();
@@ -114,6 +160,7 @@ public class Carriage implements Drawable, Mover {
 
     }
 
+    @JsonIgnore
     public String getContent(){
         if (order != null){
             switch(status){
@@ -139,6 +186,7 @@ public class Carriage implements Drawable, Mover {
 
     }
 
+    @JsonIgnore
     public String getNeed(){
         String str = "";
         for (Goods i : need.keySet()) {
@@ -147,6 +195,7 @@ public class Carriage implements Drawable, Mover {
         return str;
     }
 
+    @JsonIgnore
     public String getInside(){
         String str = "";
         for (Goods i : inside.keySet()) {
@@ -157,6 +206,9 @@ public class Carriage implements Drawable, Mover {
     }
     @Override
     public List<Shape> getGUI() {
+        if(gui == null){
+            this.makeGui();
+        }
         return gui;
     }
 
@@ -165,6 +217,7 @@ public class Carriage implements Drawable, Mover {
         return info;
     }
 
+    @JsonIgnore
     public void makeInfo(){
         Text text = new Text(this.getContent());
         text.setWrappingWidth(125);
@@ -207,6 +260,7 @@ public class Carriage implements Drawable, Mover {
         info.clear();
     }
 
+    @JsonIgnore
     public void move(double diffX, double diffY){
         power -= 1;
         boolean direction;
@@ -238,6 +292,7 @@ public class Carriage implements Drawable, Mover {
         }
     }
 
+    @JsonIgnore
     public void loadItem(Shelf shelf, Item item) {
         int pcs = need.get(item.getGoods()) - 1;
         if (pcs == 0){
@@ -258,6 +313,7 @@ public class Carriage implements Drawable, Mover {
 
     }
 
+    @JsonIgnore
     public Regal getNextRegal(){
         List<Regal> regLst = new ArrayList<>();
         regLst.addAll(sortedListItems.keySet());
@@ -280,6 +336,7 @@ public class Carriage implements Drawable, Mover {
         return map.get(cooLst.get(0)).get(0);
     }
 
+    @JsonIgnore
     public void checkPower (){
         if (power <= 0){
             status = 9;
@@ -288,6 +345,7 @@ public class Carriage implements Drawable, Mover {
         }
     }
 
+    @JsonIgnore
     public boolean checkWayPower(){
 
         double fromNextPoint = abs(nextPoint.getX() - parking.getPosition().getX()) + abs(nextPoint.getY() - parking.getPosition().getX());
@@ -511,6 +569,7 @@ public class Carriage implements Drawable, Mover {
                 '}';
     }
 
+    @JsonIgnore
     public int getStatus() {
         return status;
     }

@@ -66,186 +66,22 @@ goods:
   - &Goods3 name: "Tanier"
   - &Goods4 name: "Obrus"
 
-items:
-  - &Item0 name: "Stolicka0"
+itemGenerators:
+  - &itemGenerator0 name: "generatorStolicky"
     goods: *Goods0
-    shelf: *Shelf0
-  - &Item1 name: "Stolicka1"
-    goods: *Goods0
-    shelf: *Shelf0
-  - &Item2 name: "Stolicka2"
-    goods: *Goods0
-    shelf: *Shelf0
-  - &Item3 name: "Stolicka3"
-    goods: *Goods0
-    shelf: *Shelf1
-  - &Item4 name: "Stolicka4"
-    goods: *Goods0
-    shelf: *Shelf2
-  - &Item5 name: "Stolicka5"
-    goods: *Goods0
-    shelf: *Shelf2
-  - &Item6 name: "Stolicka6"
-    goods: *Goods0
-    shelf: *Shelf2
-  - &Item7 name: "Stolicka7"
-    goods: *Goods0
-    shelf: *Shelf2
-  - &Item8 name: "Stolicka8"
-    goods: *Goods0
-    shelf: *Shelf2
-  - &Item9 name: "Stolicka9"
-    goods: *Goods0
-    shelf: *Shelf3
-  - &Item10 name: "Stolicka10"
-    goods: *Goods0
-    shelf: *Shelf3
-  - &Item11 name: "Stolicka11"
-    goods: *Goods0
-    shelf: *Shelf4
-  - &Item12 name: "Stolicka12"
-    goods: *Goods0
-    shelf: *Shelf6
-
-
-  - &Item13 name: "Stol0"
+    count: 50
+  - &itemGenerator1 name: "generatorStol"
     goods: *Goods1
-    shelf: *Shelf2
-  - &Item14 name: "Stol1"
-    goods: *Goods1
-    shelf: *Shelf3
-  - &Item15 name: "Stol2"
-    goods: *Goods1
-    shelf: *Shelf4
-  - &Item16 name: "Stol3"
-    goods: *Goods1
-    shelf: *Shelf5
-  - &Item17 name: "Stol4"
-    goods: *Goods1
-    shelf: *Shelf6
-  - &Item18 name: "Stol5"
-    goods: *Goods1
-    shelf: *Shelf7
-
-  - &Item19 name: "Pribor0"
+    count: 50
+  - &itemGenerator2 name: "generatorPribor"
     goods: *Goods2
-    shelf: *Shelf3
-  - &Item20 name: "Pribor1"
-    goods: *Goods2
-    shelf: *Shelf3
-  - &Item21 name: "Pribor2"
-    goods: *Goods2
-    shelf: *Shelf3
-  - &Item22 name: "Pribor3"
-    goods: *Goods2
-    shelf: *Shelf3
-  - &Item23 name: "Pribor4"
-    goods: *Goods2
-    shelf: *Shelf3
-  - &Item24 name: "Pribor5"
-    goods: *Goods2
-    shelf: *Shelf3
-  - &Item25 name: "Pribor6"
-    goods: *Goods2
-    shelf: *Shelf5
-  - &Item26 name: "Pribor7"
-    goods: *Goods2
-    shelf: *Shelf5
-  - &Item27 name: "Pribor8"
-    goods: *Goods2
-    shelf: *Shelf6
-  - &Item28 name: "Pribor9"
-    goods: *Goods2
-    shelf: *Shelf6
-  - &Item29 name: "Pribor10"
-    goods: *Goods2
-    shelf: *Shelf6
-  - &Item30 name: "Pribor11"
-    goods: *Goods2
-    shelf: *Shelf6
-  - &Item31 name: "Pribor12"
-    goods: *Goods2
-    shelf: *Shelf6
-
-  - &Item32 name: "Tanier0"
+    count: 50
+  - &itemGenerator3 name: "generatorTanier"
     goods: *Goods3
-    shelf: *Shelf2
-  - &Item33 name: "Tanier1"
-    goods: *Goods3
-    shelf: *Shelf2
-  - &Item34 name: "Tanier2"
-    goods: *Goods3
-    shelf: *Shelf4
-  - &Item35 name: "Tanier3"
-    goods: *Goods3
-    shelf: *Shelf4
-  - &Item36 name: "Tanier4"
-    goods: *Goods3
-    shelf: *Shelf4
-  - &Item37 name: "Tanier5"
-    goods: *Goods3
-    shelf: *Shelf4
-  - &Item38 name: "Tanier6"
-    goods: *Goods3
-    shelf: *Shelf5
-  - &Item39 name: "Tanier7"
-    goods: *Goods3
-    shelf: *Shelf5
-  - &Item40 name: "Tanier8"
-    goods: *Goods3
-    shelf: *Shelf7
-  - &Item41 name: "Tanier9"
-    goods: *Goods3
-    shelf: *Shelf7
-  - &Item42 name: "Tanier10"
-    goods: *Goods3
-    shelf: *Shelf7
-  - &Item43 name: "Tanier11"
-    goods: *Goods3
-    shelf: *Shelf7
-  - &Item44 name: "Tanier12"
-    goods: *Goods3
-    shelf: *Shelf7
-
-  - &Item45 name: "Obrus0"
+    count: 50
+  - &itemGenerator4 name: "generatorObrus"
     goods: *Goods4
-    shelf: *Shelf1
-  - &Item46 name: "Obrus1"
-    goods: *Goods4
-    shelf: *Shelf1
-  - &Item47 name: "Obrus2"
-    goods: *Goods4
-    shelf: *Shelf1
-  - &Item48 name: "Obrus3"
-    goods: *Goods4
-    shelf: *Shelf3
-  - &Item49 name: "Obrus4"
-    goods: *Goods4
-    shelf: *Shelf3
-  - &Item50 name: "Obrus5"
-    goods: *Goods4
-    shelf: *Shelf3
-  - &Item51 name: "Obrus6"
-    goods: *Goods4
-    shelf: *Shelf5
-  - &Item52 name: "Obrus7"
-    goods: *Goods4
-    shelf: *Shelf5
-  - &Item53 name: "Obrus8"
-    goods: *Goods4
-    shelf: *Shelf6
-  - &Item54 name: "Obrus9"
-    goods: *Goods4
-    shelf: *Shelf6
-  - &Item55 name: "Obrus10"
-    goods: *Goods4
-    shelf: *Shelf7
-  - &Item56 name: "Obrus11"
-    goods: *Goods4
-    shelf: *Shelf7
-  - &Item57 name: "Obrus12"
-    goods: *Goods4
-    shelf: *Shelf7
+    count: 50
 
 dropPoint:
   - &DropPoint0 name: "DropPointNo0"
@@ -259,3 +95,17 @@ parking:
     position:
       x: 50.0
       y: 50.0
+
+carriages:
+  - &Carriage0 name: "CarriageNo0"
+    parking: *Parking0
+    position:
+      x: 50.0
+      y: 50.0
+  - &Carriage1 name: "CarriageNo1"
+    parking: *Parking0
+    position:
+      x: 50.0
+      y: 50.0
+
+
