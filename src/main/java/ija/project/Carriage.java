@@ -105,10 +105,10 @@ public class Carriage implements Drawable, Mover {
         {
             @Override
             public void handle(MouseEvent t) {
-                if(mainCircle.getFill() == GREEN) {
-                    carriage.makeInfo();
-                    mainCircle.setFill(RED);
-                }
+
+                carriage.makeInfo();
+                mainCircle.setFill(RED);
+
             }
         });
     }
@@ -380,7 +380,7 @@ public class Carriage implements Drawable, Mover {
         double toNextPoint = abs(nextPoint.getX() - position.getX()) + abs(nextPoint.getY() - position.getX());
         double min = (fromNextPoint + toNextPoint) / speed;
 
-        if (power < min * 1.05) {
+        if (power < min * 1.1) {
             nextPoint = null;
             status = 7;
             return true;
@@ -535,10 +535,9 @@ public class Carriage implements Drawable, Mover {
                         item.sell();
                     }
                 }
-
+                load = 0;
                 if (sortedListItems.size() > 0){
                     status = 1;
-                    load = 0;
                     inside = new HashMap<>();
                     break;
                 }

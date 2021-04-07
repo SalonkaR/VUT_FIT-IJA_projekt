@@ -2979,7 +2979,6 @@ regals:
       - *Shelf466
       - *Shelf467
 goods:
-
   - &Goods0 name: "Stolicka"
     weight: 1.5
   - &Goods1 name: "Salka"
@@ -2990,27 +2989,104 @@ goods:
     weight: 0.45
   - &Goods4 name: "Obrus"
     weight: 0.2
+  - &Goods5 name: "Kavovar"
+    weight: 0.8
+  - &Goods6 name: "Panvica"
+    weight: 0.48
+  - &Goods7 name: "Hrniec-3l"
+    weight: 0.57
+  - &Goods8 name: "Hrniec-5l"
+    weight: 0.93
+  - &Goods9 name: "Sodastream"
+    weight: 0.31
 
 itemGenerators:
   - &itemGenerator0 name: "generatorStolicky"
     goods: *Goods0
-    count: 50
+    count: 5000
   - &itemGenerator1 name: "generatorStol"
     goods: *Goods1
-    count: 50
+    count: 5000
   - &itemGenerator2 name: "generatorPribor"
     goods: *Goods2
-    count: 50
+    count: 5000
   - &itemGenerator3 name: "generatorTanier"
     goods: *Goods3
-    count: 50
+    count: 5000
   - &itemGenerator4 name: "generatorObrus"
     goods: *Goods4
-    count: 50
+    count: 5000
+  - &itemGenerator5 name: "generator5"
+    goods: *Goods5
+    count: 5000
+  - &itemGenerator6 name: "generator6"
+    goods: *Goods6
+    count: 5000
+  - &itemGenerator7 name: "generator7"
+    goods: *Goods7
+    count: 5000
+  - &itemGenerator8 name: "generator8"
+    goods: *Goods8
+    count: 5000
+  - &itemGenerator9 name: "generator9"
+    goods: *Goods9
+    count: 5000
 
+orderGenerators2:
+  - &orderGenerator20 name: "small order"
+    time: 300
+    maxGoods: 2
+    maxItems: 5
+    dropPoint: *DropPoint0
+  - &orderGenerator21 name: "big order"
+    time: 1250
+    maxGoods: 8
+    maxItems: 100
+    dropPoint: *DropPoint0
+  - &orderGenerator22 name: "medium order"
+    time: 750
+    maxGoods: 5
+    maxItems: 20
+    dropPoint: *DropPoint0
 
 carriages:
   - &Carriage0 name: "CarriageNo0"
     parking: *Parking0
   - &Carriage1 name: "CarriageNo1"
+    parking: *Parking0
+  - &Carriage2 name: "CarriageNo2"
+    parking: *Parking0
+  - &Carriage3 name: "CarriageNo3"
+    parking: *Parking0
+  - &Carriage4 name: "CarriageNo4"
+    parking: *Parking0
+  - &Carriage5 name: "CarriageNo5"
+    parking: *Parking0
+  - &Carriage6 name: "CarriageNo6"
+    parking: *Parking0
+  - &Carriage7 name: "CarriageNo7"
+    parking: *Parking0
+  - &Carriage8 name: "CarriageNo8"
+    parking: *Parking0
+  - &Carriage9 name: "CarriageNo9"
+    parking: *Parking0
+  - &Carriage10 name: "CarriageNo10"
+    parking: *Parking0
+  - &Carriage11 name: "CarriageNo11"
+    parking: *Parking0
+  - &Carriage12 name: "CarriageNo12"
+    parking: *Parking0
+  - &Carriage13 name: "CarriageNo13"
+    parking: *Parking0
+  - &Carriage14 name: "CarriageNo14"
+    parking: *Parking0
+  - &Carriage15 name: "CarriageNo15"
+    parking: *Parking0
+  - &Carriage16 name: "CarriageNo16"
+    parking: *Parking0
+  - &Carriage17 name: "CarriageNo17"
+    parking: *Parking0
+  - &Carriage18 name: "CarriageNo18"
+    parking: *Parking0
+  - &Carriage19 name: "CarriageNo19"
     parking: *Parking0

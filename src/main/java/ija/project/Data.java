@@ -13,6 +13,7 @@ public class Data {
     private List<Carriage> carriages;
     private List<ItemGenerator> itemGenerators;
     private List<OrderGenerator> orderGenerators;
+    private List<OrderGenerator2> orderGenerators2;
 
     public Data(){
         shelves = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Data {
         carriages = new ArrayList<>();
         itemGenerators = new ArrayList<>();
         orderGenerators = new ArrayList<>();
+        orderGenerators2 = new ArrayList<>();
     }
 
     public List<Shelf> getShelves(){
@@ -62,6 +64,10 @@ public class Data {
         return orderGenerators;
     }
 
+    public List<OrderGenerator2> getOrderGenerators2() {
+        return orderGenerators2;
+    }
+
     public void setShelves(List<Shelf> shelves){
         this.shelves = shelves;
     }
@@ -96,5 +102,9 @@ public class Data {
 
     public void setOrderGenerators(List<OrderGenerator> orderGenerators) {
         this.orderGenerators = orderGenerators;
+    }
+
+    public void setOrderGenerators2(List<OrderGenerator2> orderGenerators2) {
+        this.orderGenerators2 = orderGenerators2;
     }
 }

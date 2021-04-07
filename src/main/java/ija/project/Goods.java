@@ -79,21 +79,15 @@ public class Goods {
 
         int cnt = 0;
         for(Item item : freeItems){
-            System.out.println("som tu1");
             if(map.containsKey(item.getShelf().getPosition().getY())){
-                System.out.println("som tu2");
-                    map.get(item.getShelf().getPosition().getY()).add(item);
-                System.out.println("som tu3");
+                map.get(item.getShelf().getPosition().getY()).add(item);
             } else {
-                System.out.println("som tu4");
+
                 List<Item> lst = new ArrayList<>();
                 lst.add(item);
                 map.put(item.getShelf().getPosition().getY(), lst);
-                System.out.println("som tu5");
             }
-            System.out.println("som tu6");
             forRes.add(item);
-            System.out.println("som tu7");
             cnt += 1;
             if (cnt == psc){
                 reserveItem(forRes);

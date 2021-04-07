@@ -26,6 +26,7 @@ public class MainController {
     private List<Drawable> elements = new ArrayList<>();
     private List<Mover> movers = new ArrayList<>();
     private List<Shape> informations = new ArrayList<>();
+    private List<OrderGenerator2> orderGenerators;
     private Drawable selected;
 
     private Timer timer;
@@ -60,6 +61,16 @@ public class MainController {
             content.setScaleY(1);
         }
         content.layout();
+    }
+
+    public void generateOrders(){
+        for (OrderGenerator2 generator : orderGenerators){
+            generator.generate();
+        }
+    }
+
+    public void setOrderGenerators(List<OrderGenerator2> orderGenerators) {
+        this.orderGenerators = orderGenerators;
     }
 
     public void setElements(List<Drawable> elements) {
@@ -122,6 +133,7 @@ public class MainController {
                     Platform.runLater(() -> {
                         controler.setInformation(elements);
                         controler.makeUpdates();
+                        controler.generateOrders();
                     });
                 }
             }, 0, scale);

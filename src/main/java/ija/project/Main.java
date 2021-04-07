@@ -26,11 +26,16 @@ public class Main extends Application {
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-        Data data =  mapper.readValue(new File("data.yml"), Data.class);
+        Data data =  mapper.readValue(new File("storage.yml"), Data.class);
         elements.addAll(data.getShelves());
         elements.addAll(data.getDropPoint());
         elements.addAll(data.getParking());
         elements.addAll(data.getCarriages());
+
+
+        for (OrderGenerator2 generator : data.getOrderGenerators2()){
+            generator.setGoods(data.getGoods());
+        }
 
         for (Item item : data.getItems()){
             item.shareMe();
@@ -53,6 +58,7 @@ public class Main extends Application {
             orderGenerator.generate();
         }
 
+        controller.setOrderGenerators(data.getOrderGenerators2());
         controller.setElements(elements);
         controller.setData(data);
         controller.startTime(true,55);
