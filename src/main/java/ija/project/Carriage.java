@@ -122,7 +122,7 @@ public class Carriage implements Drawable, Mover {
         HashMap<Double, List<Item>> newListItems;
 
         for (Goods goods : need.keySet()){
-            newListItems = goods.getItems(need.get(goods));
+            newListItems = goods.getItemsMap(need.get(goods));
             for (double key : newListItems.keySet()){
                 if (listItems.containsKey(key)){
                     for (Item item : newListItems.get(key)){

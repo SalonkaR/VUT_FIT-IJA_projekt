@@ -3043,7 +3043,7 @@ orderGenerators2:
     maxGoods: 8
     maxItems: 100
     dropPoint: *DropPoint0
-  - &orderGenerator22 name: "medium order"
+  - &orderGenerator22 name: "med order"
     time: 750
     maxGoods: 5
     maxItems: 20
