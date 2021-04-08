@@ -52,6 +52,8 @@ public class Carriage implements Drawable, Mover {
     private HashMap<Goods, Integer> need;
     @JsonIgnore
     private HashMap<Goods, List<Item>> inside;
+    @JsonIgnore
+    private int cnt; 
 
 
     @JsonIgnore
@@ -409,6 +411,7 @@ public class Carriage implements Drawable, Mover {
             nextShelfPoint = null;
             nextRegalPoint = null;
             status = 7;
+            print("Dosla mi energia");
             return true;
         }
         return false;
@@ -473,9 +476,9 @@ public class Carriage implements Drawable, Mover {
 
     }
 
-    public void getBestWay(Regal lastRegal, Shelf lastShelf){
-        Double topWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getTop().getY()) + abs(lastShelf.getAccessPoint().getY() - lastRegal.getTop().getY());
-        Double bottomWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getBottom().getY()) + abs(lastShelf.getAccessPoint().getY() - lastRegal.getBottom().getY());
+    public void getBestWay(){
+        Double topWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getTop().getY()) + abs(position.getY() - nextRegal.getTop().getY());
+        Double bottomWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getBottom().getY()) + abs(position.getY() - nextRegal.getBottom().getY());
         if (topWay < bottomWay){
             nextRegalPoint = nextRegal.getTop();
             return;
@@ -496,6 +499,11 @@ public class Carriage implements Drawable, Mover {
             return regals.get(regalReferencs.get(regal));
         }
     }
+    
+    public void print(String msg){
+        System.out.println(cnt + ": " + msg);
+        cnt += 1;
+    }
 
 
     @Override
@@ -507,6 +515,8 @@ public class Carriage implements Drawable, Mover {
                 load = 0;
 
                 if (order != null) {
+                    cnt = 0;
+                    print("Nova objednavka");
                     status += 1; // Go to processing order
                     parking.updateCarriage(this);
                     order.update();
@@ -516,15 +526,15 @@ public class Carriage implements Drawable, Mover {
                 break;
             case 1:
                 // go to regal acces point
-
                 if (nextRegalPoint == null){
-
+                    print("Nastavil som si suradnice pre regal:");
                     nextRegal = this.getNextRegal();
                     nextRegalPoint = this.getNextRegalPoint();
                     nextShelf = this.getNextShelf();
-                    
+                    print(nextRegalPoint.toString());
                     nextShelfPoint = nextShelf.getAccessPoint();
-
+                    print("Nastavil som si suradnice pre policu:");
+                    print(nextShelfPoint.toString());
                     if (this.checkWayPower()){
                         break;
                     }
@@ -538,6 +548,7 @@ public class Carriage implements Drawable, Mover {
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0){
+                    print("idem do police");
                     status += 1;
                 }
                 this.checkPower();
@@ -545,10 +556,11 @@ public class Carriage implements Drawable, Mover {
 
             case 2:
                 //move to shelf
-
                 if (nextShelf == null){
                     nextShelf = getNextShelf();
                     nextShelfPoint = nextShelf.getAccessPoint();
+                    print("nastavil som si suradnice police:");
+                    print(nextShelfPoint.toString());
                     if (this.checkWayPower()){
                         break;
                     }
@@ -575,7 +587,6 @@ public class Carriage implements Drawable, Mover {
                 shelves.get(nextShelf).remove(0);
 
                 if (shelves.get(nextShelf).size() == 0){
-                    
                     //vybrate vsetky itemy z police
                     shelves.remove(nextShelf);
                     this.getFromRegals(nextRegal).remove(nextShelf);
@@ -593,22 +604,24 @@ public class Carriage implements Drawable, Mover {
                             sortedRegals.remove(nextRegal.getTop().getX());
                             if (sortedRegals.size() == 0){
                                 //order is ready
-                                System.out.println("order is ready");
+                                print("Dokoncil som objednavku");
                                 status = 5;
                                 nextShelfPoint = null;
                                 nextShelfPoint = null;
                                 break;
                             }
-                            Regal lastRegal = nextRegal;
-                            nextRegal = this.getNextRegal();
-                            if (lastRegal.getTop().getY() == nextRegal.getTop().getY()){
+                            //Regal reg = this.getNextRegal();
+                            //if (reg.getTop().getY() == nextRegal.getTop().getY()){
                                 //musis vypocitat obchdzku, pretoze ides do oposit regalu
-                                System.out.println("calculate best way");
-                                Shelf lastShelf = nextShelf;
+                                //print("dalsi regal je na rovnakej urovni, z ktorej strany ho obidem?");
+                                print("idem do dalsieho regalu");
+                                //nextRegal = reg;
+                                nextRegal = getNextRegal();//n
                                 nextShelf = getNextShelf();
-                                this.getBestWay(lastRegal,lastShelf);
+                                nextShelfPoint = nextShelf.getAccessPoint();
+                                this.getBestWay();
 
-                                status += 1;
+                                status = 1;
                                 
                                 if (this.checkWayPower()){
                                     break;
@@ -617,24 +630,26 @@ public class Carriage implements Drawable, Mover {
                                     break;
                                 }
                                 break;
-                            }
-                            System.out.println("go to next col");
-                            nextShelf = getNextShelf();
+                            /*}
+                            print("Idem do noveho stlpca");
                             nextRegalPoint = null;
-                            status += 1;
+                            status  = 1 ;
                             if (this.checkWayPower()){
                                 break;
                             }
                             if (this.checkLoad(shelves.get(nextShelf).get(0))){
                                 break;
                             }
-                            break;
+                            break;*/
                         }
-                        System.out.println("next regal");
+                        print("v tomto regali som hotovy");
+                        print("idem do regala");
                         nextRegalPoint = null;
                         status = 1;
                         break;
                     }
+                    print("v tejto polici som hotovy");
+                    print("idem do police");
                     nextShelf = null;
                     status = 2;
                     break;
@@ -645,10 +660,12 @@ public class Carriage implements Drawable, Mover {
 
                 break;
 
-            case 4:
+           /* case 4:
                 // back to street
                 if (nextRegalPoint == null){
                     nextRegalPoint = getNextRegalPoint();
+                    print("nastavil som si suradnice regalu pre vratenie sa");
+                    print(nextRegalPoint.toString());
                 }
                 diffY = nextRegalPoint.getY() - position.getY() ;
                 diffX = nextRegalPoint.getX() - position.getX() ;
@@ -659,7 +676,9 @@ public class Carriage implements Drawable, Mover {
                     nextRegalPoint = null;
                     if (sortedRegals.size() == 0){
                         status +=1;
+                        print("objednavka je hotova");
                     } else {
+                        print("idem do noveho regala");
                         status = 1;
                         if (checkWay){
                             if (this.getNextRegalPoint().getY() != position.getY()){
@@ -674,7 +693,7 @@ public class Carriage implements Drawable, Mover {
                 }
                 this.checkPower();
                 break;
-
+*/
             case 5:
                 // Go to Drop point
                 if (nextShelfPoint == null){
@@ -770,6 +789,7 @@ public class Carriage implements Drawable, Mover {
         if (load + item.getWeight() > maxLoad){
             status = 5;
             nextShelfPoint = null;
+            print("Dosla mi miesto");
             return true;
         }
         return false;

@@ -30,10 +30,9 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "Cordinate{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "[" + x +
+                "," + y +
+                ']';
     }
 
     @Override

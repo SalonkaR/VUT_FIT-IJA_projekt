@@ -68,8 +68,8 @@ public class Shelf implements Drawable {
         gui.add(mainRect);
 
         this.makeAccessPoint();
-        accessCircle = new Circle(accessPoint.getX(), accessPoint.getY(),3, LIMEGREEN);
-        gui.add(accessCircle);
+        //accessCircle = new Circle(accessPoint.getX(), accessPoint.getY(),3, LIMEGREEN);
+        //gui.add(accessCircle);
 
         Shelf shelf = this;
         mainRect.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -100,10 +100,10 @@ public class Shelf implements Drawable {
         double x;
         if (accessPointBool){
             //accessPoint = Left
-           x = this.getPosition().getX() -2;
+           x = this.getPosition().getX() -10;
         } else {
             //accessPoint = Right
-            x = this.getPosition().getX() + width +2;
+            x = this.getPosition().getX() + width +10;
         }
         accessPoint = new Coordinates(x,y);
     }
