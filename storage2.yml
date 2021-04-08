@@ -2626,26 +2626,58 @@ goods:
     weight: 0.45
   - &Goods4 name: "Obrus"
     weight: 0.2
+  - &Goods5 name: "Kavovar"
+    weight: 0.8
+  - &Goods6 name: "Panvica"
+    weight: 0.48
+  - &Goods7 name: "Hrniec-3l"
+    weight: 0.57
+  - &Goods8 name: "Hrniec-5l"
+    weight: 0.93
+  - &Goods9 name: "Sodastream"
+    weight: 0.31
 
 itemGenerators:
   - &itemGenerator0 name: "generatorStolicky"
     goods: *Goods0
-    count: 50
+    count: 500
   - &itemGenerator1 name: "generatorStol"
     goods: *Goods1
-    count: 50
+    count: 500
   - &itemGenerator2 name: "generatorPribor"
     goods: *Goods2
-    count: 50
+    count: 500
   - &itemGenerator3 name: "generatorTanier"
     goods: *Goods3
-    count: 50
+    count: 500
   - &itemGenerator4 name: "generatorObrus"
     goods: *Goods4
-    count: 50
+    count: 500
+  - &itemGenerator5 name: "generator5"
+    goods: *Goods5
+    count: 500
+  - &itemGenerator6 name: "generator6"
+    goods: *Goods6
+    count: 500
+  - &itemGenerator7 name: "generator7"
+    goods: *Goods7
+    count: 500
+  - &itemGenerator8 name: "generator8"
+    goods: *Goods8
+    count: 500
+  - &itemGenerator9 name: "generator9"
+    goods: *Goods9
+    count: 500
+
+orderGenerators2:
+
+  - &orderGenerator21 name: "big order"
+    time: 50
+    maxGoods: 8
+    maxItems: 100
+    dropPoint: *DropPoint0
+
 
 carriages:
   - &Carriage0 name: "CarriageNo0"
-    parking: *Parking0
-  - &Carriage1 name: "CarriageNo1"
     parking: *Parking0

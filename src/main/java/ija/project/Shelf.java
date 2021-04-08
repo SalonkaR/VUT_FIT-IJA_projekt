@@ -100,10 +100,10 @@ public class Shelf implements Drawable {
         double x;
         if (accessPointBool){
             //accessPoint = Left
-           x = this.getPosition().getX() - 10;
+           x = this.getPosition().getX() -2;
         } else {
             //accessPoint = Right
-            x = this.getPosition().getX() + width + 10;
+            x = this.getPosition().getX() + width +2;
         }
         accessPoint = new Coordinates(x,y);
     }
@@ -164,7 +164,7 @@ public class Shelf implements Drawable {
 
     @Override
     public String toString() {
-        return "Shelf:" + position;
+        return "S";
     }
 
     private String getContent(){

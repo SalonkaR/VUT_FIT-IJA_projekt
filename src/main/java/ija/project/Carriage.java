@@ -38,8 +38,11 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private double load;
     @JsonIgnore
-    private double maxLoad = 10;
-
+    private double maxLoad = 100;
+    @JsonIgnore
+    boolean fromTop;
+    @JsonIgnore
+    boolean checkWay;
 
     @JsonIgnore
     private List<Shape> gui;
@@ -50,14 +53,24 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private HashMap<Goods, List<Item>> inside;
 
+
     @JsonIgnore
-    private HashMap<Regal, HashMap<Shelf, List<Item>>> sortedListItems;
+    private HashMap<Double, List<Regal>> sortedRegals;
     @JsonIgnore
-    private Coordinates nextPoint;
+    private HashMap<Regal, List<Shelf>> regals;
+    @JsonIgnore
+    private HashMap<Shelf, List<Item>> shelves;
+    @JsonIgnore
+    private HashMap<Regal, Regal> regalReferencs;
+    @JsonIgnore
+    private Coordinates nextRegalPoint;
+    @JsonIgnore
+    private Coordinates nextShelfPoint;
     @JsonIgnore
     private Regal nextRegal;
     @JsonIgnore
     private Shelf nextShelf;
+
 
     //empty constructor for jackson(yml)
     public Carriage() {
@@ -115,51 +128,86 @@ public class Carriage implements Drawable, Mover {
 
     @JsonIgnore
     public void calculateRoad(){
+        sortedRegals = new HashMap<>();
+        regals = new HashMap<>();
+        shelves = new HashMap<>();
         need = order.getList();
-        sortedListItems = new HashMap<>();
-
-        HashMap<Double, List<Item>> listItems = new HashMap<>();
-        HashMap<Double, List<Item>> newListItems;
+        List<Item> items = new ArrayList<>();
 
         for (Goods goods : need.keySet()){
-            newListItems = goods.getItemsMap(need.get(goods));
-            for (double key : newListItems.keySet()){
-                if (listItems.containsKey(key)){
-                    for (Item item : newListItems.get(key)){
-                        listItems.get(key).add(item);
-                    }
-                } else {
-                    listItems.put(key, newListItems.get(key));
-                }
-            }
+            items.addAll(goods.getItems(need.get(goods)));
         }
 
-        HashMap<Shelf, List<Item>> listItems2 = new HashMap<>();
-        //zoznam (Shelf, list(Item))
-        for (double key : listItems.keySet()){
-            for (Item item : listItems.get(key)){
-                if (listItems2.containsKey(item.getShelf())){
-                    listItems2.get(item.getShelf()).add(item);
+        this.makeLists(items);
+        regalReferencs = new HashMap<>();
+        
+        
+        this.mergeRegals();
+        
+        
+    }
+
+    public void mergeRegals(){
+        Map <Double, Regal> tmp;
+        List<Regal> toRemove = new ArrayList<>();
+
+        for (Double x :sortedRegals.keySet()){
+            tmp = new HashMap<>();
+            for (Regal regal : sortedRegals.get(x)){
+                if (tmp.containsKey(regal.getTop().getY())){
+                    //merge
+                    regals.get(tmp.get(regal.getTop().getY())).addAll(regals.get(regal));
+                    regalReferencs.put(regal,tmp.get(regal.getTop().getY()));
+                    regals.remove(regal);
+                    toRemove.add(regal);
                 } else {
-                    List<Item> lst = new ArrayList<>();
-                    lst.add(item);
-                    listItems2.put(item.getShelf(), lst);
+                    tmp.put(regal.getTop().getY(), regal);
                 }
             }
+            for (Regal regal2 : toRemove){
+                sortedRegals.get(x).remove(regal2);
+                
+            }
         }
+    }
 
-        //zoznam ((Regal, (Shelf, list(Item)))
-
-        for(Shelf shelf : listItems2.keySet()){
-            if (sortedListItems.containsKey(shelf.getRegal())){
-                sortedListItems.get(shelf.getRegal()).put(shelf, listItems2.get(shelf));
+    @JsonIgnore
+    public void makeLists(List<Item> items){
+        Shelf shelf;
+        for (Item item : items) {
+            shelf = item.getShelf();
+            if (shelves.containsKey(shelf)){
+                shelves.get(shelf).add(item);
             } else {
-                HashMap<Shelf, List<Item>> lst = new HashMap<>();
-                lst.put(shelf, listItems2.get(shelf));
-                sortedListItems.put(shelf.getRegal(), lst);
+                List<Item> lst = new ArrayList<>();
+                lst.add(item);
+                shelves.put(shelf, lst);
+                this.addShelf(shelf);
             }
         }
+    }
 
+    @JsonIgnore
+    public void addShelf(Shelf shelf){
+        if (regals.containsKey(shelf.getRegal())){
+            regals.get(shelf.getRegal()).add(shelf);
+        } else {
+            List<Shelf> lst = new ArrayList<>();
+            lst.add(shelf);
+            regals.put(shelf.getRegal(), lst);
+            this.addRegal(shelf.getRegal());
+        }
+    }
+
+    @JsonIgnore
+    public void addRegal(Regal regal){
+        if (sortedRegals.containsKey(regal.getTop().getX())){
+            sortedRegals.get(regal.getTop().getX()).add(regal);
+        } else {
+            List<Regal> lst = new ArrayList<>();
+            lst.add(regal);
+            sortedRegals.put(regal.getTop().getX(), lst);
+        }
     }
 
     @JsonIgnore
@@ -342,29 +390,6 @@ public class Carriage implements Drawable, Mover {
     }
 
     @JsonIgnore
-    public Regal getNextRegal(){
-        List<Regal> regLst = new ArrayList<>();
-        regLst.addAll(sortedListItems.keySet());
-
-        List<Double> cooLst = new ArrayList<>();
-        HashMap<Double, List<Regal>> map = new HashMap<>();
-
-        for (Regal regal: regLst){
-            cooLst.add(regal.getTop().getY());
-            if ( map.containsKey(regal.getTop().getY())){
-                map.get(regal.getTop().getY()).add(regal);
-            } else {
-                List<Regal> lst = new ArrayList<>();
-                lst.add(regal);
-                map.put(regal.getTop().getY(), lst);
-            }
-        }
-
-        Collections.sort(cooLst);
-        return map.get(cooLst.get(0)).get(0);
-    }
-
-    @JsonIgnore
     public void checkPower (){
         if (power <= 0){
             status = 9;
@@ -376,18 +401,102 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     public boolean checkWayPower(){
 
-        double fromNextPoint = abs(nextPoint.getX() - parking.getPosition().getX()) + abs(nextPoint.getY() - parking.getPosition().getX());
-        double toNextPoint = abs(nextPoint.getX() - position.getX()) + abs(nextPoint.getY() - position.getX());
+        double fromNextPoint = abs(nextShelfPoint.getX() - parking.getPosition().getX()) + abs(nextShelfPoint.getY() - parking.getPosition().getX());
+        double toNextPoint = abs(nextShelfPoint.getX() - position.getX()) + abs(nextShelfPoint.getY() - position.getX());
         double min = (fromNextPoint + toNextPoint) / speed;
 
         if (power < min * 1.1) {
-            nextPoint = null;
+            nextShelfPoint = null;
+            nextRegalPoint = null;
             status = 7;
             return true;
         }
-        System.out.println("min:" + min + "actual:" + power);
         return false;
     }
+
+    @JsonIgnore
+    public Regal getNextRegal(){
+        List<Double> xs = new ArrayList<>();
+        xs.addAll(sortedRegals.keySet());
+        Collections.sort(xs);
+
+        Map<Double, Regal> nextRegals = new HashMap<>();
+        List<Double> lst = new ArrayList<>();
+
+        for (Regal regal : sortedRegals.get(xs.get(0))){
+            nextRegals.put(regal.getTop().getY(),regal);
+            
+        }
+
+
+        lst.addAll(nextRegals.keySet());
+
+        if (fromTop) {
+            Collections.sort(lst);
+        } else {
+            Collections.sort(lst);
+            Collections.reverse(lst);
+        }
+
+
+        return nextRegals.get(lst.get(0));
+    }
+
+    @JsonIgnore
+    public Coordinates getNextRegalPoint() {
+        if (fromTop){
+            return nextRegal.getTop();
+        }
+        return nextRegal.getBottom();
+    }
+
+    public Shelf getNextShelf(){
+        Map<Double, Shelf> nextShelves = new HashMap<>();
+
+
+        for (Shelf shelf : this.getFromRegals(nextRegal)) {
+            nextShelves.put(shelf.getAccessPoint().getY(), shelf);
+        }
+
+
+        List<Double> lst = new ArrayList<>();
+        lst.addAll(nextShelves.keySet());
+
+        if (fromTop) {
+            Collections.sort(lst);
+        } else {
+            Collections.sort(lst);
+            Collections.reverse(lst);
+        }
+
+        return nextShelves.get(lst.get(0));
+
+    }
+
+    public void getBestWay(Regal lastRegal, Shelf lastShelf){
+        Double topWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getTop().getY()) + abs(lastShelf.getAccessPoint().getY() - lastRegal.getTop().getY());
+        Double bottomWay = abs(nextShelf.getAccessPoint().getY() - nextRegal.getBottom().getY()) + abs(lastShelf.getAccessPoint().getY() - lastRegal.getBottom().getY());
+        if (topWay < bottomWay){
+            nextRegalPoint = nextRegal.getTop();
+            return;
+        }
+        nextRegalPoint = nextRegal.getBottom();
+
+        Coordinates test = getNextRegalPoint();
+        if (test.getY() != nextRegalPoint.getY()){
+            
+            checkWay = true;
+        }
+    }
+
+    public List<Shelf> getFromRegals(Regal regal){
+        if (regals.containsKey(regal)){
+            return regals.get(regal);
+        } else {
+            return regals.get(regalReferencs.get(regal));
+        }
+    }
+
 
     @Override
     public void update() {
@@ -402,25 +511,33 @@ public class Carriage implements Drawable, Mover {
                     parking.updateCarriage(this);
                     order.update();
                     this.calculateRoad();
+                    fromTop = true;
                 }
                 break;
             case 1:
                 // go to regal acces point
 
-                if (nextPoint == null){
+                if (nextRegalPoint == null){
+
                     nextRegal = this.getNextRegal();
-                    nextPoint = (nextRegal).getTop();
+                    nextRegalPoint = this.getNextRegalPoint();
+                    nextShelf = this.getNextShelf();
+                    
+                    nextShelfPoint = nextShelf.getAccessPoint();
+
                     if (this.checkWayPower()){
                         break;
                     }
+                    if (this.checkLoad(shelves.get(nextShelf).get(0))){
+                        break;
+                    }
                 }
-                double diffY = nextPoint.getY() - position.getY() ;
-                double diffX = nextPoint.getX() - position.getX() ;
+                double diffY = nextRegalPoint.getY() - position.getY() ;
+                double diffX = nextRegalPoint.getX() - position.getX() ;
 
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0){
-                    nextPoint = null;
                     status += 1;
                 }
                 this.checkPower();
@@ -429,21 +546,23 @@ public class Carriage implements Drawable, Mover {
             case 2:
                 //move to shelf
 
-                if (nextPoint == null){
-                    nextShelf = (Shelf) sortedListItems.get(nextRegal).keySet().toArray()[0];
-                    nextPoint = nextShelf.getAccessPoint();
+                if (nextShelf == null){
+                    nextShelf = getNextShelf();
+                    nextShelfPoint = nextShelf.getAccessPoint();
                     if (this.checkWayPower()){
+                        break;
+                    }
+                    if (this.checkLoad(shelves.get(nextShelf).get(0))){
                         break;
                     }
                 }
 
-                diffY = nextPoint.getY() - position.getY() ;
-                diffX = nextPoint.getX() - position.getX() ;
+                diffY = nextShelfPoint.getY() - position.getY() ;
+                diffX = nextShelfPoint.getX() - position.getX() ;
 
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0) {
-                    nextPoint = null;
                     status += 1;
                 }
                 this.checkPower();
@@ -451,58 +570,106 @@ public class Carriage implements Drawable, Mover {
 
             case 3:
                 //load item from shelf
-                List<Item> items = sortedListItems.get(nextRegal).get(nextShelf);
 
-                if (this.checkLoad(items.get(0))){
+                this.loadItem(nextShelf, shelves.get(nextShelf).get(0));
+                shelves.get(nextShelf).remove(0);
+
+                if (shelves.get(nextShelf).size() == 0){
+                    
+                    //vybrate vsetky itemy z police
+                    shelves.remove(nextShelf);
+                    this.getFromRegals(nextRegal).remove(nextShelf);
+                    if (this.getFromRegals(nextRegal).size() == 0){
+                        //vybral si itemy zo vsetkych polic v regali
+                        if (regals.containsKey(nextRegal)) {
+                            regals.remove(nextRegal);
+                        } else {
+                            regals.remove(regalReferencs.get(nextRegal));
+                        }
+                        sortedRegals.get(nextRegal.getTop().getX()).remove(nextRegal);
+                        if (sortedRegals.get(nextRegal.getTop().getX()).size() == 0){
+                            //vybral si vsetky regale v stlpci
+                            fromTop = !fromTop;
+                            sortedRegals.remove(nextRegal.getTop().getX());
+                            if (sortedRegals.size() == 0){
+                                //order is ready
+                                System.out.println("order is ready");
+                                status = 5;
+                                nextShelfPoint = null;
+                                nextShelfPoint = null;
+                                break;
+                            }
+                            Regal lastRegal = nextRegal;
+                            nextRegal = this.getNextRegal();
+                            if (lastRegal.getTop().getY() == nextRegal.getTop().getY()){
+                                //musis vypocitat obchdzku, pretoze ides do oposit regalu
+                                System.out.println("calculate best way");
+                                Shelf lastShelf = nextShelf;
+                                nextShelf = getNextShelf();
+                                this.getBestWay(lastRegal,lastShelf);
+
+                                status += 1;
+                                
+                                if (this.checkWayPower()){
+                                    break;
+                                }
+                                if (this.checkLoad(shelves.get(nextShelf).get(0))){
+                                    break;
+                                }
+                                break;
+                            }
+                            System.out.println("go to next col");
+                            nextShelf = getNextShelf();
+                            nextRegalPoint = null;
+                            status += 1;
+                            if (this.checkWayPower()){
+                                break;
+                            }
+                            if (this.checkLoad(shelves.get(nextShelf).get(0))){
+                                break;
+                            }
+                            break;
+                        }
+                        System.out.println("next regal");
+                        nextRegalPoint = null;
+                        status = 1;
+                        break;
+                    }
+                    nextShelf = null;
+                    status = 2;
                     break;
                 }
-                this.loadItem(nextShelf, items.get(0));
-                items.remove(0);
-
-
-                if (items.size() == 0){
-                    sortedListItems.get(nextRegal).remove(nextShelf);
-                    if (sortedListItems.get(nextRegal).size() == 0) {
-                        sortedListItems.remove(nextRegal);
-
-                        if (sortedListItems.size() == 0) {
-                            nextPoint = nextRegal.getBottom();
-                        }else{
-                            Coordinates next = this.getNextRegal().getTop();
-
-                            if (next.getY() > position.getY()) {
-                                nextPoint = nextRegal.getBottom();
-                            } else {
-                                nextPoint = nextRegal.getTop();
-                            }
-                        }
-                        this.checkWayPower();
-
-                        status += 1;
-                        nextRegal = null;
-                        nextShelf = null;
-                    } else {
-                        nextShelf = (Shelf) sortedListItems.get(nextRegal).keySet().toArray()[0];
-                        status = 2;
-                    }
-
+                if (this.checkLoad(shelves.get(nextShelf).get(0))){
+                    break;
                 }
 
                 break;
 
             case 4:
                 // back to street
-                diffY = nextPoint.getY() - position.getY() ;
-                diffX = nextPoint.getX() - position.getX() ;
+                if (nextRegalPoint == null){
+                    nextRegalPoint = getNextRegalPoint();
+                }
+                diffY = nextRegalPoint.getY() - position.getY() ;
+                diffX = nextRegalPoint.getX() - position.getX() ;
 
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0) {
-                    nextPoint = null;
-                    if (sortedListItems.size() == 0){
+                    nextRegalPoint = null;
+                    if (sortedRegals.size() == 0){
                         status +=1;
                     } else {
                         status = 1;
+                        if (checkWay){
+                            if (this.getNextRegalPoint().getY() != position.getY()){
+                                
+                                fromTop = !fromTop;
+                                nextRegalPoint = getNextRegalPoint();
+                                fromTop = !fromTop;
+                                checkWay = false;
+                            }
+                        }
                     }
                 }
                 this.checkPower();
@@ -510,20 +677,23 @@ public class Carriage implements Drawable, Mover {
 
             case 5:
                 // Go to Drop point
-                if (nextPoint == null){
-                    nextPoint = parking.getDropPointCoords();
+                if (nextShelfPoint == null){
+
+                    nextShelfPoint = parking.getDropPointCoords();
                     if (this.checkWayPower()){
                         break;
                     }
                 }
 
-                diffY = nextPoint.getY() - position.getY() ;
-                diffX = nextPoint.getX() - position.getX() ;
+                diffY = nextShelfPoint.getY() - position.getY() ;
+                diffX = nextShelfPoint.getX() - position.getX() ;
 
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0) {
-                    nextPoint = null;
+                    nextShelfPoint = null;
+                    nextRegalPoint = null;
+                    fromTop = true;
                     status += 1;
                 }
                 this.checkPower();
@@ -536,7 +706,7 @@ public class Carriage implements Drawable, Mover {
                     }
                 }
                 load = 0;
-                if (sortedListItems.size() > 0){
+                if (sortedRegals.size() > 0){
                     status = 1;
                     inside = new HashMap<>();
                     break;
@@ -552,18 +722,21 @@ public class Carriage implements Drawable, Mover {
                 break;
             case 7:
                 //go to parking
-                if (nextPoint == null) {
-                    nextPoint = parking.getPosition();
+                if (nextShelfPoint == null) {
+
+                    nextShelfPoint = parking.getPosition();
                 }
 
-                diffY = nextPoint.getY() - position.getY() ;
-                diffX = nextPoint.getX() - position.getX() ;
+                diffY = nextShelfPoint.getY() - position.getY() ;
+                diffX = nextShelfPoint.getX() - position.getX() ;
 
                 this.move(diffX, diffY);
 
                 if (diffX == 0 && diffY == 0) {
-                    nextPoint = null;
+                    nextShelfPoint = null;
                     status += 1;
+                    fromTop = true;
+                    nextRegal = null;
                     parking.updateCarriage(this);
                 }
                 this.checkPower();
@@ -577,7 +750,7 @@ public class Carriage implements Drawable, Mover {
                     if (order == null){
                         status = 0;
                     } else {
-                        if (sortedListItems.size() == 0){
+                        if (sortedRegals.size() == 0){
                             status = 5;
                         } else {
                             status = 1;
@@ -596,7 +769,7 @@ public class Carriage implements Drawable, Mover {
     private boolean checkLoad(Item item) {
         if (load + item.getWeight() > maxLoad){
             status = 5;
-            nextPoint = null;
+            nextShelfPoint = null;
             return true;
         }
         return false;

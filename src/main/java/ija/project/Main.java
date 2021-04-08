@@ -26,7 +26,7 @@ public class Main extends Application {
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-        Data data =  mapper.readValue(new File("storage.yml"), Data.class);
+        Data data =  mapper.readValue(new File("storage2.yml"), Data.class);
         elements.addAll(data.getShelves());
         elements.addAll(data.getDropPoint());
         elements.addAll(data.getParking());
