@@ -2,18 +2,22 @@ package ija.project;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Trieda MainControler slúži na riadenie aplikacie.
+ *
+ * @author Matúš Tvarožný -  xtvaroh00
+ * @version 1.0
+ */
 public class MainController {
     @FXML
     private Pane content;
@@ -22,29 +26,24 @@ public class MainController {
     @FXML
     private Slider speed;
     @FXML
-    private Button start;
-    @FXML
-    private Button pause;
-    @FXML
-    private Button reset;
-    @FXML
-    private Button showLines;
 
+    // rýchlost vykreslovania
     private int refresher = 55;
-
     private Data data;
-
     private List<Drawable> elements = new ArrayList<>();
     private List<Mover> movers = new ArrayList<>();
     private List<Shape> informations = new ArrayList<>();
     private List<Shape> path = new ArrayList<>();
     private List<OrderGenerator2> orderGenerators;
     private Drawable selected;
+    //flag zapína a vypína zobrazovanie cestičiek na mape
     private boolean lines = false;
-
     private Timer timer;
-    private LocalTime time =  LocalTime.now();
 
+    /**
+     * Metoda slúži na zmenu rýchlosti času. Vyvolaná je nastavením slideru v pravom hornom rohu scény.
+     * Maximalna rýchlosť vykreslovania je 100fps, najpomalšia je 9,1fps.
+     */
     @FXML
     private void chengeTime() {
         timer.cancel();
@@ -52,15 +51,11 @@ public class MainController {
         this.startTime(true);
     }
 
-    @FXML
-    private void showLines(){
-        lines = !lines;
-        if (!lines){
-            content.getChildren().removeAll(path);
-            path.clear();
-        }
-    }
-
+    /**
+     * Metóda slúži na zoom hlavneho okna so skladom
+     *
+     * @param event - ScrollEvent
+     */
     @FXML
     private void onZoom(ScrollEvent event) {
         event.consume();
@@ -77,18 +72,21 @@ public class MainController {
         }
         content.layout();
     }
-    @FXML
-    private void start() {
-        timer.cancel();
-        this.startTime(true);
-    }
 
+    /**
+     * Metóda zastavý aplikáciu, vykreslujú sa iba informácie, prípadne cestičky, rozkliknutého objektu.
+     * Metóda je vyvolaná po stlačení tlačídla Pause v pravom hornom rohu scény.
+     */
     @FXML
     private void pause() {
         timer.cancel();
         this.startTime(false);
     }
 
+    /**
+     * Metóda vyvolá reset nad všetkými objektami, tie sa nastavia opäť na inicializačné data.
+     * Metóda je vyvolaná po stlačení tlačídla Reset v pravom hornom rohu scény.
+     */
     @FXML
     private void resetAll() {
         selected = null;
@@ -111,48 +109,57 @@ public class MainController {
 
     }
 
+    /**
+     * Metóda nastavý flag, ktorý zapína a vypína zobrazovanie cestičiek na mape
+     * Metóda je vyvolaná po stlačení tlačídla Show lines v pravom hornom rohu scény.
+     */
+    @FXML
+    private void showLines(){
+        lines = !lines;
+        if (!lines){
+            content.getChildren().removeAll(path);
+            path.clear();
+        }
+    }
+
+
+    @FXML
+    /**
+     * Metóda púšta aplikáciu.
+     * Metóda je vyvolaná po stlačení tlačídla Start v pravom hornom rohu scény.
+     */
+    private void start() {
+        timer.cancel();
+        this.startTime(true);
+    }
+
+    /**
+     * Metóda volá spúšta všetky orderGenerátor2.
+     */
     public void generateOrders(){
         for (OrderGenerator2 generator : orderGenerators){
             generator.generate();
         }
     }
 
-    public void setOrderGenerators(List<OrderGenerator2> orderGenerators) {
-        this.orderGenerators = orderGenerators;
+    /**
+     * Metóda vyvolá update všetkým objektom ktoré su implemntáciou Mover.
+     */
+    public void makeUpdates(){
+        for (Mover mover : movers){
+            mover.update();
+        }
     }
 
-    public void setElements(List<Drawable> elements) {
-        this.elements = elements;
+    /**
+     * Metóda aktualizuje info v bočnom panely, ak je nastavéné zobrazovanie cestičiek, zobrazí cestičku (iba v prípade, že je označený vozík).
+     *
+     */
+    public void showInformation(){
+
+        //zistí, ci nebolo kliknuté na iný objekt, ak ano nastavý ho ako selected...
         for (Drawable drawable : elements){
-            content.getChildren().addAll(drawable.getGUI());
-            if (drawable instanceof Mover){
-                movers.add((Mover) drawable);
-            }
-        }
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public void setInformation(List<Drawable> elemensts){
-
-        if (selected != null) {
-            informations.clear();
-            informations.addAll(selected.updateInfo());
-            selected.infoClear();
-            sideBar.getChildren().addAll(informations);
-
-        }
-
-        for (Drawable drawable : elemensts){
             if (drawable.getInfo().size() > 0){
-                informations.clear();
-                informations.addAll((drawable.getInfo()));
                 if (selected != null && selected != drawable){
                     selected.off();
                 }
@@ -161,11 +168,17 @@ public class MainController {
             }
         }
 
-        sideBar.getChildren().clear();
-        if (informations.size() > 0) {
+        //ak je rozkliknutý objekt, ziska aktualne info a vykreslí ho.
+        if (selected != null) {
+            informations.clear();
+            informations.addAll(selected.updateInfo());
+            selected.infoClear();
+            sideBar.getChildren().clear();
             sideBar.getChildren().addAll(informations);
+
         }
 
+        //vykreslovanie cesticiek, ak je aktivny flag lines
         if (!lines){
             return;
         }
@@ -173,7 +186,6 @@ public class MainController {
         content.getChildren().removeAll(path);
         path.clear();
         if (selected instanceof Mover){
-
             Mover mover = (Mover)selected;
             path.addAll(mover.getPath());
         }
@@ -182,12 +194,11 @@ public class MainController {
         }
     }
 
-    public void makeUpdates(){
-        for (Mover mover : movers){
-            mover.update();
-        }
-    }
-
+    /**
+     * Metóda spúšta čas, podla ktualne nastavenej rýchlosti vykreslovania.
+     *
+     * @param run - flag určujúci, či je aplikácia pauznutá, alebo nie.
+     */
     public void startTime(boolean run){
         if (run) {
             timer = new Timer(false);
@@ -195,9 +206,8 @@ public class MainController {
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    time = time.plusSeconds(1);
                     Platform.runLater(() -> {
-                        controler.setInformation(elements);
+                        controler.showInformation();
                         controler.makeUpdates();
                         controler.generateOrders();
                     });
@@ -209,13 +219,45 @@ public class MainController {
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    time = time.plusSeconds(0);
                     Platform.runLater(() -> {
-                        controler.setInformation(elements);
+                        controler.showInformation();
                     });
                 }
             }, 0, refresher);
         }
+    }
+
+    /**
+     * Setter zoznam objektov z yml súboru.
+     *
+     * @param data - zoznam objektov z yml súboru.
+     */
+    public void setData(Data data) {
+        this.data = data;
+    }
+
+    /**
+     * Setter pre zoznam objektov, ktoré sú implementáciou Drawable, teda sa  vykreslujú.
+     *
+     * @param elements - zoznam Drawable objektov.
+     */
+    public void setElements(List<Drawable> elements) {
+        this.elements = elements;
+        for (Drawable drawable : elements){
+            content.getChildren().addAll(drawable.getGUI());
+            if (drawable instanceof Mover){
+                movers.add((Mover) drawable);
+            }
+        }
+    }
+
+    /**
+     * Setter pre zoznam OrderGenerátor2.
+     *
+     * @param orderGenerators - zoznam zoznam OrderGenerátor2
+     */
+    public void setOrderGenerators(List<OrderGenerator2> orderGenerators) {
+        this.orderGenerators = orderGenerators;
     }
 
 

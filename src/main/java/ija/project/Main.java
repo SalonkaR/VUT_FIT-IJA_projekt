@@ -13,19 +13,34 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trieda Main slúži na spustenie aplikacie.
+ *
+ * @author Matúš Tvarožný - xtvaro00
+ * @version 1.0
+ */
 public class Main extends Application {
+
+    /**
+     * Metoda start slúži na vytvorenie hlavného okna aplikácie. Rozloženie sa načítava z fxml súboru a nastavý sa ako scéna pre primaryStage.
+     * Načítava inicializačné data z yml súboru, ktoré potom predáva MainControlleru.
+     *
+     * @param primaryStage Okno, do ktorého sa vloží načítaná scéna.
+     * @throws Exception
+     * @see MainController
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //nastavenie scény
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout.fxml"));
         BorderPane root= loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        MainController controller = loader.getController();
 
+        //nacitanie inicializacných dát
         List<Drawable> elements  = new ArrayList<>();
-
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
         Data data =  mapper.readValue(new File("storage2.yml"), Data.class);
@@ -35,10 +50,10 @@ public class Main extends Application {
         elements.addAll(data.getCarriages());
 
 
+        //setup niektorých načítaných objektov
         for (OrderGenerator2 generator : data.getOrderGenerators2()){
             generator.setGoods(data.getGoods());
         }
-
         for (Item item : data.getItems()){
             item.shareMe();
         }
@@ -49,18 +64,18 @@ public class Main extends Application {
             carriage.setPosition();
             carriage.sendStatus();
         }
-        //Item generator usage
         for (ItemGenerator itemGenerator : data.getItemGenerators()){
             itemGenerator.setShelves(data.getShelves());
             itemGenerator.createIt();
         }
-        //Item generator usage
         for (OrderGenerator orderGenerator : data.getOrderGenerators()){
             orderGenerator.setGoods(data.getGoods());
             orderGenerator.setDropPoint(data.getDropPoint().get(0));
             orderGenerator.generate();
         }
 
+        //spustenie Controlleru
+        MainController controller = loader.getController();
         controller.setOrderGenerators(data.getOrderGenerators2());
         controller.setElements(elements);
         controller.setData(data);
