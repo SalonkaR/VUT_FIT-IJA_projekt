@@ -59,6 +59,14 @@ public class Parking implements Drawable{
         this.makeGui();
     }
 
+    public void reset(){
+        parked = new ArrayList<>();
+        worked = new ArrayList<>();
+        powerless = new ArrayList<>();
+        charging = new ArrayList<>();
+        this.makeGui();
+    }
+
     public void makeGui(){
         gui = new ArrayList<>();
         mainRect = new Rectangle(position.getX() - width/2, position.getY() - width/2, width, width);

@@ -10,7 +10,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     @Override
@@ -22,6 +23,7 @@ public class Main extends Application {
         primaryStage.show();
 
         MainController controller = loader.getController();
+
         List<Drawable> elements  = new ArrayList<>();
 
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
@@ -45,6 +47,7 @@ public class Main extends Application {
         }
         for (Carriage carriage : data.getCarriages()) {
             carriage.setPosition();
+            carriage.sendStatus();
         }
         //Item generator usage
         for (ItemGenerator itemGenerator : data.getItemGenerators()){
@@ -61,6 +64,8 @@ public class Main extends Application {
         controller.setOrderGenerators(data.getOrderGenerators2());
         controller.setElements(elements);
         controller.setData(data);
-        controller.startTime(true,55);
+        controller.startTime(true);
+
+
     }
 }

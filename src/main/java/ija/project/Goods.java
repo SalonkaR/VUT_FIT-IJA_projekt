@@ -28,6 +28,12 @@ public class Goods {
         this.name = name;
     }
 
+    public void reset(){
+        freeItems = new HashMap<>();
+        sortedShelves = new HashMap<>();
+        reservedItems = new ArrayList<>();
+    }
+
     public void addItem(Item item) {
         Shelf shelf = item.getShelf();
         if(freeItems.containsKey(shelf)){
@@ -107,6 +113,8 @@ public class Goods {
     public int hashCode() {
         return 0;
     }
+
+
 
     public List<Item> getItems(int pcs){
         int cnt = 0;

@@ -34,6 +34,7 @@ public class DropPoint implements Drawable{
     private ArrayList<Order> done = new ArrayList<>();
     @JsonIgnore
     private ArrayList<Order> capacityless = new ArrayList<>();
+    private int maxToSee = 5;
 
     //empty constructor for jackson(yml)
     public DropPoint() {
@@ -46,6 +47,16 @@ public class DropPoint implements Drawable{
     public Coordinates getPosition() {
         return position;
     }
+
+    public void reset(){
+        waiting =  new ArrayList<>();
+        done = new ArrayList<>();
+        processing = new ArrayList<>();
+        capacityless = new ArrayList<>();
+        this.makeGui();
+    }
+
+
 
     @JsonIgnore
     public DropPoint(String name, Coordinates position) {
@@ -90,23 +101,44 @@ public class DropPoint implements Drawable{
     @JsonIgnore
     private String getContent(){
         String str = "Waiting:\n";
+        int cnt = 0;
         for (Order i : waiting) {
             str += i.getName() + "\n";
+            if (cnt == maxToSee){
+                str += "...";
+                break;
+            }
+            cnt +=1;
         }
 
         str += "\nProcessing:\n";
         for (Order i : processing) {
             str += i.getName() + "\n";
+            if (cnt == 2*maxToSee){
+                str += "...";
+                break;
+            }
+            cnt +=1;
         }
 
         str += "\nDone:\n";
         for (Order i : done) {
             str += i.getName() + "\n";
+            if (cnt == 3*maxToSee){
+                str += "...";
+                break;
+            }
+            cnt +=1;
         }
 
         str += "\nOut of storage capacity:\n";
         for (Order i : capacityless) {
             str += i.getName() + "\n";
+            if (cnt == 4*maxToSee){
+                str += "...";
+                break;
+            }
+            cnt +=1;
         }
         return str;
     }
@@ -115,10 +147,13 @@ public class DropPoint implements Drawable{
     public void updateOrder(int status, Order order) {
         if (status == 0){
             waiting.remove(order);
-            processing.add(order);
+            processing.add(0, order);
         }else{
             processing.remove(order);
-            done.add(order);
+            done.add(0, order);
+            if (done.size() > 15){
+                done.remove(done.size() - 1);
+            }
         }
     }
 
@@ -129,7 +164,10 @@ public class DropPoint implements Drawable{
             return order;
         } else {
             waiting.remove(0);
-            capacityless. add(order);
+            capacityless.add(0, order);
+            if (capacityless.size() > 15){
+                capacityless.remove(capacityless.size() - 1);
+            }
             return null;
         }
     }

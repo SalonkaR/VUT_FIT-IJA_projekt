@@ -17,7 +17,7 @@ public class OrderGenerator2 {
     private DropPoint dropPoint;
 
     @JsonIgnore
-    private int cnt;
+    private int cnt = 0;
     @JsonIgnore
     private int cntTime = 0;
     @JsonIgnore
@@ -36,6 +36,11 @@ public class OrderGenerator2 {
         this.dropPoint = point;
         this.maxItems = maxItems;
         this.maxGoods = maxGoods;
+    }
+
+    public void reset(){
+        cnt = 0;
+        cntTime = 0;
     }
 
     @JsonIgnore

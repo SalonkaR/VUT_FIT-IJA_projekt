@@ -60,6 +60,10 @@ public class Shelf implements Drawable {
         this.makeGui();
     }
 
+    public void reset() {
+        items = new HashMap();
+        this.makeGui();
+    }
     @JsonIgnore
     public void makeGui(){
         gui = new ArrayList<>();

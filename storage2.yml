@@ -2671,13 +2671,37 @@ itemGenerators:
 
 orderGenerators2:
 
-  - &orderGenerator21 name: "big order"
-    time: 50
+  - &orderGenerator20 name: "big order"
+    time: 8888
     maxGoods: 8
-    maxItems: 100
+    maxItems: 50
     dropPoint: *DropPoint0
-
+  - &orderGenerator21 name: "small order"
+    time: 555
+    maxGoods: 2
+    maxItems: 10
+    dropPoint: *DropPoint0
+  - &orderGenerator22 name: "med order"
+    time: 4444
+    maxGoods: 4
+    maxItems: 30
+    dropPoint: *DropPoint0
+  - &orderGenerator23 name: "big order2"
+    time: 11111
+    maxGoods: 4
+    maxItems: 50
+    dropPoint: *DropPoint0
 
 carriages:
   - &Carriage0 name: "CarriageNo0"
+    parking: *Parking0
+  - &Carriage1 name: "CarriageNo1"
+    parking: *Parking0
+  - &Carriage2 name: "CarriageNo2"
+    parking: *Parking0
+  - &Carriage3 name: "CarriageNo3"
+    parking: *Parking0
+  - &Carriage4 name: "CarriageNo4"
+    parking: *Parking0
+  - &Carriage5 name: "CarriageNo5"
     parking: *Parking0

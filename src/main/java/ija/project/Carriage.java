@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -57,6 +58,7 @@ public class Carriage implements Drawable, Mover {
 
 
     @JsonIgnore
+    // <Xposition regal, List<Regals>>
     private HashMap<Double, List<Regal>> sortedRegals;
     @JsonIgnore
     private HashMap<Regal, List<Shelf>> regals;
@@ -65,6 +67,8 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private HashMap<Regal, Regal> regalReferencs;
     @JsonIgnore
+    private List<Line> path = new ArrayList<>();
+    @JsonIgnore
     private Coordinates nextRegalPoint;
     @JsonIgnore
     private Coordinates nextShelfPoint;
@@ -72,11 +76,14 @@ public class Carriage implements Drawable, Mover {
     private Regal nextRegal;
     @JsonIgnore
     private Shelf nextShelf;
+    @JsonIgnore
+    private boolean pathStart;
 
 
     //empty constructor for jackson(yml)
     public Carriage() {
     }
+
 
     public String getName() {
         return name;
@@ -103,9 +110,33 @@ public class Carriage implements Drawable, Mover {
         parking.updateCarriage(this);
         makeGui();
     }
+
+    public void reset(){
+        power = maxPower;
+        load = 0;
+        need = null;
+        status = 0;
+        position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
+        inside = null;
+        sortedRegals = null;
+        regals = null;
+        shelves = null;
+        regalReferencs = null;
+        nextRegal = null;
+        nextRegalPoint = null;
+        nextShelf = null;
+        nextShelfPoint = null;
+        parking.updateCarriage(this);
+        this.makeGui();
+
+    }
+
     @JsonIgnore
     public void setPosition(){
         this.position = new Coordinates(parking.getPosition().getX(), parking.getPosition().getY());
+    }
+    public void sendStatus(){
+        parking.updateCarriage(this);
     }
 
     @JsonIgnore
@@ -412,6 +443,10 @@ public class Carriage implements Drawable, Mover {
             nextRegalPoint = null;
             status = 7;
             print("Dosla mi energia");
+            pathStart = true;
+            path.clear();
+            path.add(new Line(position.getX(), position.getY(), position.getX(), parking.getPosition().getY()));
+            path.add(new Line(position.getX(), parking.getPosition().getY(), parking.getPosition().getX(), parking.getPosition().getY()));
             return true;
         }
         return false;
@@ -484,12 +519,6 @@ public class Carriage implements Drawable, Mover {
             return;
         }
         nextRegalPoint = nextRegal.getBottom();
-
-        Coordinates test = getNextRegalPoint();
-        if (test.getY() != nextRegalPoint.getY()){
-            
-            checkWay = true;
-        }
     }
 
     public List<Shelf> getFromRegals(Regal regal){
@@ -505,9 +534,143 @@ public class Carriage implements Drawable, Mover {
         cnt += 1;
     }
 
+    public void makePath(){
+        path.clear();
+        if (order == null){
+            return;
+        }
+        List<Coordinates> coordPath= new ArrayList<>();
+        coordPath.add(new Coordinates(position.getX(), position.getY()));
+
+
+        if (pathStart){
+            //zaciname z parking
+            coordPath.add(parking.getPosition());
+        } else {
+            //zaciname z dropointu
+            coordPath.add(parking.getDropPointCoords());
+        }
+        List<Double> sortedX = new ArrayList<>();
+        for (Double x : sortedRegals.keySet()){
+            sortedX.add(x);
+        }
+
+        Collections.sort(sortedX);
+        Map<Double, Regal> nextRegal = new HashMap<>();
+        Map<Double, Shelf> nextShelves = new HashMap<>();
+        List<Double> sortedYRegal = new ArrayList<>();
+        List<Double> sortedYShelf = new ArrayList<>();
+        Coordinates nextShelf;
+        boolean fromTop = true;
+        Regal lastRegal;
+        Coordinates lastShelf = null;
+
+        for (Double X : sortedX) {
+            nextRegal.clear();
+            nextShelves.clear();
+            sortedYShelf.clear();
+            sortedYRegal.clear();
+
+
+            //pridanie acess pointu regalu
+            for (Regal regal : sortedRegals.get(X)) {
+                nextRegal.put(regal.getTop().getY(), regal);
+                sortedYRegal.add(regal.getTop().getY());
+            }
+
+            Collections.sort(sortedYRegal);
+
+            if (lastShelf == null) {
+
+                coordPath.add(nextRegal.get(sortedYRegal.get(0)).getTop());
+
+            }else{
+                //calculate best way
+                //calculate first shelf
+                if (!fromTop){
+                    Collections.reverse(sortedYRegal);
+                }
+                lastRegal = nextRegal.get(sortedYRegal.get(0));
+
+                for (Shelf shelf : regals.get(lastRegal)) {
+                    nextShelves.put(shelf.getAccessPoint().getY(), shelf);
+                    sortedYShelf.add(shelf.getAccessPoint().getY());
+
+                }
+
+                Collections.sort(sortedYShelf);
+
+                if (fromTop) {
+                    nextShelf = (nextShelves.get(sortedYShelf.get(0)).getAccessPoint());
+                } else {
+                    Collections.reverse(sortedYShelf);
+                    nextShelf = (nextShelves.get(sortedYShelf.get(0)).getAccessPoint());
+                }
+
+
+                Double topWay = abs(nextShelf.getY() - lastRegal.getTop().getY()) + abs(lastShelf.getY() - lastRegal.getTop().getY());
+                Double bottomWay = abs(nextShelf.getY() - lastRegal.getBottom().getY()) + abs(lastShelf.getY() - lastRegal.getBottom().getY());
+
+                //pridanie vchodu do regala
+                if (topWay < bottomWay){
+                    coordPath.add(lastRegal.getTop());
+
+                } else {
+                    coordPath.add(lastRegal.getBottom());
+                }
+                //pridanie 1. police
+                coordPath.add(nextShelf);
+            }
+
+            //pridanie poslednej shelf
+            Collections.reverse(sortedYRegal);
+            lastRegal = nextRegal.get(sortedYRegal.get(0));
+
+            for (Shelf shelf : regals.get(lastRegal)) {
+                nextShelves.put(shelf.getAccessPoint().getY(), shelf);
+                sortedYShelf.add(shelf.getAccessPoint().getY());
+
+            }
+
+            Collections.sort(sortedYShelf);
+
+            if (!fromTop) {
+
+                lastShelf = nextShelves.get(sortedYShelf.get(0)).getAccessPoint();
+            } else {
+                Collections.reverse(sortedYShelf);
+                lastShelf = nextShelves.get(sortedYShelf.get(0)).getAccessPoint();
+            }
+            coordPath.add(lastShelf);
+
+            fromTop = !fromTop;
+        }
+        coordPath.add(parking.getDropPointCoords());
+
+
+        // vytvorenie lines
+
+        Coordinates previous = null;
+        for (Coordinates cords : coordPath){
+            if (previous == null){
+                previous = cords;
+                continue;
+            }
+
+            path.add(new Line(previous.getX(), previous.getY(), previous.getX(), cords.getY()));
+            path.add(new Line(previous.getX(), cords.getY(), cords.getX(), cords.getY()));
+            previous = cords;
+
+        }
+    }
+
+    public List<Line> getPath(){
+        return path;
+    }
 
     @Override
     public void update() {
+
         switch (status){
             case 0: //waiting for order
                 order = parking.getOrder();
@@ -515,22 +678,26 @@ public class Carriage implements Drawable, Mover {
                 load = 0;
 
                 if (order != null) {
+                    pathStart = true;
                     cnt = 0;
                     print("Nova objednavka");
                     status += 1; // Go to processing order
                     parking.updateCarriage(this);
                     order.update();
                     this.calculateRoad();
+                    this.makePath();
                     fromTop = true;
                 }
                 break;
             case 1:
                 // go to regal acces point
                 if (nextRegalPoint == null){
+
                     print("Nastavil som si suradnice pre regal:");
                     nextRegal = this.getNextRegal();
                     nextRegalPoint = this.getNextRegalPoint();
                     nextShelf = this.getNextShelf();
+
                     print(nextRegalPoint.toString());
                     nextShelfPoint = nextShelf.getAccessPoint();
                     print("Nastavil som si suradnice pre policu:");
@@ -728,6 +895,7 @@ public class Carriage implements Drawable, Mover {
                 if (sortedRegals.size() > 0){
                     status = 1;
                     inside = new HashMap<>();
+                    makePath();
                     break;
                 }
 
@@ -736,7 +904,9 @@ public class Carriage implements Drawable, Mover {
 
                 order.update();
                 order = null;
-
+                path.clear();
+                path.add(new Line(position.getX(), position.getY(), position.getX(), parking.getPosition().getY()));
+                path.add(new Line(position.getX(), parking.getPosition().getY(), parking.getPosition().getX(), parking.getPosition().getY()));
                 status += 1;
                 break;
             case 7:
@@ -761,11 +931,13 @@ public class Carriage implements Drawable, Mover {
                 this.checkPower();
                 break;
             case 8:
+                makePath();
                 //Caharging
 
                 if (power < maxPower){
                     power += min(5, maxPower-power);
                 } else {
+
                     if (order == null){
                         status = 0;
                     } else {
@@ -790,6 +962,10 @@ public class Carriage implements Drawable, Mover {
             status = 5;
             nextShelfPoint = null;
             print("Dosla mi miesto");
+            pathStart = false;
+            path.clear();
+            path.add(new Line(position.getX(), position.getY(), position.getX(), parking.getDropPointCoords().getY()));
+            path.add(new Line(position.getX(), parking.getDropPointCoords().getY(), parking.getDropPointCoords().getX(), parking.getDropPointCoords().getY()));
             return true;
         }
         return false;

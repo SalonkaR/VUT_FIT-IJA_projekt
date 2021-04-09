@@ -8,6 +8,7 @@ public interface Drawable {
     List<Shape> getGUI();
     List<Shape> getInfo();
     List<Shape> updateInfo();
+    void reset();
     void off();
     void infoClear();
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,6 +28,10 @@
                <children>
                   <Slider fx:id="speed" layoutX="11.0" layoutY="31.0" onMouseReleased="#chengeTime" onSwipeLeft="#chengeTime" value="50.0" />
                   <Text layoutX="63.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPEED" wrappingWidth="34.650390625" />
+                  <Button fx:id="reset" layoutX="44.0" layoutY="122.0" mnemonicParsing="false" onAction="#resetAll" prefWidth="73.0" text="Reset" />
+                  <Button fx:id="start" layoutX="44.0" layoutY="54.0" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="73.0" text="Start " />
+                  <Button fx:id="pause" layoutX="44.0" layoutY="88.0" mnemonicParsing="false" onAction="#pause" prefWidth="73.0" text="Pause" />
+                  <Button fx:id="showLines" layoutX="44.0" layoutY="156.0" mnemonicParsing="false" onAction="#showLines" text="Show lines" />
                </children></AnchorPane>
          </top>
          <center>
