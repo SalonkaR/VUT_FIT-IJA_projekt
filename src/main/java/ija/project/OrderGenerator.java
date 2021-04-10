@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Trieda OrderGenerator generuje objednávky pred spustením programu.
+ *
+ * @author Matúš Tvarožný - xtvaro00
+ * @version 1.0
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class OrderGenerator {
     private String name;
@@ -20,28 +26,30 @@ public class OrderGenerator {
     @JsonIgnore
     private List<Goods> goods;
 
-    //empty constructor for jackson(yml)
+    /**
+     * Prazdný konštruktor, ktorý slúži pre deserializáciu yml
+     */
     public OrderGenerator() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getMaxGoods() {
-        return maxGoods;
-    }
-
-    public int getMaxItems() {
-        return maxItems;
-    }
-
+    /**
+     * Konštruktor vytvára inštanciu triedy OrderGenerátor. Nastavuje jej meno, maximalný počet druhov tovaru a maximalny počet ks Itemeov jedného druhu.
+     * Tieto údaje sú potrebné pre generovanie novej objednávky.
+     *
+     * @param name meno
+     * @param maxGoods maximalný počet druhov tovaru.
+     * @param maxItems maximalny počet ks Itemeov jedného druhu.
+     */
     @JsonIgnore
     public OrderGenerator(String name, int maxGoods, int maxItems) {
         this.name = name;
         this.maxGoods = maxGoods;
         this.maxItems = maxItems;
     }
+
+    /**
+     * Metoda slúži na vygenerovanie objednávky.
+     */
     public void generate(){
         Random random = new Random();
         HashMap<Goods, Integer> list = new HashMap<Goods, Integer>();
@@ -58,11 +66,30 @@ public class OrderGenerator {
         Order order = new Order(this.name, this.dropPoint, list);
     }
 
+    /**
+     * Metóda slúži na nastavenie DropPointu. Toto prepojenie je dôležité, aby sa po vytvorení objednávky vedela objednavka poslať drop pointu, ktorý ich manažuje.
+     *
+     * @param dropPoint DropPoint.
+     */
+    public void setDropPoint(DropPoint dropPoint) {
+        this.dropPoint = dropPoint;
+    }
+
+    /**
+     * Metóda slúži na nastavenie zoznamu všetkých dostupých tovarov.
+     *
+     * @param goods zoznamu všetkých dostupých tovarov.
+     */
     public void setGoods(List<Goods> goods) {
         this.goods = goods;
     }
 
-    public void setDropPoint(DropPoint dropPoint) {
-        this.dropPoint = dropPoint;
+    /**
+     * Metóda vracia meno OrderGenerátoru.
+     *
+     * @return meno OrderGenerátoru.
+     */
+    public String getName() {
+        return name;
     }
 }

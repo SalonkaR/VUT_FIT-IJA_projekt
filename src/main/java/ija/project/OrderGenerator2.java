@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Trieda OrderGenerator2 generuje objednávky počas behu programu vždy za nejaký čas.
+ *
+ * @author Jakub Sokolík - xsokol14
+ * @version 1.0
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class OrderGenerator2 {
     private String name;
@@ -25,10 +31,21 @@ public class OrderGenerator2 {
     @JsonIgnore
     private List<Goods> goods;
 
-    //empty constructor for jackson(yml)
+    /**
+     * Prazdný konštruktor, ktorý slúži pre deserializáciu yml
+     */
     public OrderGenerator2() {
     }
 
+    /**
+     * Konštruktor vytvára inštanciu OrderGenerator2
+     *
+     * @param name meno
+     * @param point DropPoint, ktorý manažuje všetky vytvorené Ordery.
+     * @param time Čas, za ktorý sa vygeneruje nová objednávka. V počtoch framov.
+     * @param maxItems Celkový maximalný počet Itemov na objednávku.
+     * @param maxGoods Celkový počet druhov tovarov na objednávku.
+     */
     @JsonIgnore
     public OrderGenerator2(String name, DropPoint point, int time, int maxItems, int maxGoods) {
         this.name = name;
@@ -38,11 +55,9 @@ public class OrderGenerator2 {
         this.maxGoods = maxGoods;
     }
 
-    public void reset(){
-        cnt = 0;
-        cntTime = 0;
-    }
-
+    /**
+     * Metóda generu objednávku
+     */
     @JsonIgnore
     public void generate(){
         cntTime += 1;
@@ -74,52 +89,35 @@ public class OrderGenerator2 {
             cnt += 1;
         }
     }
+
+    /**
+     * Metóda resetne order generátor na východzie hodnoty.
+     *
+     */
+    public void reset(){
+        cnt = 0;
+        cntTime = 0;
+    }
+
+
+    /**
+     * Metóda slúži na nastavenie zoznamu všetkých dostupých tovarov.
+     *
+     * @param goods zoznamu všetkých dostupých tovarov.
+     */
     @JsonIgnore
     public void setGoods(List<Goods> goods) {
         this.goods = goods;
     }
 
+    /**
+     * Metóda vracia meno OrderGenerátoru.
+     *
+     * @return meno OrderGenerátoru.
+     */
     public String getName() {
         return name;
     }
 
 
-    public int getCnt() {
-        return cnt;
-    }
-
-
-    public int getTime() {
-        return time;
-    }
-
-
-    public int getCntTime() {
-        return cntTime;
-    }
-
-
-    public int getMaxItems() {
-        return maxItems;
-    }
-
-
-    public int getMaxGoods() {
-        return maxGoods;
-    }
-
-
-    public Random getRandom() {
-        return random;
-    }
-
-
-    public DropPoint getDropPoint() {
-        return dropPoint;
-    }
-
-
-    public List<Goods> getGoods() {
-        return goods;
-    }
 }

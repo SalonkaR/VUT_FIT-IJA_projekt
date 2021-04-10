@@ -14,6 +14,12 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+/**
+ * Trieda Parking reprezentuje parkovisko, kde parkujú všetky vozíky. Tiež sa tam nabíjajú.
+ *
+ * @author Jakub Sokolík - xsokol14
+ * @version 1.0
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Parking implements Drawable{
     private String name;
@@ -36,22 +42,19 @@ public class Parking implements Drawable{
     @JsonIgnore
     private ArrayList<Carriage> charging = new ArrayList<>();
 
-    //empty constructor for jackson(yml)
+    /**
+     * Prazdný konštruktor, ktorý slúži pre deserializáciu yml
+     */
     public Parking() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public DropPoint getDropPoint() {
-        return dropPoint;
-    }
-
-    public Coordinates getPosition() {
-        return position;
-    }
-
+    /**
+     * Konštruktor vytvorí inštanciu parkoviska.
+     *
+     * @param name meno.
+     * @param point DropPoint, s ktorým parkovisko komunikuje.
+     * @param position pozícia.
+     */
     public Parking(String name, DropPoint point, Coordinates position) {
         this.name = name;
         this.dropPoint = point;
@@ -59,6 +62,45 @@ public class Parking implements Drawable{
         this.makeGui();
     }
 
+    /**
+     * Metóda vracia zoznam vykreslitelných objektov, ktoré budú parkovisko reprezentovať na scéne.
+     *
+     * @return zoznam vykreslitelných objektov
+     */
+    @Override
+    public List<Shape> getGUI() {
+        if(gui == null){
+            this.makeGui();
+        }
+        return gui;
+    }
+
+    /**
+     * Metóda vracia zoznam vykreslitelných objektov, ktoré sa vykreslia do bočneho panela a reprezentujú aktuálne informácie o parkovisku.
+     *
+     * @return zoznam vykreslitelných objektov
+     */
+    @Override
+    public List<Shape> getInfo() {
+        return info;
+    }
+
+    /**
+     * Metóda vytvorí a vráti zoznam vykreslitelných objektov, ktoré sa vykreslia do bočneho panela a reprezentujú aktuálne informácie o parkovisku.
+     *
+     * @return zoznam vykreslitelných objektov
+     */
+    @Override
+    public List<Shape> updateInfo() {
+        Text text = new Text(this.getContent());
+        text.setWrappingWidth(125);
+        info.add(text);
+        return info;
+    }
+
+    /**
+     * Metóda nastaví parking na inicializačné data.
+     */
     public void reset(){
         parked = new ArrayList<>();
         worked = new ArrayList<>();
@@ -67,6 +109,26 @@ public class Parking implements Drawable{
         this.makeGui();
     }
 
+    /**
+     * Metóda zruší označenie parkoviska. Volaná je MainControllerom, potom ako bolo kliknuté na iný objekt.
+     */
+    @Override
+    public void off() {
+        mainRect.setFill(ORANGE);
+    }
+
+    /**
+     * Metodá vyčistí zoznam informácii. Volaná je MainControlerrom, po tom, ako vykreslil aktualne informácie.
+     */
+    @Override
+    public void infoClear() {
+        info.clear();
+    }
+
+    /**
+     * Metóda vytvorí zoznam vykreslitelných objektov, ktoré reprezentujú parkovisko na mape skladu.
+     *
+     */
     public void makeGui(){
         gui = new ArrayList<>();
         mainRect = new Rectangle(position.getX() - width/2, position.getY() - width/2, width, width);
@@ -89,41 +151,11 @@ public class Parking implements Drawable{
         });
     }
 
-    public void addCarriage(Carriage carriage){
-        parked.add(carriage);
-    }
-
-    public void addCarriage(ArrayList<Carriage> lst){
-        parked.addAll(lst);
-    }
-
-    public Order getOrder(){
-        if (dropPoint.getWaitingOrderSize() == 0){
-            return null;
-        }
-        return dropPoint.getWaitingOrder();
-    }
-
-    private String getContent(){
-        String str = "Parked:\n";
-        for (Carriage i : parked) {
-            str += "   " + i.getName() + "\n";
-        }
-        str += "\nWorked:\n";
-        for (Carriage i : worked) {
-            str += "   " + i.getName() + "\n";
-        }
-        str += "\nCharging:\n";
-        for (Carriage i : charging) {
-            str += "   " + i.getName() + "\n";
-        }
-        str += "\nPowerless:\n";
-        for (Carriage i : powerless) {
-            str += "   " + i.getName() + "\n";
-        }
-        return str;
-    }
-
+    /**
+     * Po zmene statusu vozík volá túto metodu, aby malo parkovisko prehlaď o všetkych vozíkoch a mohlo vytvoriť informácie do bočného panela.
+     *
+     * @param carriage vozík, ktorý zmenil svoj status.
+     */
     public void updateCarriage(Carriage carriage){
         if (worked.contains(carriage)){
             worked.remove(carriage);
@@ -148,53 +180,68 @@ public class Parking implements Drawable{
         }
     }
 
-    @Override
-    public List<Shape> getGUI() {
-        if(gui == null){
-            this.makeGui();
+    /**
+     * Metóda vytvorí a vráti retazec, ktorý reprezentuje informacie o parovisku.
+     *
+     * @return retazec, ktorý reprezentuje informacie o parkovisku.
+     */
+    private String getContent(){
+        String str = "Parked:\n";
+        for (Carriage i : parked) {
+            str += "   " + i.getName() + "\n";
         }
-        return gui;
-    }
-
-    @Override
-    public List<Shape> getInfo() {
-        return info;
-    }
-
-    @Override
-    public List<Shape> updateInfo() {
-        Text text = new Text(this.getContent());
-        text.setWrappingWidth(125);
-        info.add(text);
-        return info;
-    }
-
-    @Override
-    public void off() {
-        mainRect.setFill(ORANGE);
-    }
-
-    @Override
-    public void infoClear() {
-        info.clear();
-    }
-
-    @Override
-    public String toString() {
-        return "Parking{" +
-                "position=" + position +
-                ", width=" + width +
-                ", mainRect=" + mainRect +
-                ", gui=" + gui +
-                ", info=" + info +
-                ", parked=" + parked +
-                ", worked=" + worked +
-                '}';
+        str += "\nWorked:\n";
+        for (Carriage i : worked) {
+            str += "   " + i.getName() + "\n";
+        }
+        str += "\nCharging:\n";
+        for (Carriage i : charging) {
+            str += "   " + i.getName() + "\n";
+        }
+        str += "\nPowerless:\n";
+        for (Carriage i : powerless) {
+            str += "   " + i.getName() + "\n";
+        }
+        return str;
     }
 
 
+    /**
+     * Metóda vráti súradnice DropPointu. Táto metoda je volaná vozíkom, keď ide vyložiť naložený tovar.
+     *
+     * @return
+     */
     public Coordinates getDropPointCoords(){
         return dropPoint.getPosition();
+    }
+
+    /**
+     * Metóda vracia meno parkoviska.
+     *
+     * @return meno parkoviska.
+     */
+    public String getName() {
+        return name;
+    }
+
+
+    /**
+     * Metóda vráti objednávku, ktorá čaká na spracovanie. Ak taká je.
+     * @return objednávku, ktorá čaká na spracovanie, inak null.
+     */
+    public Order getOrder(){
+        if (dropPoint.getWaitingOrderSize() == 0){
+            return null;
+        }
+        return dropPoint.getWaitingOrder();
+    }
+
+    /**
+     * Metóda vráti pozíciu parkoviska.
+     * @return pozíciu parkoviska.
+     */
+    public Coordinates getPosition() {
+        return position;
     }
 
 }

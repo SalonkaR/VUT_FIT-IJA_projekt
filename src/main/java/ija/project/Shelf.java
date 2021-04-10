@@ -19,6 +19,9 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+/**
+ *
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Shelf implements Drawable {
     private String id;
