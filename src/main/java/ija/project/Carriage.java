@@ -1076,4 +1076,13 @@ public class Carriage implements Drawable, Mover {
     public int getStatus() {
         return status;
     }
+
+    /**
+     * Metóda vráti priradené parkovisko.
+     *
+     * @return priradené parkovisko.
+     */
+    public Parking getParking() {
+        return parking;
+    }
 }

@@ -38,7 +38,7 @@ public class Item {
     }
 
     /**
-     * Funkcia vyzdiela niektore z atributov itemu, pre vzajomne prepojenie s inymi triedami
+     * Funkcia vyzdiela niektore z atributov itemu
      */
     public void shareMe(){
         this.goods.addItem(this);

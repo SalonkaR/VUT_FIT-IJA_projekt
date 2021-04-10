@@ -119,5 +119,39 @@ public class OrderGenerator2 {
         return name;
     }
 
+    /**
+     * Metóda vracia čas, za ktorý je vygenrová nová objednávka.
+     *
+     * @return čas, za ktorý je vygenrová nová objednávka.
+     */
+    public int getTime() {
+        return time;
+    }
 
+    /**
+     * Metóda vracia maximálnu hodnotu druhov tovaru na objednávku.
+     *
+     * @return maximálna hodnota druhov tovaru na objednávku.
+     */
+    public int getMaxGoods() {
+        return maxGoods;
+    }
+
+    /**
+     * Metóda vracia maximálnu hodnotu kusov tovaru na objednávku.
+     *
+     * @return maximálna hodnota kusov tovaru na objednávku.
+     */
+    public int getMaxItems() {
+        return maxItems;
+    }
+
+    /**
+     * Metóda vracia DropPoint.
+     *
+     * @return DropPoint.
+     */
+    public DropPoint getDropPoint() {
+        return dropPoint;
+    }
 }

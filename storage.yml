@@ -3033,14 +3033,94 @@ itemGenerators:
     count: 500
 
 orderGenerators2:
-
-  - &orderGenerator21 name: "big order"
-    time: 50
+  - &orderGenerator20 name: "big order"
+    time: 8888
     maxGoods: 8
-    maxItems: 100
+    maxItems: 80
     dropPoint: *DropPoint0
+  - &orderGenerator21 name: "small order"
+    time: 333
+    maxGoods: 2
+    maxItems: 10
+    dropPoint: *DropPoint0
+  - &orderGenerator22 name: "small order2"
+    time: 888
+    maxGoods: 2
+    maxItems: 30
+    dropPoint: *DropPoint0
+  - &orderGenerator23 name: "med order"
+    time: 4444
+    maxGoods: 4
+    maxItems: 30
+    dropPoint: *DropPoint0
+  - &orderGenerator24 name: "big order2"
+    time: 11111
+    maxGoods: 4
+    maxItems: 50
+    dropPoint: *DropPoint0
+
+
+orderGenerators:
+  - &orderGenerator0 name: "Order0"
+    maxGoods: 6
+    maxItems: 20
+  - &orderGenerator1 name: "Order1"
+    maxGoods: 2
+    maxItems: 5
+  - &orderGenerator2 name: "Order2"
+    maxGoods: 5
+    maxItems: 10
+  - &orderGenerator3 name: "Order3"
+    maxGoods: 4
+    maxItems: 20
+  - &orderGenerator4 name: "Order4"
+    maxGoods: 2
+    maxItems: 20
+  - &orderGenerator5 name: "Order5"
+    maxGoods: 1
+    maxItems: 7
+  - &orderGenerator6 name: "Order6"
+    maxGoods: 3
+    maxItems: 20
+  - &orderGenerator7 name: "Order7"
+    maxGoods: 4
+    maxItems: 6
+  - &orderGenerator8 name: "Order8"
+    maxGoods: 6
+    maxItems: 20
+  - &orderGenerator9 name: "Order9"
+    maxGoods: 2
+    maxItems: 5
+  - &orderGenerator10 name: "Order10"
+    maxGoods: 5
+    maxItems: 10
+  - &orderGenerator11 name: "Order11"
+    maxGoods: 4
+    maxItems: 20
+  - &orderGenerator12 name: "Order12"
+    maxGoods: 2
+    maxItems: 20
+  - &orderGenerator13 name: "Order13"
+    maxGoods: 1
+    maxItems: 7
+  - &orderGenerator14 name: "Order14"
+    maxGoods: 3
+    maxItems: 20
+  - &orderGenerator15 name: "Order15"
+    maxGoods: 4
+    maxItems: 6
 
 
 carriages:
   - &Carriage0 name: "CarriageNo0"
+    parking: *Parking0
+  - &Carriage1 name: "CarriageNo1"
+    parking: *Parking0
+  - &Carriage2 name: "CarriageNo2"
+    parking: *Parking0
+  - &Carriage3 name: "CarriageNo3"
+    parking: *Parking0
+  - &Carriage4 name: "CarriageNo4"
+    parking: *Parking0
+  - &Carriage5 name: "CarriageNo5"
     parking: *Parking0
