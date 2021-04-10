@@ -180,6 +180,8 @@ public class MainController {
 
         //vykreslovanie cesticiek, ak je aktivny flag lines
         if (!lines){
+            content.getChildren().removeAll(path);
+            path.clear();
             return;
         }
 
