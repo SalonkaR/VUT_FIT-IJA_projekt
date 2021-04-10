@@ -20,7 +20,10 @@ import java.util.List;
 import static javafx.scene.paint.Color.*;
 
 /**
+ * Trieda reprezentujuca policu. Tie sa nachadzaju v regaloch. V policiach sa nachadzaju itemy.
+ * Polica je reprezentovana stvoruholnikom, po kliknuti na nu mozeme vidiet jej obsah.
  *
+ * @author Jakub Sokolík - xsokol14, Matúš Tvarožný - xtvaro00
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Shelf implements Drawable {

@@ -123,8 +123,8 @@ public class Goods {
     }
 
     /**
-     * AK sa z police minu vsetky itemy daneho druhu(goods), tak je odstranena zo zoznamu
-     * @param shelf
+     * Ak sa z police minu vsetky itemy daneho druhu(goods), tak je odstranena zo zoznamu
+     * @param shelf Polica na odstranenie
      */
     public void removeShelf(Shelf shelf){
         double xy = shelf.getAccessPoint().getX() + shelf.getAccessPoint().getY();
