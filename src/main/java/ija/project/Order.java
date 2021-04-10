@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name") //, scope = Order.class
 public class Order {

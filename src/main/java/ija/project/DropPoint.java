@@ -14,6 +14,9 @@ import java.util.List;
 
 import static javafx.scene.paint.Color.*;
 
+/**
+ *
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class DropPoint implements Drawable{
     private String name;
