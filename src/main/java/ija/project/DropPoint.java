@@ -15,8 +15,12 @@ import java.util.List;
 import static javafx.scene.paint.Color.*;
 
 /**
+ * Trieda DropPoint reprezentuje vydajne miesto, ktore ma zaroven pod zastitom vsetky objednavky ci uz cakajuce,
+ * momentalne vykonavane alebo hotove. Voziky chodia na drop point a nechavaju tu uz hotove pozbierane objednavky.
  *
+ * @author Jakub Sokolik - xsokol14
  */
+
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class DropPoint implements Drawable{
     private String name;
@@ -39,18 +43,31 @@ public class DropPoint implements Drawable{
     private ArrayList<Order> capacityless = new ArrayList<>();
     private int maxToSee = 5;
 
-    //empty constructor for jackson(yml)
+    /**
+     * Prazdny konstruktor, ktory sluzi pre deserializaciu yml
+     */
     public DropPoint() {
     }
 
+    /**
+     * Funkcia vracia nazov drop pointu
+     * @return nazov drop pointu
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Funkcia vracia poziciu drop pointu za pomoci triedy Coordinates
+     * @return pocicia drop pointu
+     */
     public Coordinates getPosition() {
         return position;
     }
 
+    /**
+     * Pomocna funkcia po stlaceni tlacidla reset vynuluje zoznamy s objednavkami a nanovo vytvori GUI
+     */
     public void reset(){
         waiting =  new ArrayList<>();
         done = new ArrayList<>();
@@ -59,8 +76,11 @@ public class DropPoint implements Drawable{
         this.makeGui();
     }
 
-
-
+    /**
+     * Konstruktor drop pointu, ktory nastavi jeho nazov a poziciu na platne
+     * @param name Nazov drop pointu
+     * @param position Pozicia drop pointu
+     */
     @JsonIgnore
     public DropPoint(String name, Coordinates position) {
         this.name = name;
@@ -68,6 +88,9 @@ public class DropPoint implements Drawable{
         this.makeGui();
     }
 
+    /**
+     * Funkcia vykresli drop point na platno vo forme stvoruholnika a zaobstarava kliknutie nan pre vypisanie prehladu objednavok
+     */
     @JsonIgnore
     public void makeGui(){
         gui = new ArrayList<>();
@@ -91,16 +114,29 @@ public class DropPoint implements Drawable{
         });
     }
 
+    /**
+     * Funkcia objednavku z argumentu prida do zoznamu cakajucich objednavok
+     * @param order Objednavka zaradena na cakaciu listinu
+     */
     @JsonIgnore
     public void addOrder(Order order){
         waiting.add(order);
     }
 
+    /**
+     * Funkcia zoznam objednavok z argumentu pripoji k zoznamu cakajucich objednavok
+     * @param lst Zoznam objednavok, ktore budu pridane na cakaciu listinu
+     */
     @JsonIgnore
     public void addOrder(ArrayList<Order> lst){
         waiting.addAll(lst);
     }
 
+    /**
+     * Funkcia vytvarajuca text, ktory obsahuje osobitne zoznamy objednavok podla ich statusu,
+     * neskor sa tento text pouziva pri vypise po kliknuti na drop point
+     * @return String s rozdelenim objednavok podla ich statusu do 4 celkov
+     */
     @JsonIgnore
     private String getContent(){
         String str = "Waiting:\n";
@@ -146,6 +182,11 @@ public class DropPoint implements Drawable{
         return str;
     }
 
+    /**
+     * Funkcia zmeni status objednavky na zaklade argumentu status
+     * @param status Nove cislo statusu, ktory bude objednavke prideleny
+     * @param order Objednavka, ktorej bude zmeneny status
+     */
     @JsonIgnore
     public void updateOrder(int status, Order order) {
         if (status == 0){
@@ -160,6 +201,10 @@ public class DropPoint implements Drawable{
         }
     }
 
+    /**
+     * Funkcia vracia objednavku ktora je prva na cakacej listine, ta je z cakacej listiny odstranena
+     * @return Objednavka, ktora je odstranena z cakacej listiny
+     */
     @JsonIgnore
     public Order getWaitingOrder(){
         Order order = waiting.get(0);
@@ -175,11 +220,19 @@ public class DropPoint implements Drawable{
         }
     }
 
+    /**
+     * Funkcia vracia velkost zoznamu s cakajucimi objednavkami
+     * @return Pocet cakajucih objednavok
+     */
     @JsonIgnore
     public int getWaitingOrderSize(){
         return waiting.size();
     }
 
+    /**
+     * Funkcia vracia GUI drop pointu
+     * @return Zoznam shapov reprezentujuci GUI drop pointu
+     */
     @Override
     public List<Shape> getGUI() {
         if(gui == null){
@@ -188,11 +241,19 @@ public class DropPoint implements Drawable{
         return gui;
     }
 
+    /**
+     * Funkcia vracia objednavky priluchajuce drop pointu
+     * @return zoznam shapov, ktory obsahuje text s objednavkami prisluchajucimi drop pointu
+     */
     @Override
     public List<Shape> getInfo() {
         return info;
     }
 
+    /**
+     * Funkcia vracia aktualizovane objednavky prisluchajuce drop pointu
+     * @return zoznam shapov, ktory obsahuje text s objednavkami prisluchajucimi drop pointu
+     */
     @Override
     public List<Shape> updateInfo() {
         Text text = new Text(this.getContent());
@@ -201,11 +262,17 @@ public class DropPoint implements Drawable{
         return info;
     }
 
+    /**
+     * Pomocna funckia, ktora pri prekliknuti na iny objekt opat sfarbi policu do vychodzej farby
+     */
     @Override
     public void off() {
         mainRect.setFill(ORANGE);
     }
 
+    /**
+     * Pomocna funkcia, ktora vycisti zoznam so shapami prisluchajuci objednavkam
+     */
     @Override
     public void infoClear() {
         info.clear();

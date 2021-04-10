@@ -181,7 +181,7 @@ public class Shelf implements Drawable {
     }
 
     /**
-     * Funkcia vypisujuca obsah police na platno
+     * Funkcia vracia obsah police na platno
      * @return zoznam shapov, ktory obsahuje text s obsahom police
      */
     @Override
@@ -190,7 +190,7 @@ public class Shelf implements Drawable {
     }
 
     /**
-     * Funkcia vypisujuca aktualizovany obsah police na platno
+     * Funkcia vracia aktualizovany obsah police na platno
      * @return zoznam shapov, ktory obsahuje text s obsahom police
      */
     @Override

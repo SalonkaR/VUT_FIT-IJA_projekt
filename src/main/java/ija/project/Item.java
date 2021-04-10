@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
+ * Trieda reprezentujuca konkretny Item(kus, vyrobok).
  *
+ * @author
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Item {
@@ -14,10 +16,18 @@ public class Item {
     private Shelf shelf;
     private boolean reserve = false;
 
-    //empty constructor for jackson(yml)
-    public Item() {
+    /**
+     * Prazdny konstruktor, ktory sluzi pre deserializaciu yml
+     */
+    public Item(){
     }
 
+    /**
+     * Konstruktor, ktory itemu priradi nazov, goods a policu v ktorej sa nachadza
+     * @param name
+     * @param goods
+     * @param shelf
+     */
     @JsonIgnore
     public Item(String name, Goods goods, Shelf shelf) {
         this.name = name;
@@ -27,6 +37,9 @@ public class Item {
         this.shelf.addItem(this);
     }
 
+    /**
+     * Funkcia vyzdiela niektore z atributov itemu
+     */
     public void shareMe(){
         this.goods.addItem(this);
         this.shelf.addItem(this);
@@ -50,12 +63,6 @@ public class Item {
 
     public void setGoods(Goods goods) {
         this.goods = goods;
-        //List<Goods> goods = data.getGoods();
-        //for (Goods good : goods){
-        //    if(this.goods.getName() == good.getName()){
-        //        this.goods = good;
-        //   }
-        //}
     }
 
     public void setShelf(Shelf shelf) {
@@ -69,11 +76,6 @@ public class Item {
 
     public void setReserve() {
         reserve = true;
-    }
-
-    @Override
-    public String toString() {
-        return "Item:"  + name ;
     }
 
     public double getWeight() {
