@@ -12,7 +12,8 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javafx.scene.paint.Color.*;
+import static javafx.scene.paint.Color.ORANGE;
+import static javafx.scene.paint.Color.RED;
 
 /**
  * Trieda Parking reprezentuje parkovisko, kde parkujú všetky vozíky. Tiež sa tam nabíjajú.
@@ -237,11 +238,21 @@ public class Parking implements Drawable{
     }
 
     /**
+     * Metóda vráti DropPoint.
+     *
+     * @return DropPoint.
+     */
+    public DropPoint getDropPoint() {
+        return dropPoint;
+    }
+
+    /**
      * Metóda vráti pozíciu parkoviska.
      * @return pozíciu parkoviska.
      */
     public Coordinates getPosition() {
         return position;
     }
+
 
 }
