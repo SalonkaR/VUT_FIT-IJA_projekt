@@ -13,10 +13,18 @@ public class Item {
     private Shelf shelf;
     private boolean reserve = false;
 
-    //empty constructor for jackson(yml)
-    public Item() {
+    /**
+     * Prazdny konstruktor, ktory sluzi pre deserializaciu yml
+     */
+    public Item(){
     }
 
+    /**
+     * Konstruktor
+     * @param name
+     * @param goods
+     * @param shelf
+     */
     @JsonIgnore
     public Item(String name, Goods goods, Shelf shelf) {
         this.name = name;

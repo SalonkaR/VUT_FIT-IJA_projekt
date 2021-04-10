@@ -20,7 +20,7 @@ import static javafx.scene.paint.Color.*;
 
 /**
  * Trieda Carriage reprezentuje vozík. Jeho východzia pozícia je na Parking.
- * Vždy si zoberie jednu objednávku, tu vyzdvzhne zo skladu a zanesie do DropPointu
+ * Vždy si zoberie jednu objednávku, tu vyzdvyhne zo skladu a zanesie do DropPointu
  *
  * @author Jakub Sokolík - xsokol14
  * @version 1.0

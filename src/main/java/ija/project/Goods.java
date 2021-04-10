@@ -7,6 +7,13 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.*;
 
+/**
+ * Trieda reprezentuje tovar ako taky(druh), nie konkretny vyrobok.
+ * Pod jej zastitom su uz konkretne itemy.
+ *
+ * @author Jakub Sokolik - xsokol14
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Goods {
@@ -20,20 +27,33 @@ public class Goods {
     @JsonIgnore
     private ArrayList<Item> reservedItems = new ArrayList<>();
 
-    //empty constructor for jackson(yml)
-    public Goods() {
+    /**
+     * Prazdny konstruktor, ktory sluzi pre deserializaciu yml
+     */
+    public Goods(){
     }
 
+    /**
+     * Konstruktor ktory tovaru priradi jeho nazov
+     * @param name Nazov tovaru
+     */
     public Goods(String name) {
         this.name = name;
     }
 
+    /**
+     * Funkcia, ktora po stlaceni tlacidla reset nastavi goods do vychodzieho stavu
+     */
     public void reset(){
         freeItems = new HashMap<>();
         sortedShelves = new HashMap<>();
         reservedItems = new ArrayList<>();
     }
 
+    /**
+     * Funkcia prida item do police
+     * @param item Item na pridanie
+     */
     public void addItem(Item item) {
         Shelf shelf = item.getShelf();
         if(freeItems.containsKey(shelf)){
@@ -46,6 +66,10 @@ public class Goods {
         }
     }
 
+    /**
+     * Funkcia prida policu do zoznamu polic, ktore dany goods obsahuju
+     * @param shelf Polica na pridanie
+     */
     public void addShelf(Shelf shelf){
         double xy = shelf.getAccessPoint().getX() + shelf.getAccessPoint().getY();
         if (sortedShelves.containsKey(xy)){
@@ -57,21 +81,36 @@ public class Goods {
         }
     }
 
-
+    /**
+     * Funkcia vracia nazov druhu tovaru
+     * @return Nazov tovaru
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Funkcia odstrani item zo zonamu rezervovanych itemov
+     * @param item Item na odstranenie
+     */
     public void removeItem(Item item) {
         reservedItems.remove(item);
     }
 
+    /**
+     * Funkcia prida itemy zo zoznamu itemov medzi rezervovane itemy aby sa nestalo, ze pre jeden item pojdu 2 voziky naraz
+     * @param lst Zoznam itemov, ktore budu rezervovane
+     */
     public void reserveItem(List<Item> lst){
         for (Item item : lst) {
             this.reserveItem(item);
         }
     }
 
+    /**
+     * Funkcia rezervuje item a odstrani ho zo zonamu dostupnych itemov
+     * @param item Item na rezervaciu
+     */
     public void reserveItem(Item item){
         Shelf shelf = item.getShelf();
         reservedItems.add(item);
@@ -82,6 +121,11 @@ public class Goods {
             this.removeShelf(shelf);
         }
     }
+
+    /**
+     * AK sa z police minu vsetky itemy daneho druhu(goods), tak je odstranena zo zoznamu
+     * @param shelf
+     */
     public void removeShelf(Shelf shelf){
         double xy = shelf.getAccessPoint().getX() + shelf.getAccessPoint().getY();
         sortedShelves.get(xy).remove(shelf);
@@ -90,12 +134,15 @@ public class Goods {
         }
     }
 
+    /**
+     * Funkcia vracia celkovy pocet dostupnych itemov tohto tovaru z celeho skladu
+     * @return Pocet volnych itemov
+     */
     public int sizeFree(){
         int cnt = 0;
         for (Shelf shelf : freeItems.keySet()){
             cnt += freeItems.get(shelf).size();
         }
-
         return cnt;
     }
 
@@ -114,8 +161,11 @@ public class Goods {
         return 0;
     }
 
-
-
+    /**
+     *
+     * @param pcs
+     * @return
+     */
     public List<Item> getItems(int pcs){
         int cnt = 0;
         List<Item> items= new ArrayList<>();
@@ -143,10 +193,13 @@ public class Goods {
         this.reserveItem(items);
 
         return items;
-
     }
 
-
+    /**
+     *
+     * @param psc
+     * @return
+     */
     public HashMap<Double, List<Item>> getItemsMap(Integer psc) {
         HashMap<Double, List<Item>> map = new HashMap<>();
         Double x;
@@ -160,19 +213,21 @@ public class Goods {
                 map.put(x, lst);
             }
         }
-
         return map;
     }
 
-    @Override
-    public String toString() {
-        return "Goods:" + name;
-    }
-
+    /**
+     * Funkcia vracia vahu tovaru
+     * @return Vaha tovaru
+     */
     public double getWeight() {
         return weight;
     }
 
+    /**
+     * Funkcia nastavuje vahu tovaru
+     * @param weight Vaha tovaru
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
