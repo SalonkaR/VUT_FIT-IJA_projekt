@@ -2723,28 +2723,28 @@ orderGenerators:
   - &orderGenerator7 name: "Order7"
     maxGoods: 4
     maxItems: 6
-  - &orderGenerator0 name: "Order8"
+  - &orderGenerator8 name: "Order8"
     maxGoods: 6
     maxItems: 20
-  - &orderGenerator1 name: "Order9"
+  - &orderGenerator9 name: "Order9"
     maxGoods: 2
     maxItems: 5
-  - &orderGenerator2 name: "Order10"
+  - &orderGenerator10 name: "Order10"
     maxGoods: 5
     maxItems: 10
-  - &orderGenerator3 name: "Order11"
+  - &orderGenerator11 name: "Order11"
     maxGoods: 4
     maxItems: 20
-  - &orderGenerator4 name: "Order12"
+  - &orderGenerator12 name: "Order12"
     maxGoods: 2
     maxItems: 20
-  - &orderGenerator5 name: "Order13"
+  - &orderGenerator13 name: "Order13"
     maxGoods: 1
     maxItems: 7
-  - &orderGenerator6 name: "Order14"
+  - &orderGenerator14 name: "Order14"
     maxGoods: 3
     maxItems: 20
-  - &orderGenerator7 name: "Order15"
+  - &orderGenerator15 name: "Order15"
     maxGoods: 4
     maxItems: 6
 

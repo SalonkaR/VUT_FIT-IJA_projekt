@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * Trieda reprezentujuca konkretny Item(kus, vyrobok).
  *
- * @author
+ * @author @author Matúš Tvarožný - xtvaro00
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Item {

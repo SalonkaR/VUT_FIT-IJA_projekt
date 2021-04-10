@@ -18,7 +18,7 @@ import static javafx.scene.paint.Color.RED;
 /**
  * Trieda Parking reprezentuje parkovisko, kde parkujú všetky vozíky. Tiež sa tam nabíjajú.
  *
- * @author Jakub Sokolík - xsokol14
+ * @author Matúš Tvarožný - xtvaro00
  * @version 1.0
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
