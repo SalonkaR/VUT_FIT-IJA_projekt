@@ -106,6 +106,11 @@ public class MainController {
         for (OrderGenerator2 oGen : orderGenerators){
             oGen.reset();
         }
+        for (OrderGenerator orderGenerator : data.getOrderGenerators()){
+            orderGenerator.setGoods(data.getGoods());
+            orderGenerator.setDropPoint(data.getDropPoint().get(0));
+            orderGenerator.generate();
+        }
 
     }
 

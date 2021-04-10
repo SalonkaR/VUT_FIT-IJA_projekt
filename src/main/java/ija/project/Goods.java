@@ -162,9 +162,10 @@ public class Goods {
     }
 
     /**
+     * Metóda vráti niekoľko itemov, ktoré su najbližšiek parkovisku.
      *
-     * @param pcs
-     * @return
+     * @param pcs počet itemov, ktoré sa vrátia.
+     * @return zoznam itemov.
      */
     public List<Item> getItems(int pcs){
         int cnt = 0;
@@ -193,27 +194,6 @@ public class Goods {
         this.reserveItem(items);
 
         return items;
-    }
-
-    /**
-     *
-     * @param psc
-     * @return
-     */
-    public HashMap<Double, List<Item>> getItemsMap(Integer psc) {
-        HashMap<Double, List<Item>> map = new HashMap<>();
-        Double x;
-        for (Item item : this.getItems(psc)){
-            x = item.getShelf().getAccessPoint().getY();
-            if (map.containsKey(x)){
-                map.get(x).add(item);
-            } else {
-                List<Item> lst= new ArrayList<>();
-                lst.add(item);
-                map.put(x, lst);
-            }
-        }
-        return map;
     }
 
     /**

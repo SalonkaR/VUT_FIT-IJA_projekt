@@ -92,4 +92,22 @@ public class OrderGenerator {
     public String getName() {
         return name;
     }
+
+    /**
+     * Metóda vráti maximalny počet druhov tovaru.
+     *
+     * @return maximalny počet druhov tovaru.
+     */
+    public int getMaxGoods() {
+        return maxGoods;
+    }
+
+    /**
+     * Metóda vráti maximalny počet kusov itemu na druh tovaru.
+     *
+     * @return maximalny počet kusov itemu na druh tovaru.
+     */
+    public int getMaxItems() {
+        return maxItems;
+    }
 }
