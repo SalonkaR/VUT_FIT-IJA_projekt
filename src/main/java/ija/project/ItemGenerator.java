@@ -27,10 +27,10 @@ public class ItemGenerator {
     }
 
     /**
-     * Konstruktor, ktory generatoru priradi nazov, goodsy, ktore bude generovat a ich pocet.
-     * @param name
-     * @param goods
-     * @param count
+     * Konstruktor, ktory generatoru priradi nazov, goods, ktore bude generovat a ich pocet.
+     * @param name Nazov generatoru
+     * @param goods Goods ktore sa budu generovat
+     * @param count Pocet goodsov
      */
     @JsonIgnore
     public ItemGenerator(String name, Goods goods, int count) {
