@@ -47,9 +47,9 @@ public class Carriage implements Drawable, Mover {
     @JsonIgnore
     private Order order;
     @JsonIgnore
-    private int power = 6000;
+    private int power = 3500;
     @JsonIgnore
-    private int maxPower = 6000;
+    private int maxPower = 3500;
     @JsonIgnore
     // naložená hmotnosť
     private double load;
@@ -375,6 +375,7 @@ public class Carriage implements Drawable, Mover {
                     }
                 }
                 load = 0;
+                path.clear();
                 if (sortedRegals.size() > 0){
                     status = 1;
                     inside = new HashMap<>();
@@ -420,7 +421,6 @@ public class Carriage implements Drawable, Mover {
                 if (power < maxPower){
                     power += min(5, maxPower-power);
                 } else {
-
                     if (order == null){
                         status = 0;
                     } else {
@@ -889,11 +889,13 @@ public class Carriage implements Drawable, Mover {
         }
 
 
+
         if (diff > 0){
             diff = Double.min(diff, speed);
         } else {
             diff = -Double.min(-diff, speed);
         }
+
 
 
         if (direction) {   //true = y

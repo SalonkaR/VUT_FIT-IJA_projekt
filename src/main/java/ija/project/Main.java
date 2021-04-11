@@ -43,7 +43,7 @@ public class Main extends Application {
         List<Drawable> elements  = new ArrayList<>();
         YAMLFactory factory = new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER);
         ObjectMapper mapper = new ObjectMapper(factory);
-        Data data =  mapper.readValue(new File("storage.yml"), Data.class);
+        Data data =  mapper.readValue(new File("storage3.yml"), Data.class);
         elements.addAll(data.getShelves());
         elements.addAll(data.getDropPoint());
         elements.addAll(data.getParking());

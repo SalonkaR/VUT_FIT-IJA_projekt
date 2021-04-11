@@ -73,18 +73,17 @@ public class OrderGenerator2 {
             while (numOfGoods == 0) {
                 numOfGoods = random.nextInt(maxGoods + 1);
             }
+            for (int i = 0; i <= numOfGoods; i++){
 
-            for (int i = 0; i<= numOfGoods; i++){
-                if (maxItems - currentNumItems < 2){
-                    currentNumItems -= 2;
-                }
                 while (numItems == 0) {
-                    numItems = random.nextInt(maxItems - currentNumItems);
+                    numItems = random.nextInt(maxItems/numOfGoods);
                 }
                 currentNumItems += numItems;
                 list.put(goods.get(random.nextInt(goods.size())), numItems);
+                numItems = 0;
             }
 
+            System.out.println(list);
             new Order(name + "/" + cnt, dropPoint, list);
             cnt += 1;
         }
