@@ -1,6 +1,6 @@
 <project name="IJAprojekt" basedir="." default="compile">
 
-    <property name="src.dir" value="src"/>
+    <property name="src.dir" value="src/main/java"/>
     <property name="dest.dir" value="dest"/>
     <property name="doc.dir" value="doc"/>
     <property name="build.dir" value="build"/>
