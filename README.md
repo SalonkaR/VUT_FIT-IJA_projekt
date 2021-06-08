@@ -18,16 +18,16 @@
 
 ### ukážka skladiska
 Polica s obsahom:
-![image](img/shelf.png)
+![image](shelf.png)
 
 Spracovanie objednávok:
-![image](img/droppoint.png)
+![image](droppoint.png)
 
 Stav vozíkov:
-![image](img/parking.png)
+![image](parking.png)
 
 Ukažka vozíka:
-![image](img/carriage.png)
+![image](carriage.png)
 
 Trasa vozíka:
-![image](img/lines.png)
+![image](lines.png)
